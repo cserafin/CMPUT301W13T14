@@ -20,12 +20,12 @@ UI Screens to Prototype
 -   - email screen
 -   - photo button/list
 -   
-- - Search Screen
+-  Search Screen
 - 
-- - Saved/Favorites Screen
+-  Saved/Favorites Screen
 - 
-- - Edit Recipe Screen / Add photo to othe recipe
+-  Edit Recipe Screen / Add photo to othe recipe
 - 
-- - View Recipes
+-  View Recipes
 - 
-- - Home Page
+-  Home Page
