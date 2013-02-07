@@ -17,8 +17,8 @@ PART 1
 UI Screens to Prototype
 --------------------------------
 Create Recipes
- email screen
- photo button/list
+ - email screen
+ - photo button/list
   
 Search Screen
 
