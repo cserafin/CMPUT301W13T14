@@ -16,16 +16,16 @@ PART 1
 
 UI Screens to Prototype
 --------------------------------
-- Create Recipes
--   - email screen
--   - photo button/list
--   
-- Search Screen
-- 
-- Saved/Favorites Screen
-- 
-- Edit Recipe Screen / Add photo to othe recipe
-- 
-- View Recipes
-- 
-- Home Page
+Create Recipes
+ email screen
+ photo button/list
+  
+Search Screen
+
+Saved/Favorites Screen
+
+Edit Recipe Screen / Add photo to othe recipe
+
+View Recipes
+
+Home Page
