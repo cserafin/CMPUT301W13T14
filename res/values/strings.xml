@@ -4,5 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">OneClick Cookbook</string>
+    <string name="homeMessage">Hello there!</string>
+    <string name="homeLoginButton">Login or Signup!</string>
+    <string name="homeCreate">Create a recipe</string>
 
 </resources>
