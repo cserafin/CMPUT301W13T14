@@ -19,6 +19,10 @@ public class Ingredient {
 	public String getName() {
 		return name;
 	}
+	
+	public void setName(String newName){
+		this.name = newName;
+	}
 
 	public int getQuantity() {
 		return quantity;
