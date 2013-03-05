@@ -32,9 +32,12 @@ public class Ingredient {
 		return measurement;
 	}
 	
-	// This should probably be modified to return a string
-	public void printIngredient() {
-		return;
+	//Does not physically print it out, it only changes it to a string.
+	//Should we modify the name to "toString()"?
+	public String printIngredient() {
+		
+		String ingredient = quantity +" "+measurement+" of "+name;
+		return ingredient;
 	}
 
 }
