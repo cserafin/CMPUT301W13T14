@@ -26,5 +26,4 @@ public class Pantry {
 		return false;
 	}
 	
-	
 }
