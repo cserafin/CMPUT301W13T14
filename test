@@ -1,19 +1,62 @@
 #! /bin/bash
 
-ant debug
+# Author: Kenneth Armstrong
+# Basic script to run Junit tests, and some integration tests
+# Not perfect by any means. Use at your own risks
+# Does not do error checking, so don't mess up
 
-echo Deleting old test files...
-rm -f tests/*.class
 
-echo Building test files...
-javac -cp tests:./src tests/*.java
+# Essentially and alias to 'ant debug'
+if [ "$1" == "build" ]; then
+    echo
+    echo Building Android classes.... This may take a few seconds
+    ant debug 1>/dev/null
+    echo
+    echo "Finished Building APK...."
+    echo --------------------------
+    echo
+    exit
+fi
 
-cd tests
+# Check to see whether or not they have compiled classes already
+# Not perfect, but works well enough
 
-echo Running tests...
-java -cp .:../bin/classes TestMaster
+if [ ! -d bin/classes ]; then
+    echo
+    echo Building Android classes.... This may take a few seconds
+    ant debug 1>/dev/null
+    echo
+    echo "Finished Building APK...."
+    echo --------------------------
+    echo
 
+else 
+    echo
+    echo Running with currently compiled classes...
+    echo "(Run 'ant debug' to rebuild)"
+    echo -----------------------------------------
+    echo 
+fi
+
+
+# Run unit test on class if arguement is passed, otherwise
+# run some semi-integration tests (ie. TestMaster)
+
+if [ "$1" == "all" -o "$#" = 0 ]; then
+    echo Running integration tests...
+    javac -cp tests:src:libs/*.jar tests/*.java
+    cd tests
+    java -cp .:../bin/classes:libs/*.jar TestMaster
+
+else
+    echo Running unit tests on $1...
+    javac -cp tests:src:libs/*.jar tests/$1Test.java
+    cd tests
+    java -cp .:../bin/classes:libs/*.jar $1Test
+
+fi
+
+# Clean up all the built classes
 echo Cleaning up...
 cd ../
-ant clean
 rm -f tests/*.class

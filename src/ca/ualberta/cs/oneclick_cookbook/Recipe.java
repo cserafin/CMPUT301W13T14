@@ -14,7 +14,9 @@ public class Recipe {
 	private int demotions = 0;
 	
 	public Recipe(String name, Pantry ingredients, String steps){
-		
+	        this.name  = name;
+		this.ingredients = ingredients;
+		this.steps = steps;
 	}
 	
 	public void changeName(String newName){
