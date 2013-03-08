@@ -1,0 +1,19 @@
+#! /bin/bash
+
+ant debug
+
+echo Deleting old test files...
+rm -f tests/*.class
+
+echo Building test files...
+javac -cp tests:./src tests/*.java
+
+cd tests
+
+echo Running tests...
+java -cp .:../bin/classes TestMaster
+
+echo Cleaning up...
+cd ../
+ant clean
+rm -f tests/*.class

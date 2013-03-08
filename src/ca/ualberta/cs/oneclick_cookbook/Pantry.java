@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Pantry {
 	private ArrayList<Ingredient> ingredientList;
 	
-	Pantry() {
+	public Pantry() {
 		
 	}
 	

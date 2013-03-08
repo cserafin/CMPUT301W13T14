@@ -5,7 +5,7 @@ public class Ingredient {
 	private String measurement;
 	private String name;
 	
-	Ingredient (String name, int quantity, String measurement) {
+	public Ingredient (String name, int quantity, String measurement) {
 		this.name = name;
 		this.quantity = quantity;
 		this.measurement = measurement;
@@ -32,11 +32,9 @@ public class Ingredient {
 		return measurement;
 	}
 	
-	//Does not physically print it out, it only changes it to a string.
-	//Should we modify the name to "toString()"?
-	public String printIngredient() {
-		
-		String ingredient = quantity +" "+measurement+" of "+name;
+	// Converts the ingredient to a nicely formatted string
+	public String toString() {
+		String ingredient = quantity + " " + measurement + " of " + name;
 		return ingredient;
 	}
 

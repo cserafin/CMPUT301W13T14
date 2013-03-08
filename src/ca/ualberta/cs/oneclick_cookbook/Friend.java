@@ -5,7 +5,7 @@ public class Friend {
 	private String email = null;
 	private String phoneNumber = null;
 	
-	Friend (String screenName, String email, String phoneNumber) {
+	public Friend (String screenName, String email, String phoneNumber) {
 		this.email = email;
 		this.screenName = screenName;
 		this.phoneNumber = phoneNumber;
