@@ -3,11 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="100" >
+    android:weightSum="120" >
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="20"
@@ -15,6 +13,7 @@
         android:weightSum="100" >
 
         <TextView
+            android:id="@+id/tWelcomeMessage"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="70"
@@ -25,25 +24,89 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="30"
+            android:onClick="clickHandler"
             android:text="@string/homeLoginButton"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="20"
-	android:orientation="horizontal" >
+        android:orientation="horizontal" >
 
         <Button
             android:id="@+id/bHomeCreate"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:onClick="clickHandler"
             android:text="@string/homeCreate"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bHomeViewRecipes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="clickHandler"
+            android:text="@string/homeViewRecipes"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bViewRecipeHistory"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="clickHandler"
+            android:text="@string/homeViewRecipeHistory"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bHomeManagePantry"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="clickHandler"
+            android:text="@string/homeManagePantry"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bHomeSearchRecipes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="clickHandler"
+            android:text="@string/homeSearchRecipes"
+            android:textSize="12sp" />
     </LinearLayout>
 
 </LinearLayout>
