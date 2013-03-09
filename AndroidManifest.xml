@@ -30,6 +30,10 @@
             android:name="ca.ualberta.cs.oneclick_cookbook.ViewRecipesActivity"
             android:label="@string/title_activity_view_recipes" >
         </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.AddIngredientsActivity"
+            android:label="@string/title_activity_add_ingredients" >
+        </activity>
     </application>
 
 </manifest>

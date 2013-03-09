@@ -10,6 +10,7 @@ import android.app.Application;
 public class GlobalApplication extends Application {
 	
 	private User current = null;
+	private Ingredient ingredients = null;
 	
 	@Override
 	public void onCreate() {
@@ -25,7 +26,7 @@ public class GlobalApplication extends Application {
 	}
 	
 	//TODO Implement this properly (not always John Doe
-	public User getCurrent() {
+	public User getCurrentUser() {
 		if (current == null) {
 			current = new User("John Doe", "password", "JD42","jd42@gmail.com");
 		}

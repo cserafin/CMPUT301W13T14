@@ -1,6 +1,7 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -32,6 +33,10 @@ public class CreateRecipeActivity extends Activity {
 		case R.id.bCreateDelete:
 			onDelete();
 			break;
+		case R.id.bCreateAddIngredient:
+			Intent intent = new Intent(this.getApplicationContext(), AddIngredientsActivity.class);
+			startActivity(intent);
+			break;
 		case R.id.bCreateAddPhoto:
 			onAddPhoto();
 			break;
@@ -49,15 +54,19 @@ public class CreateRecipeActivity extends Activity {
 		
 		name = (EditText) findViewById(R.id.createEnterName);
 		steps = (EditText) findViewById(R.id.createEnterSteps);
-		
 		String namestring = name.getText().toString();
 		String stepstring = steps.getText().toString();
 		
 		Recipe r = new Recipe(namestring, null, stepstring);
 		
+		//TODO Add appropriate feedback here
+		if (r.isValidInfo() != Constants.GOOD) {
+			return;
+		}
+		
 		//TODO Add upload section and save section
 		GlobalApplication g = (GlobalApplication) getApplication();
-		g.getCurrent().addRecipe(r);
+		g.getCurrentUser().addRecipe(r);
 		
 		finish();
 		return;

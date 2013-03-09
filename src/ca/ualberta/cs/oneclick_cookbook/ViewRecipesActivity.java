@@ -21,7 +21,7 @@ public class ViewRecipesActivity extends Activity {
 		super.onResume();
 		ListView listView = (ListView) findViewById(R.id.lViewRecipes);
         GlobalApplication app = (GlobalApplication) getApplication();
-        ArrayList<String> content = app.getCurrent().getRecipesToString();
+        ArrayList<String> content = app.getCurrentUser().getRecipesToString();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, content);
         listView.setAdapter(adapter);

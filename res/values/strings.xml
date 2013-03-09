@@ -8,7 +8,7 @@
     <string name="homeMessage">Hello there!</string>
     <string name="homeLoginButton">Login or Signup!</string>
     <string name="homeCreate">Create a recipe</string>
-    <string name="title_activity_create_recipe">CreateRecipeActivity</string>
+    <string name="title_activity_create_recipe">OneClick Cookbook</string>
     <string name="action_settings">Settings</string>
     <string name="homeViewRecipes">View Recipes</string>
     <string name="homeViewRecipeHistory">View Recipe History</string>
@@ -18,9 +18,11 @@
     <string name="createDone">Done</string>
     <string name="createAddPhoto">Add Photo</string>
     <string name="createDeletePhoto">Delete Photo</string>
-    <string name="createNameHint">Enter Name</string>
+    <string name="createNameHint">Enter Recipe Name</string>
     <string name="createIngredientHint">Enter Ingredients</string>
     <string name="createStepsHint">Enter steps</string>
     <string name="title_activity_view_recipes">ViewRecipesActivity</string>
+    <string name="title_activity_add_ingredient">AddIngredientActivity</string>
+    <string name="title_activity_add_ingredients">AddIngredientsActivity</string>
 
 </resources>

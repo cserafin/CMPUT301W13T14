@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 		// Set the welcome message (default account is John Doe
 		TextView t = (TextView) findViewById(R.id.tWelcomeMessage);
 		GlobalApplication g = (GlobalApplication) getApplication();
-		t.setText("Hello, " + g.getCurrent().getUserName() + "!");
+		t.setText("Hello, " + g.getCurrentUser().getUserName() + "!");
 	}
 
 	@Override

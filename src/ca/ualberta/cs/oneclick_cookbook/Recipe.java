@@ -63,7 +63,33 @@ public class Recipe {
 		return rating;
 	}
 	
+	// Turns the recipe into a string
 	public String toString() {
-		return "Name: " + this.name;
+		// Make sure it's not too long to mess up format
+		if (this.name.length() < 20) {
+			return "Name: " + this.name 
+					+ "\nIngredients: None (not implemented)";
+		}
+		else {
+			return "Name: " + this.name.substring(0, 10) + "..."
+					+ "\nIngredients: None (not implemented)";
+		}
+	}
+	
+	// Checks the recipe for valid info
+	public int isValidInfo() {
+		
+		if (name == null || steps == null /*|| ingredients == null*/) {
+			return Constants.NULL_VALUE;
+		}
+		
+		else if (name.equals("") || steps.equals("")) {
+			return Constants.ZERO_VALUE;
+		}
+		
+		else {
+			return Constants.GOOD;
+			//return ingredients.isValidInfo();
+		}
 	}
 }

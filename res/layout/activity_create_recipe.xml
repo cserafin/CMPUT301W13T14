@@ -8,7 +8,7 @@
         android:id="@+id/bCreateDone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="30"
+        android:layout_weight="5"
         android:onClick="clickHandler"
         android:text="@string/createDone"
         android:textSize="12sp" />
@@ -17,7 +17,7 @@
         android:id="@+id/bCreateDelete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="30"
+        android:layout_weight="5"
         android:onClick="clickHandler"
         android:text="@string/createDelete"
         android:textSize="12sp" />
@@ -26,7 +26,7 @@
         android:id="@+id/bCreateAddPhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="30"
+        android:layout_weight="5"
         android:onClick="clickHandler"
         android:text="@string/createAddPhoto"
         android:textSize="12sp" />
@@ -35,7 +35,7 @@
         android:id="@+id/bCreateRemovePhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="30"
+        android:layout_weight="5"
         android:onClick="clickHandler"
         android:text="@string/createDeletePhoto"
         android:textSize="12sp" />
@@ -44,20 +44,27 @@
         android:id="@+id/createEnterName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/createNameHint" />
+        android:layout_weight="10"
+        android:hint="@string/createNameHint"
+        android:inputType="text" />
 
-    <EditText
-        android:id="@+id/createEnterIngredients"
-        android:layout_width="fill_parent"
+    <Button
+        android:id="@+id/bCreateAddIngredient"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/createIngredientHint"/>
+        android:layout_weight="10"
+        android:onClick="clickHandler"
+        android:text="@string/createIngredientHint"
+        android:textSize="12sp" />
 
     <EditText
         android:id="@+id/createEnterSteps"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/createStepsHint" />
+        android:layout_weight="30"
+        android:hint="@string/createStepsHint"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:scrollHorizontally="false" />
 
 </LinearLayout>
