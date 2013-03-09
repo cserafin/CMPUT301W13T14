@@ -28,9 +28,17 @@ public class Ingredient {
 		return quantity;
 	}
 
+    public void setQuantity(int quantity) {
+	    this.quantity = quantity;
+    }
+
 	public String getMeasurement() {
 		return measurement;
 	}
+
+    public void setMeasurement(String measurement) {
+        this.measurement = measurement;
+    }
 	
 	// Converts the ingredient to a nicely formatted string
 	public String toString() {

@@ -60,3 +60,4 @@ fi
 echo Cleaning up...
 cd ../
 rm -f tests/*.class
+rm -f src/ca/ualberta/cs/oneclick_cookbook/*.class
