@@ -2,77 +2,108 @@
 
 # Author: Kenneth Armstrong
 # Basic script to run Junit tests, and some integration tests
-# Not perfect by any means. Use at your own risks
-# Does not do error checking, so don't mess up
+# Not perfect by any means. Very far from it.
+# Use at your own risk
+# Does not do error checking, so don't do anything stupid
 
 
 CLASSPATH=src:libs/libs/junit-4.11.jar:libs/libs/hamcrest-core-1.3.jar:bin/classes:tests
 
-# Essentially and alias to 'ant debug'
+echo 
+
+# Alias to 'ant debug install' or
+# an alias to 'ant debug'
 if [ "$1" == "build" ]; then
-    echo
-    echo Building Android classes.... This may take a few seconds
+    if [ "$2" == "install" ]; then
+        echo Building and installing APK...
+        ant debug install 1>/dev/null
+        echo Done.
+        exit
+    fi
+    echo Building android classes...
     ant debug 1>/dev/null
+    if [ "$?" == 0 ]; then
+        echo Done.
+    else
+        echo Something went wrong. BUILD FAILED!
+    fi
     echo
+    exit    
+fi
+
+# Clean up all the built classes
+if [ "$1" == "clean" ]; then
+    
+    # Clean all means Android too
+    if [ "$2" == "all" ]; then
+        echo Cleaning android stuff...
+        ant clean 1>/dev/null
+    fi
+    echo Cleaning up class files, etc...
+    rm -f tests/*.class
+    rm -f src/ca/ualberta/cs/oneclick_cookbook/*.class
+    echo Done.
     echo
-    echo Finished building android classes
-    echo ---------------------------------
-    echo 
     exit
 fi
 
 # Check to see whether or not they have compiled classes already
 # Not perfect, but works well enough
 
-if [ ! -d bin/classes ]; then
-    echo
-    echo Building Android classes.... This may take a few seconds
-    ant debug 1>/dev/null
-    echo
-    echo "Finished Building APK...."
-    echo --------------------------
-    echo
+checkBuildStatus() {
+    if [ ! -d bin/classes ]; then
+        echo Building Android classes...;
+        ant debug 1>/dev/null;
+        if [ "$?" == 0 ]; then
+            echo Done.;
+        else
+            echo Something went wrong. BUILD FAILED!;
+            echo;
+            exit;
+        fi
 
-else 
-    echo
-    echo Running with currently compiled classes...
-    echo "(Run 'ant debug' or './test build' to rebuild)"
-    echo -----------------------------------------
-    echo 
-fi
-
+    else 
+        echo Running with currently compiled classes...;
+    fi
+}
 
 # Run (semi) integration tests if no arguement is specified
 # The integration tests will be defined in TestMaster
-if [ "$#" = 0 ]; then
+if [ "$#" == 0 -o "$1" == "intg" ]; then
+    checkBuildStatus
     echo Running integration tests...
     javac -cp $CLASSPATH tests/*.java
     java -cp $CLASSPATH TestMaster
+    echo Done.
+    echo
     exit
 fi
-
 
 # Run unit tests on single entity
 if [ "$1" == "run" -a "$#" == 2 ]; then
+    checkBuildStatus
     echo Running unit tests on $2...
     javac -cp $CLASSPATH tests/$2Test.java
     java -cp $CLASSPATH org.junit.runner.JUnitCore $2Test
-    exit
-fi
-
-
-# Clean up all the built classes
-if [ "$1" == "clean" ]; then
-    echo Cleaning up...
-    rm -f tests/*.class
-    rm -f src/ca/ualberta/cs/oneclick_cookbook/*.class
+    echo Done.
+    echo
     exit
 fi
 
 # Run all unit tests
 if [ "$1" == "all" ]; then
+    checkBuildStatus
     echo Running all unit tests on all classes...
     javac -cp $CLASSPATH tests/*.java
     java -cp $CLASSPATH org.junit.runner.JUnitCore AllTests
+    echo Done.
+    echo
     exit
+fi
+
+# If we got here you did something wrong
+echo Incorrect usage.
+echo See README for instructions.
+echo
+exit
 fi

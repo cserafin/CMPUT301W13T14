@@ -17,6 +17,8 @@ public class Recipe {
 	    this.name  = name;
 		this.ingredients = ingredients;
 		this.steps = steps;
+        this.promotions = 0;
+        this.demotions = 0;
 	}
 	
 	public void changeName(String newName){
@@ -47,7 +49,7 @@ public class Recipe {
 	}
 	
 	public void promote(){
-		this.promotions +=1;
+		this.promotions += 1;
 		return;
 	}
 	

@@ -29,4 +29,10 @@ followed by the following arguements:
 
 'build': builds the Android files (essentially an alias for 'ant debug')
 
-<none>: runs some integration tests from TestMaster
+'build install': builds plus installs APK on running emulator
+
+'clean': clean the class files from the tests
+
+'clean all': clean both test class files and Android build stuff
+
+<none> || 'intg': runs some integration tests from TestMaster class

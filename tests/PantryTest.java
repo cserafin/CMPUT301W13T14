@@ -24,6 +24,7 @@ public class PantryTest {
         assertTrue(p.isEmpty());
     }
 
+    // Test the add and remove with object functions
     @Test
     public void testAddRemoveObject() {
         assertTrue(p.isEmpty());
@@ -34,6 +35,7 @@ public class PantryTest {
         assertTrue(p.isEmpty());
     }
 
+    // Test the remove by name function
     @Test 
     public void testRemoveByName() {
         assertTrue(p.isEmpty());
@@ -41,10 +43,13 @@ public class PantryTest {
         p.addIngredient(new Ingredient("Bacon", 13, "Crates"));
         p.addIngredient(new Ingredient("Toast", 200, "Slices"));
         assertEquals("Test: removeByName1", 3, p.getNumberOfItems());
-        assertTrue(p.removeIngredient("Flour"));
-        assertEquals("Test: removeByName2", 2, p.getNumberOfItems());
+        assertTrue("Test: removeByName2", p.removeIngredient("Flour"));
+        assertEquals("Test: removeByName3", 2, p.getNumberOfItems());
+        assertFalse("Test: removeByName4", p.removeIngredient("NotInList"));
+        assertEquals("Test: removeByName5", 2, p.getNumberOfItems());
     }
 
+    // Test the clear entire pantry function
     @Test
     public void testClearPantry() {
         p.addIngredient(new Ingredient("Flour", 42, "Pounds"));
@@ -61,6 +66,7 @@ public class PantryTest {
         assertTrue("Test: clearPantry2", p.isEmpty());
     }
 
+    // Test the pantry validity function
     @Test
     public void testPantryCheck() {
         p.addIngredient(new Ingredient("Flour", 42, "Pounds"));
@@ -74,6 +80,7 @@ public class PantryTest {
         assertEquals("Test: pantrycheck3", Constants.ZERO_VALUE, p.isValidInfo());
     }
 
+    // Test the pantry search function
     @Test
     public void testPantrySearch() {
         p.addIngredient(new Ingredient("Flour", 42, "Pounds"));
