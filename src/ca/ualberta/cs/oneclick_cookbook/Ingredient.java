@@ -1,5 +1,6 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+
 public class Ingredient {
 	private int quantity;
 	private String measurement;
@@ -45,5 +46,17 @@ public class Ingredient {
 		String ingredient = quantity + " " + measurement + " of " + name;
 		return ingredient;
 	}
+
+    // Checks to make sure the info is valid. Uses constants in this file
+    public int isValidInfo() {
+        if (name == null || measurement == null) {
+            return Constants.NULL_VALUE;
+        }
+        else if (name.length() == 0 || quantity == 0 || measurement.length() == 0) {
+            return Constants.ZERO_VALUE;
+        }
+
+        return Constants.GOOD;
+    } 
 
 }

@@ -53,4 +53,14 @@ public class Pantry {
     public Ingredient get(int i) {
         return ingredientList.get(i);
     }
+
+    // Checks whether the entire pantry has valid info
+    public int isValidInfo() {
+        for (int i=0; i<ingredientList.size(); i++) {
+            if (ingredientList.get(i).isValidInfo() != Constants.GOOD) {
+                return ingredientList.get(i).isValidInfo();
+            }
+        }
+        return Constants.GOOD;
+    }
 }
