@@ -6,15 +6,18 @@
 # Does not do error checking, so don't mess up
 
 
+CLASSPATH=src:libs/libs/junit-4.11.jar:libs/libs/hamcrest-core-1.3.jar:bin/classes:tests
+
 # Essentially and alias to 'ant debug'
 if [ "$1" == "build" ]; then
     echo
     echo Building Android classes.... This may take a few seconds
     ant debug 1>/dev/null
     echo
-    echo "Finished Building APK...."
-    echo --------------------------
     echo
+    echo Finished building android classes
+    echo ---------------------------------
+    echo 
     exit
 fi
 
@@ -33,31 +36,43 @@ if [ ! -d bin/classes ]; then
 else 
     echo
     echo Running with currently compiled classes...
-    echo "(Run 'ant debug' to rebuild)"
+    echo "(Run 'ant debug' or './test build' to rebuild)"
     echo -----------------------------------------
     echo 
 fi
 
 
-# Run unit test on class if arguement is passed, otherwise
-# run some semi-integration tests (ie. TestMaster)
-
-if [ "$1" == "all" -o "$#" = 0 ]; then
+# Run (semi) integration tests if no arguement is specified
+# The integration tests will be defined in TestMaster
+if [ "$#" = 0 ]; then
     echo Running integration tests...
-    javac -cp tests:src:libs/*.jar tests/*.java
-    cd tests
-    java -cp .:../bin/classes:libs/*.jar TestMaster
-
-else
-    echo Running unit tests on $1...
-    javac -cp tests:src:libs/*.jar tests/$1Test.java
-    cd tests
-    java -cp .:../bin/classes:libs/*.jar $1Test
-
+    javac -cp $CLASSPATH tests/*.java
+    java -cp $CLASSPATH TestMaster
+    exit
 fi
 
+
+# Run unit tests on single entity
+if [ "$1" == "run" -a "$#" == 2 ]; then
+    echo Running unit tests on $2...
+    javac -cp $CLASSPATH tests/$2Test.java
+    java -cp $CLASSPATH org.junit.runner.JUnitCore $2Test
+    exit
+fi
+
+
 # Clean up all the built classes
-echo Cleaning up...
-cd ../
-rm -f tests/*.class
-rm -f src/ca/ualberta/cs/oneclick_cookbook/*.class
+if [ "$1" == "clean" ]; then
+    echo Cleaning up...
+    rm -f tests/*.class
+    rm -f src/ca/ualberta/cs/oneclick_cookbook/*.class
+    exit
+fi
+
+# Run all unit tests
+if [ "$1" == "all" ]; then
+    echo Running all unit tests on all classes...
+    javac -cp $CLASSPATH tests/*.java
+    java -cp $CLASSPATH org.junit.runner.JUnitCore AllTests
+    exit
+fi

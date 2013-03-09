@@ -19,7 +19,14 @@ can be combined with building, ie. 'ant debug install'.
 
 To run the tests, you will also need ant installed, as well as Bash.
 
-Go to the root directory of the prj, and type './test'. You may need
-to make this file executable by typing 'chmod 777 test'. Note that
-this will give all users full permission, so you may want to use 
-something like 'chmod +x test' instead.    
+Go to the root directory of the prj, and give ./test permission to execute
+(ie. 'chmod +x test' or 'chmod 777 test'). Run by simply typing './test' 
+followed by the following arguements:
+
+'run X': runs XTest.class
+
+'all': runs all JUnit tests on all classes
+
+'build': builds the Android files
+
+<none>: runs some integration tests from TestMaster
