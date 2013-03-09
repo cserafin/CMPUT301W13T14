@@ -47,6 +47,11 @@ public class Ingredient {
 		return ingredient;
 	}
 
+    public void toLower() {
+        this.name = name.toLowerCase();
+        this.measurement = measurement.toLowerCase();
+    }
+
     // Checks to make sure the info is valid. Uses constants in this file
     public int isValidInfo() {
         if (name == null || measurement == null) {

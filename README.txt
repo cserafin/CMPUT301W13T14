@@ -27,6 +27,6 @@ followed by the following arguements:
 
 'all': runs all JUnit tests on all classes
 
-'build': builds the Android files
+'build': builds the Android files (essentially an alias for 'ant debug')
 
 <none>: runs some integration tests from TestMaster
