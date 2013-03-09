@@ -21,6 +21,6 @@
     <string name="createNameHint">Enter Name</string>
     <string name="createIngredientHint">Enter Ingredients</string>
     <string name="createStepsHint">Enter steps</string>
-
+    <string name="title_activity_view_recipes">ViewRecipesActivity</string>
 
 </resources>

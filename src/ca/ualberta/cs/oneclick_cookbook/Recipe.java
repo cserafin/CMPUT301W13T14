@@ -62,4 +62,8 @@ public class Recipe {
 		int rating = this.promotions - this.demotions;
 		return rating;
 	}
+	
+	public String toString() {
+		return "Name: " + this.name;
+	}
 }

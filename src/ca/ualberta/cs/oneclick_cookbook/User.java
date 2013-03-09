@@ -1,5 +1,7 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+import java.util.ArrayList;
+
 public class User {
 
 	private String userName;
@@ -7,12 +9,14 @@ public class User {
 	private String screenName;
 	private String emailAddress;
 	private int phoneNumber;
+	private ArrayList<Recipe> userRecipes = null;
 	
 	public User(String userName, String password, String screenName, String emailAddress){
 		this.setUserName(userName);
 		this.setPassword(password);
 		this.setScreenName(screenName);
 		this.setEmailAddress(emailAddress);
+		userRecipes = new ArrayList<Recipe>();
 	}
 	
 	public User(String userName, String password, String screenName, int phoneNumber){
@@ -60,5 +64,17 @@ public class User {
 
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	
+	public void addRecipe(Recipe r) {
+		userRecipes.add(r);
+	}
+	
+	public ArrayList<String> getRecipesToString() {
+		ArrayList<String> s = new ArrayList<String>();
+		for (int i=0; i<userRecipes.size(); i++) {
+			s.add(userRecipes.get(i).toString());
+		}
+		return s;
 	}
 }

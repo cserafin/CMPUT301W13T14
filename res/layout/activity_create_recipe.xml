@@ -32,7 +32,7 @@
         android:textSize="12sp" />
 
     <Button
-        android:id="@+id/bCreateREmovePhoto"
+        android:id="@+id/bCreateRemovePhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="30"
