@@ -29,16 +29,16 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bManageHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/bManageAdd"
         android:layout_marginRight="20dp"
         android:text="Home" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/bManageAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
