@@ -42,6 +42,7 @@
         android:layout_marginBottom="110dp"
         android:layout_marginLeft="20dp"
         android:ems="10"
+        android:hint="Enter a keyword..."
         android:inputType="textMultiLine" />
 
 </RelativeLayout>
