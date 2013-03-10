@@ -36,8 +36,7 @@ public class AddIngredientsActivity extends Activity {
 	public void refresh() {
 		ListView listView = (ListView) findViewById(R.id.lViewIngredients);
 		GlobalApplication app = (GlobalApplication) getApplication();
-		ArrayList<String> content = app.getCurrentIngredients()
-				.getStringArrayList();
+		ArrayList<String> content = app.getCurrentRecipe().getIngredients().getStringArrayList();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, content);
 		listView.setAdapter(adapter);
@@ -49,11 +48,26 @@ public class AddIngredientsActivity extends Activity {
 		EditText name = (EditText) findViewById(R.id.addIngredientName);
 
 		String quantityString = quantity.getText().toString();
-		Integer amount = new Integer(quantityString);
+		
+		// Do the integer conversion like this just in case no number is entered
+		Integer amount;
+		try {
+			amount = new Integer(quantityString);
+		} catch (NumberFormatException e) {
+			// If we get here, they did't enter a valid number
+			return;
+		}
+		
 		String nameString = name.getText().toString();
 		Ingredient ingredient = new Ingredient(nameString, amount, "cups");
+		
+		// Check for ingredient validity
+		if (ingredient.isValidInfo() != Constants.GOOD) {
+			return; // They entered wrong info
+		}
+		
 		GlobalApplication app = (GlobalApplication) getApplication();
-		Pantry pantry = app.getCurrentIngredients();
+		Pantry pantry = app.getCurrentRecipe().getIngredients();
 		pantry.addIngredient(ingredient);
 		refresh();
 
@@ -81,7 +95,7 @@ public class AddIngredientsActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				GlobalApplication app = (GlobalApplication) getApplication();
-				Pantry pantry = app.getCurrentIngredients();
+				Pantry pantry = app.getCurrentRecipe().getIngredients();
 				pantry.emptyPantry();
 				refresh();
 			}

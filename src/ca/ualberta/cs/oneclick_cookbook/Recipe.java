@@ -6,13 +6,16 @@ import android.provider.MediaStore.Images;
 
 public class Recipe {
 
-	private String name;
-	private Pantry ingredients;
-	private String steps;
+	private String name = "";
+	private Pantry ingredients = null;
+	private String steps = "";
 	private List<Images> pictures = null;
 	private int promotions = 0;
 	private int demotions = 0;
 
+	public Recipe() {
+		
+	}
 	public Recipe(String name, Pantry ingredients, String steps) {
 		this.name = name;
 		this.ingredients = ingredients;
@@ -65,9 +68,9 @@ public class Recipe {
 
 	// Turns the recipe into a string
 	public String toString() {
-		// Make sure it's not too long to mess up format
+		// TODO Better formatting
 		return "Name: " + this.name + "\nIngredients: "
-				+ ingredients.get(0).toString();
+				+ ingredients.get(0).toString() + ", etc...";
 	}
 
 	// Checks the recipe for valid info

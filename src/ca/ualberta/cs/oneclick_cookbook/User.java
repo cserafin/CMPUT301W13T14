@@ -70,6 +70,14 @@ public class User {
 		userRecipes.add(r);
 	}
 	
+	public void clearRecipes() {
+		userRecipes.clear();
+	}
+	
+	public ArrayList<Recipe> getUserRecipes() {
+		return userRecipes;
+	}
+	
 	public ArrayList<String> getRecipesToString() {
 		ArrayList<String> s = new ArrayList<String>();
 		for (int i=0; i<userRecipes.size(); i++) {
