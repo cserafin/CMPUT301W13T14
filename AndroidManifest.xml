@@ -38,6 +38,10 @@
             android:name="ca.ualberta.cs.oneclick_cookbook.ManagePantryActivity"
             android:label="@string/title_activity_manage_pantry" >
         </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
     </application>
 
 </manifest>

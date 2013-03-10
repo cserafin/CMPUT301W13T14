@@ -60,6 +60,8 @@ public class MainActivity extends Activity {
     		startActivity(intent);
     		break;
     	case R.id.bHomeSearch:
+    		intent = new Intent(this.getApplicationContext(), SearchActivity.class);
+    		startActivity(intent);
     		break;
     	}
     }
