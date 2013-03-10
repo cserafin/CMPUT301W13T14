@@ -12,84 +12,77 @@ public class Recipe {
 	private List<Images> pictures = null;
 	private int promotions = 0;
 	private int demotions = 0;
-	
-	public Recipe(String name, Pantry ingredients, String steps){
-	    this.name  = name;
+
+	public Recipe(String name, Pantry ingredients, String steps) {
+		this.name = name;
 		this.ingredients = ingredients;
 		this.steps = steps;
-        this.promotions = 0;
-        this.demotions = 0;
+		this.promotions = 0;
+		this.demotions = 0;
 	}
-	
-	public void changeName(String newName){
+
+	public void changeName(String newName) {
 		this.name = newName;
 		return;
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return this.name;
 	}
-	
-	public void changeSteps(String newSteps){
+
+	public void changeSteps(String newSteps) {
 		this.steps = newSteps;
 		return;
 	}
-	
-	public String getSteps(){
+
+	public String getSteps() {
 		return this.steps;
 	}
-	
-	public void modifyIngredients(Pantry newIngredients){
+
+	public void modifyIngredients(Pantry newIngredients) {
 		this.ingredients = newIngredients;
 		return;
 	}
-	
-	public Pantry getIngredients(){
+
+	public Pantry getIngredients() {
 		return this.ingredients;
 	}
-	
-	public void promote(){
+
+	public void promote() {
 		this.promotions += 1;
 		return;
 	}
-	
-	public void demote(){
-		this.demotions +=1;
+
+	public void demote() {
+		this.demotions += 1;
 		return;
 	}
-	
-	public int getRating(){
+
+	public int getRating() {
 		int rating = this.promotions - this.demotions;
 		return rating;
 	}
-	
+
 	// Turns the recipe into a string
 	public String toString() {
 		// Make sure it's not too long to mess up format
-		if (this.name.length() < 20) {
-			return "Name: " + this.name 
-					+ "\nIngredients: None (not implemented)";
-		}
-		else {
-			return "Name: " + this.name.substring(0, 10) + "..."
-					+ "\nIngredients: None (not implemented)";
-		}
+		return "Name: " + this.name + "\nIngredients: "
+				+ ingredients.get(0).toString();
 	}
-	
+
 	// Checks the recipe for valid info
 	public int isValidInfo() {
-		
-		if (name == null || steps == null /*|| ingredients == null*/) {
+
+		if (name == null || steps == null  || ingredients == null ) {
 			return Constants.NULL_VALUE;
 		}
-		
-		else if (name.equals("") || steps.equals("")) {
+
+		else if (name.equals("") || steps.equals("") || ingredients.isEmpty()) {
 			return Constants.ZERO_VALUE;
 		}
-		
+
 		else {
-			return Constants.GOOD;
-			//return ingredients.isValidInfo();
+			return ingredients.isValidInfo();
 		}
 	}
 }

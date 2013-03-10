@@ -24,5 +24,9 @@
     <string name="title_activity_view_recipes">ViewRecipesActivity</string>
     <string name="title_activity_add_ingredient">AddIngredientActivity</string>
     <string name="title_activity_add_ingredients">AddIngredientsActivity</string>
+    <string name="quantityHint">Enter quantity</string>
+    <string name="ingredientNameHint">Enter name</string>
+    <string name="addIngredient">Add Ingredient</string>
+    <string name="deleteAllIngredients">Delete All</string>
 
 </resources>

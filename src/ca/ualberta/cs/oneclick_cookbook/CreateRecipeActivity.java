@@ -56,8 +56,9 @@ public class CreateRecipeActivity extends Activity {
 		steps = (EditText) findViewById(R.id.createEnterSteps);
 		String namestring = name.getText().toString();
 		String stepstring = steps.getText().toString();
+		GlobalApplication app = (GlobalApplication) getApplication();
 		
-		Recipe r = new Recipe(namestring, null, stepstring);
+		Recipe r = new Recipe(namestring, app.getCurrentIngredients(), stepstring);
 		
 		//TODO Add appropriate feedback here
 		if (r.isValidInfo() != Constants.GOOD) {
@@ -65,8 +66,10 @@ public class CreateRecipeActivity extends Activity {
 		}
 		
 		//TODO Add upload section and save section
-		GlobalApplication g = (GlobalApplication) getApplication();
-		g.getCurrentUser().addRecipe(r);
+		app.getCurrentUser().addRecipe(r);
+		
+		// Set null so future recipes start fresh
+		app.setCurrentIngredients(null);
 		
 		finish();
 		return;
@@ -75,6 +78,8 @@ public class CreateRecipeActivity extends Activity {
 	// Called when user clicks Delete
 	//TODO Add prompt before delete
 	public void onDelete() {
+		GlobalApplication app = (GlobalApplication) getApplication();
+		app.setCurrentIngredients(null);
 		finish();
 		return;
 	}

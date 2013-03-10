@@ -1,5 +1,7 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+import java.util.ArrayList;
+
 import android.app.Application;
 
 // Put anything that needs to be global in here
@@ -10,7 +12,7 @@ import android.app.Application;
 public class GlobalApplication extends Application {
 	
 	private User current = null;
-	private Ingredient ingredients = null;
+	private Pantry ingredients = null;
 	
 	@Override
 	public void onCreate() {
@@ -25,13 +27,24 @@ public class GlobalApplication extends Application {
 		super.onLowMemory();
 	}
 	
-	//TODO Implement this properly (not always John Doe
+	//TODO Implement this properly (not always John Doe)
 	public User getCurrentUser() {
 		if (current == null) {
 			current = new User("John Doe", "password", "JD42","jd42@gmail.com");
 		}
 		
 		return current;
+	}
+	
+	public void setCurrentIngredients(Pantry p) {
+		ingredients = p;
+	}
+	
+	public Pantry getCurrentIngredients() {
+		if (ingredients == null) {
+			ingredients = new Pantry();
+		}
+		return ingredients;
 	}
 
 }

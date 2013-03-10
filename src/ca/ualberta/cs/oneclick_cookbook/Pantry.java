@@ -102,4 +102,13 @@ public class Pantry {
             ingredientList.get(i).toLower();
         }
     }
+    
+    public ArrayList<String> getStringArrayList() {
+    	ArrayList<String> s = new ArrayList<String>();
+    	for (int i=0; i<ingredientList.size(); i++) {
+    		s.add(ingredientList.get(i).toString());
+    	}
+    	
+    	return s;
+    }
 }

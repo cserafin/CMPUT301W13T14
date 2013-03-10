@@ -43,7 +43,7 @@ public class Ingredient {
 	
 	// Converts the ingredient to a nicely formatted string
 	public String toString() {
-		String ingredient = quantity + " " + measurement + " of " + name;
+		String ingredient = "" + quantity + " " + measurement + " of " + name + "";
 		return ingredient;
 	}
 
