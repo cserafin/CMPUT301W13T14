@@ -44,6 +44,8 @@ public class MainActivity extends Activity {
     	Intent intent;
 		switch(v.getId()) {
     	case R.id.bHomeLogin:
+    		intent = new Intent(this.getApplicationContext(), LoginActivity.class);
+    		startActivity(intent);
     		break;
     	case R.id.bHomeCreate:
     		intent = new Intent(this.getApplicationContext(), CreateRecipeActivity.class);

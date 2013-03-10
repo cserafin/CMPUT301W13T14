@@ -30,5 +30,6 @@
     <string name="deleteAllIngredients">Delete All</string>
     <string name="title_activity_manage_pantry">ManagePantryActivity</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 
 </resources>
