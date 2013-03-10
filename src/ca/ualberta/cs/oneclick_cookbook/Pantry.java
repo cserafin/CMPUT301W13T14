@@ -111,4 +111,13 @@ public class Pantry {
     	
     	return s;
     }
+    
+    public String toString() {
+    	String s = "";
+    	for (int i=0; i<(ingredientList.size() - 1); i++) {
+    		s += ingredientList.get(i).toString() + ", ";
+    	}
+    	s += ingredientList.get(ingredientList.size() - 1).toString();
+    	return s;
+    }
 }

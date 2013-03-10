@@ -68,9 +68,18 @@ public class Recipe {
 
 	// Turns the recipe into a string
 	public String toString() {
-		// TODO Better formatting
-		return "Name: " + this.name + "\nIngredients: "
-				+ ingredients.get(0).toString() + ", etc...";
+		String localName = this.name;
+		String localIngredients = this.ingredients.toString();
+		
+		if (localIngredients.length() > 20) {
+			localIngredients = localIngredients.substring(0, 20) + "...";
+		}
+		
+		if (localName.length() > 20) {
+			localName = localName.substring(0, 20) + "...";
+		}
+		
+		return "Title: " + localName + "\nIngredients: " + localIngredients;
 	}
 
 	// Checks the recipe for valid info

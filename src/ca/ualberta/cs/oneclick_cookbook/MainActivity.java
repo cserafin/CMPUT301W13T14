@@ -8,27 +8,30 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
-// In the current state of the program, the user is 
-// always logged in as John Doe, and the sessions aren't
-// saved. We can add changes to this later
+// User can log in, but is not actually verified
 public class MainActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		// Set the welcome message (default account is John Doe
-		TextView t = (TextView) findViewById(R.id.tWelcomeMessage);
-		GlobalApplication app = (GlobalApplication) getApplication();
-		t.setText("Hello, " + app.getCurrentUser().getUserName() + "!");
 	}
 
 	public void onResume() {
 		super.onResume();
-		// The below code is necessary to avoid recipe staying as
+		// Set the welcome message (default account is John Doe)
+		TextView t = (TextView) findViewById(R.id.tWelcomeMessage);
 		GlobalApplication app = (GlobalApplication) getApplication();
-		app.setCurrentRecipe(null);
+		String username = app.getCurrentUser().getUserName();
+		
+		// Do some formatting if the name is long
+		if (username.length() > 20) {
+			t.setText("Hello " + username.substring(0, 20) + "..!");
+		}
+		
+		else {
+			t.setText("Hello " + username + "!");
+		}
 	}
 
 	@Override

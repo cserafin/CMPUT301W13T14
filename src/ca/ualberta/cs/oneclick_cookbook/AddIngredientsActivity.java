@@ -8,10 +8,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.AdapterView.OnItemLongClickListener;
 
 public class AddIngredientsActivity extends Activity {
 
@@ -37,6 +39,12 @@ public class AddIngredientsActivity extends Activity {
 
 	// Refreshes the list show that new ingredients are show immediately
 	public void refresh() {
+		setUpSpinner();
+		setUpListView();
+	}
+	
+	// Sets up the measurement spinner
+	public void setUpSpinner() {
 		Spinner measurements = (Spinner) findViewById(R.id.addIngredientMeasurement);
 		ArrayList<String> units = new ArrayList<String>();
 		
@@ -48,7 +56,9 @@ public class AddIngredientsActivity extends Activity {
 		ArrayAdapter<String> unitsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
 				units);
 		measurements.setAdapter(unitsAdapter);
-		
+	}
+	
+	public void setUpListView() {
 		// Set up the list view
 		ListView listView = (ListView) findViewById(R.id.lViewIngredients);
 		GlobalApplication app = (GlobalApplication) getApplication();
@@ -56,6 +66,43 @@ public class AddIngredientsActivity extends Activity {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, content);
 		listView.setAdapter(adapter);
+		// Set what happens when a user clicks on an item
+		listView.setOnItemLongClickListener(new OnItemLongClickListener() {
+			
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View v,
+					final int position, long arg3) {
+				// Builds the alert dialog box
+				AlertDialog.Builder prompt = new AlertDialog.Builder(v.getContext());
+				prompt.setTitle("Delete Ingredient");
+				prompt.setMessage("Are you sure you want to delete this ingredient? It "
+						+ "will be gone... forever.");
+
+				prompt.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+					// User has changed their mind
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						return;
+					}
+				});
+				prompt.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+					// User does want to delete the ingredient they are long pressing
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						//TODO Add network and local storage deletion here
+						GlobalApplication app = (GlobalApplication) getApplication();
+						Pantry pantry = app.getCurrentRecipe().getIngredients();
+						pantry.removeIngredient(position);
+						refresh();
+					}
+				});
+				prompt.show();			
+				return false;
+			}
+			
+		});
 	}
 
 	// Called when the user clicks add ingredient

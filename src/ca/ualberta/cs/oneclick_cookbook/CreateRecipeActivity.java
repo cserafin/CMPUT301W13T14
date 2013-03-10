@@ -97,7 +97,6 @@ public class CreateRecipeActivity extends Activity {
 	}
 
 	// Called when user clicks Done
-	// TODO Add ingredients section
 	public void onDone() {
 		EditText name;
 		EditText steps;
@@ -116,8 +115,9 @@ public class CreateRecipeActivity extends Activity {
 			return;
 		}
 
-		// TODO Add upload section and save section
+		// TODO Add upload, local storage code here
 
+		
 		// Remove the old recipe before adding the new one, if editing
 		if (position != -1) {
 			app.getCurrentUser().getUserRecipes().remove(position);
@@ -131,8 +131,14 @@ public class CreateRecipeActivity extends Activity {
 	}
 
 	// Called when user clicks Delete
-	// TODO Add prompt before delete
 	public void onDelete() {
+		// If the user is not editing, just delete
+		if (position == -1) {
+			GlobalApplication app = (GlobalApplication) getApplication();
+			app.setCurrentRecipe(null);
+			finish();
+			return;
+		}
 		// Builds the alert dialog box
 		AlertDialog.Builder prompt = new AlertDialog.Builder(this);
 		prompt.setTitle("Delete All");
@@ -157,6 +163,9 @@ public class CreateRecipeActivity extends Activity {
 				if (position != -1) {
 					app.getCurrentUser().getUserRecipes().remove(position);
 				}
+				
+				//TODO Add upload, local storage code here
+				
 				// Set null so future recipes start fresh
 				app.setCurrentRecipe(null);
 				finish();

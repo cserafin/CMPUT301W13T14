@@ -91,4 +91,8 @@ public class User {
 		}
 		return s;
 	}
+	
+	public int isValidInfo() {
+		return Constants.GOOD;
+	}
 }

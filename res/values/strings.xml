@@ -8,7 +8,7 @@
     <string name="homeMessage">Hello there!</string>
     <string name="homeLoginButton">Login or Signup!</string>
     <string name="homeCreate">Create a recipe</string>
-    <string name="title_activity_create_recipe">OneClick Cookbook</string>
+    <string name="title_activity_create_recipe">Create Recipe</string>
     <string name="action_settings">Settings</string>
     <string name="homeViewRecipes">View Recipes</string>
     <string name="homeViewRecipeHistory">View Recipe History</string>
@@ -21,16 +21,15 @@
     <string name="createNameHint">Enter Recipe Name</string>
     <string name="createIngredientHint">Enter Ingredients</string>
     <string name="createStepsHint">Enter steps</string>
-    <string name="title_activity_view_recipes">ViewRecipesActivity</string>
-    <string name="title_activity_add_ingredient">AddIngredientActivity</string>
-    <string name="title_activity_add_ingredients">AddIngredientsActivity</string>
+    <string name="title_activity_view_recipes">Your Recipes</string>
+    <string name="title_activity_add_ingredients">Add Ingredients</string>
     <string name="quantityHint">Enter quantity</string>
     <string name="ingredientNameHint">Enter name</string>
     <string name="addIngredient">Add Ingredient</string>
     <string name="deleteAllIngredients">Delete All</string>
-    <string name="title_activity_manage_pantry">ManagePantryActivity</string>
-    <string name="title_activity_search">SearchActivity</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_manage_pantry">Manage Pantry</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_sign_up">Sign Up</string>
 
 </resources>

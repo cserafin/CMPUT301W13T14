@@ -5,5 +5,6 @@ package ca.ualberta.cs.oneclick_cookbook;
 // This class should essentially wrap the GSON functions, as
 // well as being the interface to the network
 public class GSONTranslator {
+	
 
 }

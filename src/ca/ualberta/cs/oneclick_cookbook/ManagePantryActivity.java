@@ -2,12 +2,14 @@ package ca.ualberta.cs.oneclick_cookbook;
 
 import java.util.ArrayList;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -32,44 +34,92 @@ public class ManagePantryActivity extends Activity {
 		getMenuInflater().inflate(R.menu.manage_pantry, menu);
 		return true;
 	}
-	
+
 	// Refreshes the list show that new ingredients are show immediately
 	public void refresh() {
+		setUpSpinner();
+		setUpListView();
+	}
+
+	// Sets up the measurement spinner
+	public void setUpSpinner() {
 		// Make the spinner for the units
 		Spinner measurements = (Spinner) findViewById(R.id.pantryIngredientMeasurement);
 		ArrayList<String> units = new ArrayList<String>();
-		
+
 		// Goes through and converts all of the positions to units
-		for (int i=0; i<Constants.NUM_OF_UNITS; i++) {
+		for (int i = 0; i < Constants.NUM_OF_UNITS; i++) {
 			units.add(Constants.getUnitFromPosition(i));
 		}
-		
-		ArrayAdapter<String> unitsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
-				units);
+
+		ArrayAdapter<String> unitsAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, units);
 		// Hook up the adapter
 		measurements.setAdapter(unitsAdapter);
-		
+	}
+
+	// Sets up the ingredient list view
+	public void setUpListView() {
 		// Set up the list view of items
 		ListView listView = (ListView) findViewById(R.id.lViewPantry);
 		GlobalApplication app = (GlobalApplication) getApplication();
-		ArrayList<String> content = app.getCurrentUser().getUserPantry().getStringArrayList();
+		ArrayList<String> content = app.getCurrentUser().getUserPantry()
+				.getStringArrayList();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, content);
 		listView.setAdapter(adapter);
+		
+		// Set what happens when a user clicks on an item
+		listView.setOnItemLongClickListener(new OnItemLongClickListener() {
+			
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View v,
+					final int position, long arg3) {
+				// Builds the alert dialog box
+				AlertDialog.Builder prompt = new AlertDialog.Builder(v.getContext());
+				prompt.setTitle("Delete Ingredient");
+				prompt.setMessage("Are you sure you want to delete this ingredient? It "
+						+ "will be gone... forever.");
+
+				prompt.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+					// User has changed their mind
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						return;
+					}
+				});
+				prompt.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+					// User does want to delete the ingredient they are long pressing
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						//TODO Add network and local storage deletion here
+						GlobalApplication app = (GlobalApplication) getApplication();
+						Pantry pantry = app.getCurrentUser().getUserPantry();
+						pantry.removeIngredient(position);
+						refresh();
+					}
+				});
+				prompt.show();			
+				return false;
+			}
+			
+		});
 	}
-	
+
 	// Called when the user clicks add ingredient
 	public void onAdd() {
 		EditText quantity = (EditText) findViewById(R.id.pantryIngredientQuantity);
 		EditText name = (EditText) findViewById(R.id.pantryIngredientName);
 		Spinner units = (Spinner) findViewById(R.id.pantryIngredientMeasurement);
-		
+
 		// Get the units for the ingredients
 		int position = units.getSelectedItemPosition();
 		String unitsString = Constants.getUnitFromPosition(position);
-		
+
 		String quantityString = quantity.getText().toString();
-		
+
 		// Do the integer conversion like this just in case no number is entered
 		Integer amount;
 		try {
@@ -78,15 +128,15 @@ public class ManagePantryActivity extends Activity {
 			// If we get here, they did't enter a valid number
 			return;
 		}
-		
+
 		String nameString = name.getText().toString();
 		Ingredient ingredient = new Ingredient(nameString, amount, unitsString);
-		
+
 		// Check for ingredient validity
 		if (ingredient.isValidInfo() != Constants.GOOD) {
 			return; // They entered wrong info
 		}
-		
+
 		GlobalApplication app = (GlobalApplication) getApplication();
 		Pantry pantry = app.getCurrentUser().getUserPantry();
 		pantry.addIngredient(ingredient);
@@ -94,7 +144,7 @@ public class ManagePantryActivity extends Activity {
 
 		return;
 	}
-	
+
 	public void onDeleteAll() {
 		// Builds the alert dialog box
 		AlertDialog.Builder prompt = new AlertDialog.Builder(this);
@@ -121,16 +171,16 @@ public class ManagePantryActivity extends Activity {
 				refresh();
 			}
 		});
-		prompt.show();		
+		prompt.show();
 		return;
 	}
-	
+
 	// Called when user selects Done
 	public void onDone() {
 		finish();
 		return;
 	}
-	
+
 	// Handles the clicks from the user and directs them
 	public void clickHandler(View v) {
 		switch (v.getId()) {

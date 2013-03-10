@@ -25,13 +25,16 @@ public class GlobalApplication extends Application {
 		super.onLowMemory();
 	}
 	
-	//TODO Implement this properly (not always John Doe)
 	public User getCurrentUser() {
 		if (currentUser == null) {
-			currentUser = new User("John Doe", "password", "JD42","jd42@gmail.com");
+			currentUser = new User("", "", "","");
 		}
 		
 		return currentUser;
+	}
+	
+	public void setCurrentuser(User u) {
+		currentUser = u;
 	}
 	
 	public void setCurrentRecipe(Recipe r) {

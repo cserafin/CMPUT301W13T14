@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -61,6 +62,44 @@ public class ViewRecipesActivity extends Activity {
 			}
 
 		});
+		
+		// Set what happens when a user clicks on an item
+		listView.setOnItemLongClickListener(new OnItemLongClickListener() {
+			
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View v,
+					final int position, long arg3) {
+				// Builds the alert dialog box
+				AlertDialog.Builder prompt = new AlertDialog.Builder(v.getContext());
+				prompt.setTitle("Delete Recipe");
+				prompt.setMessage("Are you sure you want to delete this recipe? It "
+						+ "will be gone... forever.");
+
+				prompt.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+					// User has changed their mind
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						return;
+					}
+				});
+				prompt.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+					// User does want to delete the recipe they are long pressing
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						//TODO Add upload, local storage deletion here
+						GlobalApplication app = (GlobalApplication) getApplication();
+						ArrayList<Recipe> recipe = app.getCurrentUser().getUserRecipes();
+						recipe.remove(position);
+						refresh();
+					}
+				});
+				prompt.show();			
+				return false;
+			}
+			
+		});
 	}
 
 	public void onDeleteAll() {
@@ -80,9 +119,10 @@ public class ViewRecipesActivity extends Activity {
 		});
 		prompt.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
-			// User does want to delete all ingredients
+			// User does want to delete all recipes
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				//TODO Add upload deletion, local storage deletion code here
 				GlobalApplication app = (GlobalApplication) getApplication();
 				app.getCurrentUser().clearRecipes();
 				refresh();
