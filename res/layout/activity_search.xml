@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:onClick="clickHandler"
         android:text="Return" />
 
     <Button
@@ -19,6 +20,7 @@
         android:layout_below="@+id/bHomeSReturn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="106dp"
+        android:onClick="clickHandler"
         android:text="Search Using Pantry Ingredients" />
 
     <Button
@@ -26,6 +28,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="clickHandler"
         android:layout_alignBottom="@+id/tHomeSSearchQuery"
         android:layout_toRightOf="@+id/tHomeSSearchQuery"
         android:text="Search" />

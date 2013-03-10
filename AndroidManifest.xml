@@ -46,6 +46,10 @@
             android:name="ca.ualberta.cs.oneclick_cookbook.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.SignUpActivity"
+            android:label="@string/title_activity_sign_up" >
+        </activity>
     </application>
 
 </manifest>
