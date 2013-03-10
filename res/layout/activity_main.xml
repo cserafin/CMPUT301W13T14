@@ -1,11 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="120" >
+    android:weightSum="100" >
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="20"
@@ -26,87 +27,90 @@
             android:layout_weight="30"
             android:onClick="clickHandler"
             android:text="@string/homeLoginButton"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="24dp"
         android:layout_weight="20"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/bHomeCreate"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="61dp"
+            android:layout_weight="0.07"
             android:onClick="clickHandler"
             android:text="@string/homeCreate"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/bHomeRecipes"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
-        android:orientation="horizontal" >
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="30dp"
+        android:onClick="clickHandler"
+        android:text="View Recipes" />
 
-        <Button
-            android:id="@+id/bHomeViewRecipes"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="clickHandler"
-            android:text="@string/homeViewRecipes"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/bHomeFav"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
-        android:orientation="horizontal" >
+        android:layout_alignBottom="@+id/bHomeRecipes"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="18dp"
+        android:onClick="clickHandler"
+        android:text="Favorites" />
 
-        <Button
-            android:id="@+id/bViewRecipeHistory"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="clickHandler"
-            android:text="@string/homeViewRecipeHistory"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/bHomeFriends"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
-        android:orientation="horizontal" >
+        android:layout_alignBaseline="@+id/bHomeSearch"
+        android:layout_alignBottom="@+id/bHomeSearch"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:onClick="clickHandler"
+        android:text="Friends" />
 
-        <Button
-            android:id="@+id/bHomeManagePantry"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="clickHandler"
-            android:text="@string/homeManagePantry"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/bHomePantry"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
-        android:orientation="horizontal" >
+        android:layout_alignLeft="@+id/bHomeHistory"
+        android:layout_below="@+id/bHomeHistory"
+        android:layout_marginTop="30dp"
+        android:onClick="clickHandler"
+        android:text="Manage Pantry" />
 
-        <Button
-            android:id="@+id/bHomeSearchRecipes"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="clickHandler"
-            android:text="@string/homeSearchRecipes"
-            android:textSize="12sp" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/bHomeHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bHomeRecipes"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:onClick="clickHandler"
+        android:text="Recipe History" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/bHomeSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:onClick="clickHandler"
+        android:text="Search" />
+
+</RelativeLayout>

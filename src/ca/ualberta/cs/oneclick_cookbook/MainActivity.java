@@ -49,17 +49,17 @@ public class MainActivity extends Activity {
     		intent = new Intent(this.getApplicationContext(), CreateRecipeActivity.class);
     		startActivity(intent);
     		break;
-    	case R.id.bHomeViewRecipes:
+    	case R.id.bHomeRecipes:
     		intent = new Intent(this.getApplicationContext(), ViewRecipesActivity.class);
     		startActivity(intent);
     		break;
-    	case R.id.bViewRecipeHistory:
+    	case R.id.bHomeHistory:
     		break;
-    	case R.id.bHomeManagePantry:
+    	case R.id.bHomePantry:
     		intent = new Intent(this.getApplicationContext(), ManagePantryActivity.class);
     		startActivity(intent);
     		break;
-    	case R.id.bHomeSearchRecipes:
+    	case R.id.bHomeSearch:
     		break;
     	}
     }
