@@ -1,0 +1,111 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:orientation="horizontal"
+        android:weightSum="100" >
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="70"
+            android:text="@string/homeMessage" />
+
+        <Button
+            android:id="@+id/bHomeLogin"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:text="@string/homeLoginButton"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_weight="20"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bHomeCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="61dp"
+            android:layout_weight="0.07"
+            android:text="@string/homeCreate"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bHomeRecipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="30dp"
+        android:text="View Recipes" />
+
+    <Button
+        android:id="@+id/bHomeFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bHomeRecipes"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="18dp"
+        android:text="Favorites" />
+
+    <Button
+        android:id="@+id/bHomeFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bHomeSearch"
+        android:layout_alignBottom="@+id/bHomeSearch"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:text="Friends" />
+
+    <Button
+        android:id="@+id/bHomePantry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bHomeHistory"
+        android:layout_below="@+id/bHomeHistory"
+        android:layout_marginTop="30dp"
+        android:text="Manage Pantry" />
+
+    <Button
+        android:id="@+id/bHomeHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bHomeRecipes"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="Recipe History" />
+
+    <Button
+        android:id="@+id/bHomeSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:text="Search" />
+
+</RelativeLayout>
