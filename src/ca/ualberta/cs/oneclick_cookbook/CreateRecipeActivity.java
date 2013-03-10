@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -30,6 +31,21 @@ public class CreateRecipeActivity extends Activity {
 		Recipe recipe = app.getCurrentRecipe();
 		setInfo(recipe);
 	}
+	
+	// Used to make sure that no matter what, current recipe is set to
+	// null on exit of create recipe
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	super.onKeyDown(keyCode, event);
+	    	if (keyCode == KeyEvent.KEYCODE_BACK) {
+	    		GlobalApplication app = (GlobalApplication) getApplication();
+	    		app.setCurrentRecipe(null);
+	    		finish();
+	    		return true;
+	    	}
+	    	return false;
+	    }
+
 
 	// Sets the info of the recipe based on the current recipe
 	public void setInfo(Recipe recipe) {

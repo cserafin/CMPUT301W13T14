@@ -2,10 +2,10 @@ package ca.ualberta.cs.oneclick_cookbook;
 
 import java.util.ArrayList;
 
+import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,16 +13,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-public class AddIngredientsActivity extends Activity {
+public class ManagePantryActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_add_ingredients);
+		setContentView(R.layout.activity_manage_pantry);
 	}
 
-	// Called when activity restarts
-	// Should refresh the screen
 	public void onResume() {
 		super.onResume();
 		refresh();
@@ -31,13 +29,14 @@ public class AddIngredientsActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_ingredients, menu);
+		getMenuInflater().inflate(R.menu.manage_pantry, menu);
 		return true;
 	}
-
+	
 	// Refreshes the list show that new ingredients are show immediately
 	public void refresh() {
-		Spinner measurements = (Spinner) findViewById(R.id.addIngredientMeasurement);
+		// Make the spinner for the units
+		Spinner measurements = (Spinner) findViewById(R.id.pantryIngredientMeasurement);
 		ArrayList<String> units = new ArrayList<String>();
 		
 		// Goes through and converts all of the positions to units
@@ -47,26 +46,28 @@ public class AddIngredientsActivity extends Activity {
 		
 		ArrayAdapter<String> unitsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
 				units);
+		// Hook up the adapter
 		measurements.setAdapter(unitsAdapter);
 		
-		// Set up the list view
-		ListView listView = (ListView) findViewById(R.id.lViewIngredients);
+		// Set up the list view of items
+		ListView listView = (ListView) findViewById(R.id.lViewPantry);
 		GlobalApplication app = (GlobalApplication) getApplication();
-		ArrayList<String> content = app.getCurrentRecipe().getIngredients().getStringArrayList();
+		ArrayList<String> content = app.getCurrentUser().getUserPantry().getStringArrayList();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, content);
 		listView.setAdapter(adapter);
 	}
-
+	
 	// Called when the user clicks add ingredient
 	public void onAdd() {
-		EditText quantity = (EditText) findViewById(R.id.addIngredientQuantity);
-		EditText name = (EditText) findViewById(R.id.addIngredientName);
-		Spinner units = (Spinner) findViewById(R.id.addIngredientMeasurement);
+		EditText quantity = (EditText) findViewById(R.id.pantryIngredientQuantity);
+		EditText name = (EditText) findViewById(R.id.pantryIngredientName);
+		Spinner units = (Spinner) findViewById(R.id.pantryIngredientMeasurement);
 		
+		// Get the units for the ingredients
 		int position = units.getSelectedItemPosition();
 		String unitsString = Constants.getUnitFromPosition(position);
-
+		
 		String quantityString = quantity.getText().toString();
 		
 		// Do the integer conversion like this just in case no number is entered
@@ -87,14 +88,13 @@ public class AddIngredientsActivity extends Activity {
 		}
 		
 		GlobalApplication app = (GlobalApplication) getApplication();
-		Pantry pantry = app.getCurrentRecipe().getIngredients();
+		Pantry pantry = app.getCurrentUser().getUserPantry();
 		pantry.addIngredient(ingredient);
 		refresh();
 
 		return;
 	}
-
-	// Called when the user clicks DeleteAll
+	
 	public void onDeleteAll() {
 		// Builds the alert dialog box
 		AlertDialog.Builder prompt = new AlertDialog.Builder(this);
@@ -116,7 +116,7 @@ public class AddIngredientsActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				GlobalApplication app = (GlobalApplication) getApplication();
-				Pantry pantry = app.getCurrentRecipe().getIngredients();
+				Pantry pantry = app.getCurrentUser().getUserPantry();
 				pantry.emptyPantry();
 				refresh();
 			}
@@ -124,23 +124,23 @@ public class AddIngredientsActivity extends Activity {
 		prompt.show();		
 		return;
 	}
-
+	
 	// Called when user selects Done
 	public void onDone() {
 		finish();
 		return;
 	}
-
+	
 	// Handles the clicks from the user and directs them
 	public void clickHandler(View v) {
 		switch (v.getId()) {
-		case R.id.bAddIngredient:
+		case R.id.bAddIngredientToPantry:
 			onAdd();
 			break;
-		case R.id.deleteAllIngredient:
+		case R.id.bDeleteAllPantry:
 			onDeleteAll();
 			break;
-		case R.id.bIngredientsDone:
+		case R.id.bPantryDone:
 			onDone();
 			break;
 		}

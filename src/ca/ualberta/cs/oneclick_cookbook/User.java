@@ -10,6 +10,7 @@ public class User {
 	private String emailAddress;
 	private int phoneNumber;
 	private ArrayList<Recipe> userRecipes = null;
+	private Pantry userPantry = null;
 	
 	public User(String userName, String password, String screenName, String emailAddress){
 		this.setUserName(userName);
@@ -17,6 +18,7 @@ public class User {
 		this.setScreenName(screenName);
 		this.setEmailAddress(emailAddress);
 		userRecipes = new ArrayList<Recipe>();
+		userPantry = new Pantry();
 	}
 	
 	public User(String userName, String password, String screenName, int phoneNumber){
@@ -76,6 +78,10 @@ public class User {
 	
 	public ArrayList<Recipe> getUserRecipes() {
 		return userRecipes;
+	}
+	
+	public Pantry getUserPantry() {
+		return userPantry;
 	}
 	
 	public ArrayList<String> getRecipesToString() {

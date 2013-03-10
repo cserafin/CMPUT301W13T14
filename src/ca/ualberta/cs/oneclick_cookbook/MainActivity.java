@@ -3,6 +3,7 @@ package ca.ualberta.cs.oneclick_cookbook;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -19,9 +20,17 @@ public class MainActivity extends Activity {
 		
 		// Set the welcome message (default account is John Doe
 		TextView t = (TextView) findViewById(R.id.tWelcomeMessage);
-		GlobalApplication g = (GlobalApplication) getApplication();
-		t.setText("Hello, " + g.getCurrentUser().getUserName() + "!");
+		GlobalApplication app = (GlobalApplication) getApplication();
+		t.setText("Hello, " + app.getCurrentUser().getUserName() + "!");
 	}
+	
+	public void onResume() {
+		super.onResume();
+		// The below code is neccessary to avoid recipe staying as 
+		GlobalApplication app = (GlobalApplication) getApplication();
+		app.setCurrentRecipe(null);
+	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,6 +56,8 @@ public class MainActivity extends Activity {
     	case R.id.bViewRecipeHistory:
     		break;
     	case R.id.bHomeManagePantry:
+    		intent = new Intent(this.getApplicationContext(), ManagePantryActivity.class);
+    		startActivity(intent);
     		break;
     	case R.id.bHomeSearchRecipes:
     		break;

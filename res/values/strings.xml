@@ -28,5 +28,6 @@
     <string name="ingredientNameHint">Enter name</string>
     <string name="addIngredient">Add Ingredient</string>
     <string name="deleteAllIngredients">Delete All</string>
+    <string name="title_activity_manage_pantry">ManagePantryActivity</string>
 
 </resources>
