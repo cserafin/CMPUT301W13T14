@@ -2,14 +2,14 @@ package ca.ualberta.cs.oneclick_cookbook;
 
 import java.util.List;
 
-import android.provider.MediaStore.Images;
+//import android.provider.MediaStore.Images;
 
 public class Recipe {
 
 	private String name = "";
 	private Pantry ingredients = null;
 	private String steps = "";
-	private List<Images> pictures = null;
+    // private List<Images> pictures = null;
 	private int promotions = 0;
 	private int demotions = 0;
 
