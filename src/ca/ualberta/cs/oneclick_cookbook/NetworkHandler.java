@@ -25,6 +25,11 @@ import com.google.gson.reflect.TypeToken;
 // Nothing **SHOULD** directly access it however, as everything
 // Should go through the GSON translator first
 
+/**
+ * Handles connections to the network and updates/modifies/retrieves and deletes entries from elastic search
+ * @author Chris
+ *
+ */
 public class NetworkHandler {
 	// Opens and handles the HTTP connection
 	private HttpClient httpClient = new DefaultHttpClient();
