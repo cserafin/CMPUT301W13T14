@@ -15,20 +15,17 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.renderscript.Type;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 //TODO Implement this class
 // This class will directly communicate with the remote server
-// Nothing **SHOULD** directly access it however, as everything
-// Should go through the GSON translator first
+// Had to completely rewrite(my bad) should be mostly working
 
 /**
  * Handles connections to the network and updates/modifies/retrieves and deletes entries from elastic search
  * @author Chris
- *
+ * 
  */
 public class NetworkHandler {
 	// Opens and handles the HTTP connection
@@ -141,6 +138,7 @@ public class NetworkHandler {
 
 		HttpEntity entity = response.getEntity();
 		BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent()));
+		
 		String output;
 		System.err.println("Output from Server -> ");
 		while ((output = br.readLine()) != null) {
@@ -150,6 +148,13 @@ public class NetworkHandler {
 		httpDelete.abort();
 	}
 	
+	/**
+	 * Converts HttpResponses to a string representation of a Json object
+	 * @param response: response from trying to grab a Json object from elasticsearch
+	 * @return String representation of a Json object
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	private String getJsonContent(HttpResponse response) throws IllegalStateException, IOException {
 		BufferedReader br = new BufferedReader(
 			new InputStreamReader((response.getEntity().getContent())));
