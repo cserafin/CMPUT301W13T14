@@ -35,6 +35,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/bManageAdd"
         android:layout_marginRight="20dp"
+        android:onClick="clickHandler"
         android:text="Home" />
 
     <Button
@@ -43,8 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
-        android:layout_marginTop="13dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="13dp"
+        android:onClick="clickHandler"
         android:text="Add Friend" />
 
 </RelativeLayout>

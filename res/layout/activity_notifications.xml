@@ -10,25 +10,24 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
+        android:onClick="clickHandler"
         android:text="Manage Friends" />
 
-	<LinearLayout
+    <LinearLayout
         android:id="@+id/scrollView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="34dp"
-        android:layout_marginTop="65dp">
+        android:layout_marginTop="65dp" >
 
-            <ListView
-                android:id="@+id/listView1"
-                android:layout_width="250dp"
-                android:layout_height="317dp" >
-
-            </ListView>
-
-        </LinearLayout>
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="250dp"
+            android:layout_height="317dp" >
+        </ListView>
+    </LinearLayout>
 
     <Button
         android:id="@+id/bNotifReturn"
@@ -37,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:onClick="clickHandler"
         android:text="Return" />
 
 </RelativeLayout>

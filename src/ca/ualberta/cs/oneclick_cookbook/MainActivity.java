@@ -23,12 +23,12 @@ public class MainActivity extends Activity {
 		TextView t = (TextView) findViewById(R.id.tWelcomeMessage);
 		GlobalApplication app = (GlobalApplication) getApplication();
 		String username = app.getCurrentUser().getUserName();
-		
+
 		// Do some formatting if the name is long
 		if (username.length() > 20) {
 			t.setText("Hello " + username.substring(0, 20) + "..!");
 		}
-		
+
 		else {
 			t.setText("Hello " + username + "!");
 		}
@@ -71,6 +71,13 @@ public class MainActivity extends Activity {
 			intent = new Intent(this.getApplicationContext(),
 					SearchActivity.class);
 			startActivity(intent);
+			break;
+		case R.id.bHomeFriends:
+			intent = new Intent(this.getApplicationContext(),
+					NotificationsActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.bHomeFav:
 			break;
 		}
 	}

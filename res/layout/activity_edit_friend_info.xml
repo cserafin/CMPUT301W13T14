@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:onClick="clickHandler"
         android:text="Return" />
 
     <TextView
@@ -50,6 +51,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
+        android:onClick="clickHandler"
         android:text="Save Changes" />
 
     <Button
@@ -59,6 +61,7 @@
         android:layout_alignBottom="@+id/bEditFriSave"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
+        android:onClick="clickHandler"
         android:text="Delete Friend" />
 
     <TextView

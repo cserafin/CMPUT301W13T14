@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:onClick="clickHandler"
         android:text="Return" />
 
     <Button
@@ -19,6 +20,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/bChooseSSearch"
         android:layout_marginTop="76dp"
+        android:onClick="clickHandler"
         android:text="Enter Manually" />
 
     <Button
@@ -28,6 +30,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/bChooseSReturn"
         android:layout_marginTop="76dp"
+        android:onClick="clickHandler"
         android:text="Search for User" />
 
 </RelativeLayout>
