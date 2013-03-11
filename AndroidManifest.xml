@@ -50,6 +50,34 @@
             android:name="ca.ualberta.cs.oneclick_cookbook.SignUpActivity"
             android:label="@string/title_activity_sign_up" >
         </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.NotificationsActivity"
+            android:label="@string/title_activity_notifications" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.ViewRecievedRecipeActivity"
+            android:label="@string/title_activity_view_recieved_recipe" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.ManageFriendsActivity"
+            android:label="@string/title_activity_manage_friends" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.ChooseAddFriendActivity"
+            android:label="@string/title_activity_choose_add_friend" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.EnterFriendActivity"
+            android:label="@string/title_activity_enter_friend" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.EditFriendInfoActivity"
+            android:label="@string/title_activity_edit_friend_info" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.SearchUsersActivity"
+            android:label="@string/title_activity_search_users" >
+        </activity>
     </application>
 
 </manifest>

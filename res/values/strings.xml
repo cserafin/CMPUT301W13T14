@@ -31,5 +31,12 @@
     <string name="title_activity_search">Search</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_sign_up">Sign Up</string>
+    <string name="title_activity_notifications">NotificationsActivity</string>
+    <string name="title_activity_view_recieved_recipe">ViewRecievedRecipeActivity</string>
+    <string name="title_activity_manage_friends">ManageFriendsActivity</string>
+    <string name="title_activity_choose_add_friend">ChooseAddFriendActivity</string>
+    <string name="title_activity_enter_friend">EnterFriendActivity</string>
+    <string name="title_activity_edit_friend_info">EditFriendInfoActivity</string>
+    <string name="title_activity_search_users">SearchUsersActivity</string>
 
 </resources>
