@@ -1,3 +1,10 @@
+/**
+ * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
+ * 
+ * This class is the class that is used to store the recipes that are submitted
+ * by users. It contains all the infromation that is needed for the recipes.
+ */
+
 package ca.ualberta.cs.oneclick_cookbook;
 
 import java.util.List;
@@ -19,6 +26,13 @@ public class Recipe {
 	public Recipe() {
 		
 	}
+	
+	/**
+	 * Constructor
+	 * @param name Name of the recipe
+	 * @param ingredients Actually a Pantry Class Object that is used as the list of ingredients
+	 * @param steps A string that outlines the steps requried in cooking the recipe
+	 */
 	public Recipe(String name, Pantry ingredients, String steps) {
 		this.name = name;
 		this.ingredients = ingredients;
@@ -30,9 +44,6 @@ public class Recipe {
 		this.id = "5202";
 	}
 	
-	/*
-	 * 
-	 */
 	public String getID() {
 		return this.id;
 	}
@@ -79,7 +90,10 @@ public class Recipe {
 		return rating;
 	}
 
-	// Turns the recipe into a string
+	/**
+	 * Turns the recipe into a String.
+	 * @return String The recipe that has been reformated into a string.
+	 */
 	public String toString() {
 		String localName = this.name;
 		String localIngredients = this.ingredients.toString();
@@ -113,6 +127,8 @@ public class Recipe {
 	
 	/**
 	 * Posts 'this' recipe to elasticsearch
+	 * <p>
+	 * Not Currently Implemented
 	 */
 	public void postToES() {
 		
