@@ -1,6 +1,7 @@
 /**
  * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
- * @version	1.0
+ * 
+ * Stores the relevant information about one of the user's friend
  */
 
 
@@ -14,9 +15,9 @@ public class Friend {
 	/**
 	 * The Class constructor.
 	 * 
-	 * @param screenName The name that will be displayed on the screen
-	 * @param email The email for the user
-	 * @param phoneNumber The phone Number for the user
+	 * @param screenName The screen name of the friend
+	 * @param email The email for the friend (may or may not have one)
+	 * @param phoneNumber The phone Number for the friend (may or may not have one)
 	 */
 	public Friend (String screenName, String email, String phoneNumber) {
 		this.email = email;
@@ -25,7 +26,7 @@ public class Friend {
 	}
 	
 	/**
-	 * Turns the user's info into a string
+	 * Turns the friend's info into a string
 	 */
 	public String toString() {
 		return email + " " + screenName + " " + phoneNumber;
