@@ -1,8 +1,8 @@
-    /**
-     * @author  Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
-     * 
-     * Contains a large list of of constants and allows the user to search and convert easily
-	 */
+/**
+ * @author  Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
+ * 
+ * Contains a large list of of constants and allows the user to search and convert easily
+ */
 
 package ca.ualberta.cs.oneclick_cookbook;
 
