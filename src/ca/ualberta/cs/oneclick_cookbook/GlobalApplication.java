@@ -7,6 +7,11 @@ import android.app.Application;
 // so don't assume it will be there always
 //TODO Add anything thats needs to be global, and add
 // save stuff to onLowMemory
+/**
+ * Class that manages the global application state.
+ * @author Kenneth Armstrong
+ *
+ */
 public class GlobalApplication extends Application {
 	
 	private User currentUser = null;

@@ -5,6 +5,12 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 
+/**
+ * Class that allows the user to see a received recipe 
+ * Acts as a controller in the MVC model.
+ * @author Kenneth Armstrong
+ *
+ */
 public class ViewRecievedRecipeActivity extends Activity {
 
 	@Override

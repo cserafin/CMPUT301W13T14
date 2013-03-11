@@ -15,6 +15,11 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemLongClickListener;
 
+/**
+ * Class that allows for the addition of ingredients to recipes.
+ * @author Kenneth Armstrong
+ *
+ */
 public class AddIngredientsActivity extends Activity {
 
 	@Override
@@ -22,9 +27,7 @@ public class AddIngredientsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_ingredients);
 	}
-
-	// Called when activity restarts
-	// Should refresh the screen
+	
 	public void onResume() {
 		super.onResume();
 		refresh();
@@ -37,13 +40,18 @@ public class AddIngredientsActivity extends Activity {
 		return true;
 	}
 
-	// Refreshes the list show that new ingredients are show immediately
+	/**
+	 * Function that is called whenever the screen should be updated.
+	 * Updates the spinners and the list view.
+	 */
 	public void refresh() {
 		setUpSpinner();
 		setUpListView();
 	}
 	
-	// Sets up the measurement spinner
+	/**
+	 * Function that sets up the ingredient measurement spinner.
+	 */
 	public void setUpSpinner() {
 		Spinner measurements = (Spinner) findViewById(R.id.addIngredientMeasurement);
 		ArrayList<String> units = new ArrayList<String>();
@@ -58,6 +66,9 @@ public class AddIngredientsActivity extends Activity {
 		measurements.setAdapter(unitsAdapter);
 	}
 	
+	/**
+	 * Function that sets up the list view that contains the ingredients.
+	 */
 	public void setUpListView() {
 		// Set up the list view
 		ListView listView = (ListView) findViewById(R.id.lViewIngredients);
@@ -105,7 +116,10 @@ public class AddIngredientsActivity extends Activity {
 		});
 	}
 
-	// Called when the user clicks add ingredient
+	/**
+	 * Function that is called when the user clicks the add ingredient button.
+	 * Adds the ingredient to the recipe.
+	 */
 	public void onAdd() {
 		EditText quantity = (EditText) findViewById(R.id.addIngredientQuantity);
 		EditText name = (EditText) findViewById(R.id.addIngredientName);
@@ -141,7 +155,10 @@ public class AddIngredientsActivity extends Activity {
 		return;
 	}
 
-	// Called when the user clicks DeleteAll
+	/**
+	 * Function that is called when the user clicks on the delete all button.
+	 * Deletes all of the ingredients.
+	 */
 	public void onDeleteAll() {
 		// Builds the alert dialog box
 		AlertDialog.Builder prompt = new AlertDialog.Builder(this);
@@ -172,13 +189,19 @@ public class AddIngredientsActivity extends Activity {
 		return;
 	}
 
-	// Called when user selects Done
+	/**
+	 * Function that is called when the user clicks done.
+	 * Ends the activity.
+	 */
 	public void onDone() {
 		finish();
 		return;
 	}
 
-	// Handles the clicks from the user and directs them
+	/**
+	 * Function that handles the clicks from a user
+	 * @param v: The view of the button that was clicked
+	 */
 	public void clickHandler(View v) {
 		switch (v.getId()) {
 		case R.id.bAddIngredient:

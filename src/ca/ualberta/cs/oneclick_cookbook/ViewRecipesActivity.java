@@ -15,6 +15,12 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+/**
+ * Class that is the view recipes screen. 
+ * Acts as a controller in the MVC model.
+ * @author Kenneth Armstrong
+ *
+ */
 public class ViewRecipesActivity extends Activity {
 
 	@Override
@@ -36,7 +42,9 @@ public class ViewRecipesActivity extends Activity {
 		return true;
 	}
 
-	// Refreshes the list when changes happen
+	/**
+	 * Function that refreshes the list of recipes.
+	 */
 	public void refresh() {
 		ListView listView = (ListView) findViewById(R.id.lViewRecipes);
 		GlobalApplication app = (GlobalApplication) getApplication();
@@ -102,6 +110,10 @@ public class ViewRecipesActivity extends Activity {
 		});
 	}
 
+	/**
+	 * Function that is called when the user clicks delete all from the view
+	 * recipe screen. Deletes all of the recipes.
+	 */
 	public void onDeleteAll() {
 		// Builds the alert dialog box
 		AlertDialog.Builder prompt = new AlertDialog.Builder(this);
@@ -132,6 +144,10 @@ public class ViewRecipesActivity extends Activity {
 		return;
 	}
 
+	/**
+	 * Function that handles the clicks from the user from the view recipes screen.
+	 * @param v
+	 */
 	public void clickHandler(View v) {
 		switch (v.getId()) {
 		case R.id.bdeleteAllRecipes:

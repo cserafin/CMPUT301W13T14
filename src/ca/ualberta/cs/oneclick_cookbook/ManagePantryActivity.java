@@ -15,6 +15,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+/**
+ * Class that allows for the addition of ingredients to the pantry.
+ * @author Kenneth Armstrong
+ *
+ */
 public class ManagePantryActivity extends Activity {
 
 	@Override
@@ -35,13 +40,18 @@ public class ManagePantryActivity extends Activity {
 		return true;
 	}
 
-	// Refreshes the list show that new ingredients are show immediately
+	/**
+	 * Function that is called whenever the screen should be updated.
+	 * Updates the spinners and the list view.
+	 */
 	public void refresh() {
 		setUpSpinner();
 		setUpListView();
 	}
 
-	// Sets up the measurement spinner
+	/**
+	 * Function that sets up the ingredient measurement spinner.
+	 */
 	public void setUpSpinner() {
 		// Make the spinner for the units
 		Spinner measurements = (Spinner) findViewById(R.id.pantryIngredientMeasurement);
@@ -58,7 +68,9 @@ public class ManagePantryActivity extends Activity {
 		measurements.setAdapter(unitsAdapter);
 	}
 
-	// Sets up the ingredient list view
+	/**
+	 * Function that sets up the list view that contains the ingredients.
+	 */
 	public void setUpListView() {
 		// Set up the list view of items
 		ListView listView = (ListView) findViewById(R.id.lViewPantry);
@@ -108,7 +120,10 @@ public class ManagePantryActivity extends Activity {
 		});
 	}
 
-	// Called when the user clicks add ingredient
+	/**
+	 * Function that is called when the user clicks the add ingredient button.
+	 * Adds the ingredient to the recipe.
+	 */
 	public void onAdd() {
 		EditText quantity = (EditText) findViewById(R.id.pantryIngredientQuantity);
 		EditText name = (EditText) findViewById(R.id.pantryIngredientName);
@@ -144,7 +159,11 @@ public class ManagePantryActivity extends Activity {
 
 		return;
 	}
-
+	
+	/**
+	 * Function that is called when the user clicks on the delete all button.
+	 * Deletes all of the ingredients.
+	 */
 	public void onDeleteAll() {
 		// Builds the alert dialog box
 		AlertDialog.Builder prompt = new AlertDialog.Builder(this);
@@ -175,13 +194,19 @@ public class ManagePantryActivity extends Activity {
 		return;
 	}
 
-	// Called when user selects Done
+	/**
+	 * Function that is called when the user clicks done.
+	 * Ends the activity.
+	 */
 	public void onDone() {
 		finish();
 		return;
 	}
 
-	// Handles the clicks from the user and directs them
+	/**
+	 * Function that handles the clicks from a user
+	 * @param v: The view of the button that was clicked
+	 */
 	public void clickHandler(View v) {
 		switch (v.getId()) {
 		case R.id.bAddIngredientToPantry:

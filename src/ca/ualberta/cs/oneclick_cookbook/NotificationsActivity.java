@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+/**
+ * Class that displays to the user any notifications 
+ * taht they may have.
+ * @author Kenneth Armstrong
+ *
+ */
 public class NotificationsActivity extends Activity {
 
 	@Override
