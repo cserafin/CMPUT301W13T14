@@ -98,8 +98,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft= "20dp"
-        android:layout_toLeftOf="@+id/bFavRecipeEdit"
-        android:src="@drawable/ic_demote" />
+        android:layout_toLeftOf="@+id/bFavRecipeEdit" />
 
     <ImageButton
         android:id="@+id/bFavRecipePromote"
@@ -107,7 +106,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_toLeftOf="@+id/bFavRecipeDemote"
-        android:src="@drawable/ic_promote" />
+        android:layout_toLeftOf="@+id/bFavRecipeDemote" />
 
 </RelativeLayout>

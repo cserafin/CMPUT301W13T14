@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+/**
+ * Class that allows the user to search for other recipes.
+ * @author Kenneth Armstrong
+ *
+ */
 public class SearchActivity extends Activity {
 
 	@Override

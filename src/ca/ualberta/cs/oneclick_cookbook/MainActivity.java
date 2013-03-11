@@ -8,7 +8,12 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
-// User can log in, but is not actually verified
+/**
+ * Class that represents the main screen of the app.
+ * Acts as the controller for the main screen.
+ * @author Kenneth Armstrong
+ *
+ */
 public class MainActivity extends Activity {
 
 	@Override
@@ -17,6 +22,10 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 	}
 
+	/**
+	 * Function that is called when the user resumes on the
+	 * main screen. Sets up the welcome text.
+	 */
 	public void onResume() {
 		super.onResume();
 		// Set the welcome message (default account is John Doe)
@@ -40,8 +49,10 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	// Handles the button clicks for the main activity
-	// TODO Implement some of the handler functions
+	/**
+	 * Function that handles the button clicks from the main activity.
+	 * @param v: the view of the button that was clicked.
+	 */
 	public void clickHandler(View v) {
 		Intent intent;
 		switch (v.getId()) {

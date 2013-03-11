@@ -6,6 +6,11 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 
+/**
+ * Class that allows the user to search for other users.
+ * @author Kenneth Armstrong
+ *
+ */
 public class SearchUsersActivity extends Activity {
 
 	@Override

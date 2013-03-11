@@ -1,5 +1,11 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+/**
+ * Class that allows the user to choose how they would like to
+ * enter the friend info.
+ * @author Kenneth Armstrong
+ *
+ */
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

@@ -97,15 +97,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/bRecipeRecipeFav"
-        android:layout_marginLeft="25dp"
-        android:src="@drawable/ic_demote" />
+        android:layout_marginLeft="25dp" />
 
     <ImageButton
         android:id="@+id/bRecipeRecipePromote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/bRecipeRecipeDemote"
-        android:src="@drawable/ic_promote" />
+        android:layout_toLeftOf="@+id/bRecipeRecipeDemote"/>
 
 </RelativeLayout>

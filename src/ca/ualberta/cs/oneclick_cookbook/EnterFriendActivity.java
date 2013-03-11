@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+/**
+ * Class that allows the user to enter their friend's info.
+ * @author Kenneth Armstrong
+ *
+ */
 public class EnterFriendActivity extends Activity {
 
 	@Override

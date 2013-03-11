@@ -17,10 +17,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+/**
+ * Class that acts as the controller for the create recipe screen
+ * @author Kenneth Armstrong
+ *
+ */
 public class CreateRecipeActivity extends Activity {
 
 	private int position = -1;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,7 +59,11 @@ public class CreateRecipeActivity extends Activity {
 	    }
 
 
-	// Sets the info of the recipe based on the current recipe
+	/**
+	 * Function that takes the info of the recipe being edited
+	 * and puts in into the text fields
+	 * @param recipe: The recipe to set the info for
+	 */
 	public void setInfo(Recipe recipe) {
 		EditText name = (EditText) findViewById(R.id.createEnterName);
 		EditText steps = (EditText) findViewById(R.id.createEnterSteps);
@@ -62,7 +71,7 @@ public class CreateRecipeActivity extends Activity {
 		name.setText(recipe.getName());
 		steps.setText(recipe.getSteps());
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -70,7 +79,10 @@ public class CreateRecipeActivity extends Activity {
 		return true;
 	}
 
-	// Handles the clicks from the user and directs them
+	/**
+	 * Function that handles the clicks from a user
+	 * @param v: The view of the button that was clicked
+	 */
 	public void clickHandler(View v) {
 		switch (v.getId()) {
 		case R.id.bCreateDone:
@@ -91,7 +103,10 @@ public class CreateRecipeActivity extends Activity {
 		}
 	}
 
-	// Called when the user clicks to add ingredients
+	/**
+	 * Function that is called when the user clicks on the add ingredients
+	 * button.
+	 */
 	public void onAddIngredients() {
 		EditText name = (EditText) findViewById(R.id.createEnterName);
 		EditText steps = (EditText) findViewById(R.id.createEnterSteps);
@@ -103,7 +118,10 @@ public class CreateRecipeActivity extends Activity {
 		startActivity(intent);
 	}
 
-	// Called when user clicks Done
+	/**
+	 * Function that is called when the user clicks on the done button
+	 * of the recipe. Exits the create recipe activity.
+	 */
 	public void onDone() {
 		EditText name;
 		EditText steps;
@@ -137,7 +155,10 @@ public class CreateRecipeActivity extends Activity {
 		return;
 	}
 
-	// Called when user clicks Delete
+	/**
+	 * Function that is called when the user clicks on the delete
+	 * button of the recipe.
+	 */
 	public void onDelete() {
 		// If the user is not editing, just delete
 		if (position == -1) {
@@ -182,12 +203,18 @@ public class CreateRecipeActivity extends Activity {
 		return;
 	}
 
-	// Called when user clicks Add Photo
+	/**
+	 * Function that is called when the user clicks on the add
+	 * photo button.
+	 */
 	public void onAddPhoto() {
 		return;
 	}
 
-	// Called when user clicks Remove Photo
+	/**
+	 * Function that is called when the user clicks on the remove 
+	 * photo button.
+	 */
 	public void onRemovePhoto() {
 		return;
 	}   

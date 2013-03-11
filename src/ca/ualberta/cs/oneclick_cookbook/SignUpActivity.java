@@ -6,6 +6,12 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
+/**
+ * Class that allows the user to sign up for our service
+ * Acts as a controller in the MVC model.
+ * @author Kenneth Armstrong
+ *
+ */
 public class SignUpActivity extends Activity {
 
 	@Override
