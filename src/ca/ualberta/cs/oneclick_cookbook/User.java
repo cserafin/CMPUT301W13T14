@@ -1,3 +1,9 @@
+/**
+ * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
+ * 
+ * Stores all the information about the user.
+ */
+
 package ca.ualberta.cs.oneclick_cookbook;
 
 import java.util.ArrayList;
@@ -12,6 +18,13 @@ public class User {
 	private ArrayList<Recipe> userRecipes = null;
 	private Pantry userPantry = null;
 	
+	/**
+	 * Constructor V1
+	 * @param userName The username of the user
+	 * @param password The password of the user
+	 * @param screenName The screen name of the user
+	 * @param emailAddress the email address of the user
+	 */
 	public User(String userName, String password, String screenName, String emailAddress){
 		this.setUserName(userName);
 		this.setPassword(password);
@@ -21,6 +34,13 @@ public class User {
 		userPantry = new Pantry();
 	}
 	
+	/**
+	 * Constructor V2
+	 * @param userName The username of the user
+	 * @param password The password of the user
+	 * @param screenName The screen name of the user
+	 * @param phoneNumber The phone Number of the user
+	 */
 	public User(String userName, String password, String screenName, int phoneNumber){
 		this.setUserName(userName);
 		this.setPassword(password);
@@ -84,6 +104,10 @@ public class User {
 		return userPantry;
 	}
 	
+	/**
+	 * Conversts the Recipes to a string
+	 * @return s The string of the converted Recipes
+	 */
 	public ArrayList<String> getRecipesToString() {
 		ArrayList<String> s = new ArrayList<String>();
 		for (int i=0; i<userRecipes.size(); i++) {
