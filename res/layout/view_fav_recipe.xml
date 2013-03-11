@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/bFavRecipeReturn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="clickHandler"
+        android:text="Return" />
+
+    <LinearLayout
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/bFavRecipeReturn"
+        android:layout_marginTop="65dp" >
+
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="90dp" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/scrollView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/scrollView1"
+        android:layout_marginTop="20dp" >
+
+        <ListView
+            android:id="@+id/listView2"
+            android:layout_width="match_parent"
+            android:layout_height="149dp" >
+        </ListView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bFavRecipeSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="11dp"
+        android:onClick="clickHandler"
+        android:text="Send" />
+
+    <Button
+        android:id="@+id/bFavRecipeEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bFavRecipeSend"
+        android:layout_alignBottom="@+id/bFavRecipeSend"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="11dp"
+        android:onClick="clickHandler"
+        android:text="Edit" />
+
+    <TextView
+        android:id="@+id/tFavRecipeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/bFavRecipeReturn"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Recipe Title"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/bFavRecipePics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@android:drawable/alert_light_frame" />
+
+    <Button
+        android:id="@+id/bFavRecipeDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/bFavRecipeReturn"
+        android:text="Delete" />
+
+    <ImageButton
+        android:id="@+id/bFavRecipeDemote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft= "20dp"
+        android:layout_toLeftOf="@+id/bFavRecipeEdit"
+        android:src="@drawable/ic_demote" />
+
+    <ImageButton
+        android:id="@+id/bFavRecipePromote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@+id/bFavRecipeDemote"
+        android:src="@drawable/ic_promote" />
+
+</RelativeLayout>

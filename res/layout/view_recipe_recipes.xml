@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/bRecipeRecipeReturn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="clickHandler"
+        android:text="Return" />
+
+    <LinearLayout
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/bRecipeRecipeReturn"
+        android:layout_marginTop="65dp" >
+
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="90dp" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/scrollView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/scrollView1"
+        android:layout_marginTop="20dp" >
+
+        <ListView
+            android:id="@+id/listView2"
+            android:layout_width="match_parent"
+            android:layout_height="149dp" >
+        </ListView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bRecipeRecipeSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="11dp"
+        android:onClick="clickHandler"
+        android:text="Send" />
+
+    <Button
+        android:id="@+id/bRecipeRecipeFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bRecipeRecipeSend"
+        android:layout_alignBottom="@+id/bRecipeRecipeSend"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="11dp"
+        android:onClick="clickHandler"
+        android:text="Fav+" />
+
+    <TextView
+        android:id="@+id/tRecipeRecipeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/bRecipeRecipeReturn"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Recipe Title"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/bRecipeRecipePics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@android:drawable/alert_light_frame" />
+
+    <Button
+        android:id="@+id/bRecipeRecipeDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/bRecipeRecipeReturn"
+        android:text="Delete" />
+
+    <ImageButton
+        android:id="@+id/bRecipeRecipeDemote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/bRecipeRecipeFav"
+        android:layout_marginLeft="25dp"
+        android:src="@drawable/ic_demote" />
+
+    <ImageButton
+        android:id="@+id/bRecipeRecipePromote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/bRecipeRecipeDemote"
+        android:src="@drawable/ic_promote" />
+
+</RelativeLayout>

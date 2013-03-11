@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/bSearchRecipeReturn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="clickHandler"
+        android:text="Return" />
+
+    <LinearLayout
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/bSearchRecipeReturn"
+        android:layout_marginTop="65dp" >
+
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="90dp" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/scrollView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/scrollView1"
+        android:layout_marginTop="20dp" >
+
+        <ListView
+            android:id="@+id/listView2"
+            android:layout_width="match_parent"
+            android:layout_height="149dp" >
+        </ListView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bSearchRecipeSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="11dp"
+        android:onClick="clickHandler"
+        android:text="Send" />
+
+    <Button
+        android:id="@+id/bSearchRecipeFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bSearchRecipeSend"
+        android:layout_alignBottom="@+id/bSearchRecipeSend"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="11dp"
+        android:onClick="clickHandler"
+        android:text="Fav+" />
+
+    <TextView
+        android:id="@+id/tSearchRecipeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/bSearchRecipeReturn"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Recipe Title"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/bSearchRecipePics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@android:drawable/alert_light_frame" />
+
+    <Button
+        android:id="@+id/bSearchRecipeSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bSearchRecipeSend"
+        android:layout_alignBottom="@+id/bSearchRecipeSend"
+        android:layout_centerHorizontal="true"
+        android:text="Save" />
+
+</RelativeLayout>
