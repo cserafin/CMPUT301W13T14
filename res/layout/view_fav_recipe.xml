@@ -99,7 +99,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft= "20dp"
         android:layout_toLeftOf="@+id/bFavRecipeEdit"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_demote" />
 
     <ImageButton
         android:id="@+id/bFavRecipePromote"
@@ -108,6 +108,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_toLeftOf="@+id/bFavRecipeDemote"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_promote" />
 
 </RelativeLayout>
