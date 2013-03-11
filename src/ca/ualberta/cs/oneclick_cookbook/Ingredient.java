@@ -1,3 +1,8 @@
+/**
+ * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
+ * @version	1.0
+ */
+
 package ca.ualberta.cs.oneclick_cookbook;
 
 
@@ -6,6 +11,12 @@ public class Ingredient {
 	private String measurement;
 	private String name;
 	
+	/**
+	 * Constructor
+	 * @param name Name of the ingredient
+	 * @param quantity Amount of ingredient
+	 * @param measurement The type of measurement that was used
+	 */
 	public Ingredient (String name, int quantity, String measurement) {
 		this.name = name;
 		this.quantity = quantity;
@@ -40,19 +51,26 @@ public class Ingredient {
     public void setMeasurement(String measurement) {
         this.measurement = measurement;
     }
-	
-	// Converts the ingredient to a nicely formatted string
+	/**
+	 * Converts the ingredient to a nicely formatted string
+	 */
 	public String toString() {
 		String ingredient = "" + quantity + " " + measurement + " of " + name + "";
 		return ingredient;
 	}
-
+	
+	/**
+	 * Converts the name and measurements to lowercase
+	 */
     public void toLower() {
         this.name = name.toLowerCase();
         this.measurement = measurement.toLowerCase();
     }
 
-    // Checks to make sure the info is valid. Uses constants in this file
+    /**
+     * Checks to make sure the info is valid. Uses constants in this file
+     * @return Constants.GOOD Returns this only if it has valid variables
+     */
     public int isValidInfo() {
         if (name == null || measurement == null) {
             return Constants.NULL_VALUE;
