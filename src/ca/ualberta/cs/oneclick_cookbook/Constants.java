@@ -1,3 +1,9 @@
+    /**
+     * @author  Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
+     * 
+     * Contains a large list of of constants and allows the user to search and convert easily
+	 */
+
 package ca.ualberta.cs.oneclick_cookbook;
 
 public class Constants { 
@@ -16,7 +22,11 @@ public class Constants {
     // This is important!! Make sure it's up to date
     public static final int NUM_OF_UNITS = 8;
     
-    // Method to convert from spinner position to units
+    /**
+     * Converts from spinner position to units
+     * @param position The position of the spinner
+     * @return unit The type of unit selected in string
+     */
     public static String getUnitFromPosition(int position) {
     	switch (position) {
     	case ML:
@@ -40,6 +50,10 @@ public class Constants {
     	}
     }
     
+    /**
+     * Returns the spinner position from the passed string
+     * @param unit String of the unit you want the postition of
+     */
     public static int getPositionFromUnit(String unit) {
     	if (unit.contentEquals("ml")) {
     		return ML;
