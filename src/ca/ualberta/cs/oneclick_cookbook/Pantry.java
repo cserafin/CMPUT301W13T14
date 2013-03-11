@@ -25,7 +25,7 @@ public class Pantry {
 		for (int i=0; i<ingredientList.size(); i++) {
 			Ingredient ingredient = (Ingredient) ingredientList.get(i);
 
-			if (ingredient.getName() == name) {
+			if (ingredient.getName().equals(name)) {
 				ingredientList.remove(ingredient);
 				return true;
 			}
@@ -82,12 +82,12 @@ public class Pantry {
         return ingredientList.size();
     }
 
-
+    // Function that checks whether an item is in the pantry
     public boolean isInPantry(String name) {
 		for (int i=0; i<ingredientList.size(); i++) {
 			Ingredient ingredient = (Ingredient) ingredientList.get(i);
 
-			if (ingredient.getName() == name) {
+			if (ingredient.getName().equals(name)) {
 				return true;
 			}
 		}

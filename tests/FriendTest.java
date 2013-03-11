@@ -3,5 +3,11 @@ import static org.junit.Assert.*;
 
 // Empty for now until Friend gets more stuff
 public class FriendTest {
+	
+	// Method to make JUnit happy
+	@Test
+	public void testNothing() {
+		
+	}
     
 }
