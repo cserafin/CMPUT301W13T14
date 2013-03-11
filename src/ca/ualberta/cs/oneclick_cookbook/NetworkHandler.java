@@ -34,6 +34,10 @@ public class NetworkHandler {
 	// Hands the recipe Gson conversion
 	private Gson gson = new Gson();
 	
+	public NetworkHandler() {
+		System.err.println("Test made handler");
+	}
+	
 	/**
 	 * Handles the HTTP POST operation. Converts type recipe to a Json object and uploads to elasticsearch
 	 * @param recipe

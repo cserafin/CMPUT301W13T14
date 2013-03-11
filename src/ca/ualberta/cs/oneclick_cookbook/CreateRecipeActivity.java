@@ -1,6 +1,7 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
 import java.io.File;
+import java.io.IOException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -123,6 +124,18 @@ public class CreateRecipeActivity extends Activity {
 		}
 
 		// TODO Add upload, local storage code here
+		/* Commented out online upload. 50% chance of crashing due to network timeout
+		NetworkHandler nh = new NetworkHandler();
+		try {
+			nh.postToES(r);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 
 		
 		// Remove the old recipe before adding the new one, if editing

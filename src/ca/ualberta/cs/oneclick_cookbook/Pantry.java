@@ -86,6 +86,7 @@ public class Pantry {
 	 * Checks wether the entire pantry is valid info.
 	 * NOTE: The return value is dependant on the order of the items in pantry
 	 * @return Constants.GOOD Returns this if it is all valid
+	 * */
     public int isValidInfo() {
         for (int i=0; i<ingredientList.size(); i++) {
             if (ingredientList.get(i).isValidInfo() != Constants.GOOD) {
