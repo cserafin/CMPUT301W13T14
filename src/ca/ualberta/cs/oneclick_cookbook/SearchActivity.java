@@ -1,6 +1,7 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -22,7 +23,18 @@ public class SearchActivity extends Activity {
 	
 	// Handles the clicks from this activity
 	public void clickHandler(View v) {
-		return;
+		Intent intent;
+		switch(v.getId()) {
+		case R.id.bHomeSReturn:
+			finish();
+			break;
+		case R.id.bHomeSPantry:
+			//TODO Add pantry search code here
+			break;
+		case R.id.bHomeSSearch:
+			//TODO Add search code here
+			break;
+		}
 	}
 
 }

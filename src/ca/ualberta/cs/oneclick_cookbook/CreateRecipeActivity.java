@@ -1,19 +1,26 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class CreateRecipeActivity extends Activity {
 
 	private int position = -1;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -183,6 +190,5 @@ public class CreateRecipeActivity extends Activity {
 	// Called when user clicks Remove Photo
 	public void onRemovePhoto() {
 		return;
-	}
-
+	}   
 }

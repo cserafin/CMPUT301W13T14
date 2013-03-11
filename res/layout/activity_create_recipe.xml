@@ -4,41 +4,64 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/bCreateDone"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:onClick="clickHandler"
-        android:text="@string/createDone"
-        android:textSize="12sp" />
+        android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/bCreateDelete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:onClick="clickHandler"
-        android:text="@string/createDelete"
-        android:textSize="12sp" />
+        <Button
+            android:id="@+id/bCreateDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:onClick="clickHandler"
+            android:text="@string/createDone"
+            android:textSize="12sp" />
 
-    <Button
-        android:id="@+id/bCreateAddPhoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:onClick="clickHandler"
-        android:text="@string/createAddPhoto"
-        android:textSize="12sp" />
+        <Button
+            android:id="@+id/bCreateDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:onClick="clickHandler"
+            android:text="@string/createDelete"
+            android:textSize="12sp" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/bCreateRemovePhoto"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:onClick="clickHandler"
-        android:text="@string/createDeletePhoto"
-        android:textSize="12sp" />
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/iCreateImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@android:drawable/alert_light_frame" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/bCreateAddPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:onClick="clickHandler"
+            android:text="@string/createAddPhoto"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/bCreateRemovePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:onClick="clickHandler"
+            android:text="@string/createDeletePhoto"
+            android:textSize="12sp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/createEnterName"
@@ -62,9 +85,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="30"
+        android:gravity="top"
         android:hint="@string/createStepsHint"
         android:inputType="textMultiLine"
-        android:lines="3"
+        android:lines="12"
         android:scrollHorizontally="false" />
 
 </LinearLayout>
