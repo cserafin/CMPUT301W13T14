@@ -128,7 +128,6 @@ public class PantryTest {
     	s += p.get(1).toString() + ", ";
     	p.addIngredient(new Ingredient("Salt", 4, "teaspoons"));
     	s += p.get(2).toString();
-    	System.out.println(p.toString());
     	assertEquals("Pantry:toString:Test 1", s, p.toString());
     }
                    
