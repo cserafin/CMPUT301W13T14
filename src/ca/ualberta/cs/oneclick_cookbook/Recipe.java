@@ -1,37 +1,44 @@
 /**
- * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
- * 
  * This class is the class that is used to store the recipes that are submitted
  * by users. It contains all the infromation that is needed for the recipes.
+ * 
+ * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
+ * 
  */
 
 package ca.ualberta.cs.oneclick_cookbook;
 
-import java.util.List;
-
-//import android.provider.MediaStore.Images;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Recipe {
 
 	private String name = "";
 	private Pantry ingredients = null;
 	private String steps = "";
-    // private List<Images> pictures = null;
+	private ArrayList<File> pictures = null;
 	private int promotions = 0;
 	private int demotions = 0;
-	
-	//for online IDing
+
+	// for online IDing
 	private String id;
 
 	public Recipe() {
-		
+
 	}
-	
+
 	/**
-	 * Constructor
-	 * @param name Name of the recipe
-	 * @param ingredients Actually a Pantry Class Object that is used as the list of ingredients
-	 * @param steps A string that outlines the steps requried in cooking the recipe
+	 * Constructor. Generates the recipe ID internally.
+	 * 
+	 * @param name
+	 *            Name of the recipe
+	 * @param ingredients
+	 *            Actually a Pantry Class Object that is used as the list of
+	 *            ingredients
+	 * @param steps
+	 *            A string that outlines the steps requried in cooking the
+	 *            recipe
 	 */
 	public Recipe(String name, Pantry ingredients, String steps) {
 		this.name = name;
@@ -39,11 +46,13 @@ public class Recipe {
 		this.steps = steps;
 		this.promotions = 0;
 		this.demotions = 0;
-		
-		//Auto-Generate ID tag. . . somehow.
-		this.id = "5202";
+		this.pictures = new ArrayList<File>();
+
+		// Generate the ID tag (should be unique enough)
+		Random random = new Random();
+		this.id = System.nanoTime() + "" + random.nextInt(100000);
 	}
-	
+
 	public String getID() {
 		return this.id;
 	}
@@ -90,29 +99,72 @@ public class Recipe {
 		return rating;
 	}
 
+	public void addImage(File file) {
+		pictures.add(file);
+	}
+
+	/**
+	 * Gets the image in the given poistion
+	 * 
+	 * @param position
+	 *            The position of the image to get
+	 * @return The image requested, null if invalid.
+	 */
+	public File getImage(int position) {
+		if (position >= pictures.size() || position < 0) {
+			return null;
+		} else {
+			return pictures.get(position);
+		}
+	}
+
+	/**
+	 * Function that deletes an image in the given position
+	 * 
+	 * @param position
+	 *            The position of the image to delete
+	 * @return True if image was deleted, false otherwise.
+	 */
+	public boolean deleteImage(int position) {
+		if (position >= pictures.size() || position < 0) {
+			return false;
+		}
+
+		else {
+			pictures.remove(position);
+			return true;
+		}
+	}
+
 	/**
 	 * Turns the recipe into a String.
+	 * 
 	 * @return String The recipe that has been reformated into a string.
 	 */
 	public String toString() {
 		String localName = this.name;
 		String localIngredients = this.ingredients.toString();
-		
+
 		if (localIngredients.length() > 20) {
 			localIngredients = localIngredients.substring(0, 20) + "...";
 		}
-		
+
 		if (localName.length() > 20) {
 			localName = localName.substring(0, 20) + "...";
 		}
-		
+
 		return "Title: " + localName + "\nIngredients: " + localIngredients;
 	}
 
-	// Checks the recipe for valid info
+	/**
+	 * Checks whether the recipe has valid info. Also checks all ingredients in
+	 * the recipe for validity.
+	 * 
+	 * @return True if all info is valid, false otherwise.
+	 */
 	public int isValidInfo() {
 
-		if (name == null || steps == null  || ingredients == null ) {
+		if (name == null || steps == null || ingredients == null) {
 			return Constants.NULL_VALUE;
 		}
 
@@ -124,13 +176,13 @@ public class Recipe {
 			return ingredients.isValidInfo();
 		}
 	}
-	
+
 	/**
 	 * Posts 'this' recipe to elasticsearch
 	 * <p>
 	 * Not Currently Implemented
 	 */
 	public void postToES() {
-		
+
 	}
 }

@@ -19,9 +19,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 /**
- * Class that acts as the controller for the create recipe screen
+ * Class that acts as the controller for the create recipe screen If the current
+ * recipe variable in GlobalApplication is set, does not create a new recipe,
+ * rather edits the current one. Is responsible for unsetting the current recipe
+ * for future instances to work correctly.
+ * 
  * @author Kenneth Armstrong
- *
+ * 
  */
 public class CreateRecipeActivity extends Activity {
 
@@ -42,28 +46,33 @@ public class CreateRecipeActivity extends Activity {
 		super.onResume();
 		GlobalApplication app = (GlobalApplication) getApplication();
 		Recipe recipe = app.getCurrentRecipe();
-		setInfo(recipe);
+		setInfo(recipe); // Set the info they entered before leaving
 	}
-	
-	// Used to make sure that no matter what, current recipe is set to
-	// null on exit of create recipe
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-	super.onKeyDown(keyCode, event);
-	    	if (keyCode == KeyEvent.KEYCODE_BACK) {
-	    		GlobalApplication app = (GlobalApplication) getApplication();
-	    		app.setCurrentRecipe(null);
-	    		finish();
-	    		return true;
-	    	}
-	    	return false;
-	    }
-
 
 	/**
-	 * Function that takes the info of the recipe being edited
-	 * and puts in into the text fields
-	 * @param recipe: The recipe to set the info for
+	 * Overides the back key action. Kills the current activity, as normal, but
+	 * also sets the current recipe to null so that future recipes work
+	 * properly.
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		super.onKeyDown(keyCode, event);
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			GlobalApplication app = (GlobalApplication) getApplication();
+			app.setCurrentRecipe(null);
+			finish();
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Function that takes the info of the recipe being edited and puts in into
+	 * the text fields. This is used to restore any info the use may have had 
+	 * prior to leaving the activity.
+	 * 
+	 * @param recipe
+	 *            The recipe to set the info for
 	 */
 	public void setInfo(Recipe recipe) {
 		EditText name = (EditText) findViewById(R.id.createEnterName);
@@ -72,7 +81,7 @@ public class CreateRecipeActivity extends Activity {
 		name.setText(recipe.getName());
 		steps.setText(recipe.getSteps());
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -81,8 +90,11 @@ public class CreateRecipeActivity extends Activity {
 	}
 
 	/**
-	 * Function that handles the clicks from a user
-	 * @param v: The view of the button that was clicked
+	 * Function that handles the clicks from a user. Calls the appropriate function
+	 * depending on the buton the user clicked.
+	 * 
+	 * @param v
+	 *            The view of the button that was clicked
 	 */
 	public void clickHandler(View v) {
 		switch (v.getId()) {
@@ -112,16 +124,17 @@ public class CreateRecipeActivity extends Activity {
 		EditText name = (EditText) findViewById(R.id.createEnterName);
 		EditText steps = (EditText) findViewById(R.id.createEnterSteps);
 		GlobalApplication app = (GlobalApplication) getApplication();
-		//Do this to save any user text they may have
-		app.setCurrentRecipe(new Recipe(name.getText().toString(), app.getCurrentRecipe().getIngredients(),
-					steps.getText().toString()));
+		// Do this to save any user text they may have
+		app.setCurrentRecipe(new Recipe(name.getText().toString(), app
+				.getCurrentRecipe().getIngredients(), steps.getText()
+				.toString()));
 		Intent intent = new Intent(app, AddIngredientsActivity.class);
 		startActivity(intent);
 	}
 
 	/**
-	 * Function that is called when the user clicks on the done button
-	 * of the recipe. Exits the create recipe activity.
+	 * Function that is called when the user clicks on the done button of the
+	 * recipe. Exits the create recipe activity.
 	 */
 	public void onDone() {
 		EditText name;
@@ -133,8 +146,8 @@ public class CreateRecipeActivity extends Activity {
 		String stepstring = steps.getText().toString();
 		GlobalApplication app = (GlobalApplication) getApplication();
 
-		Recipe r = new Recipe(namestring, app.getCurrentRecipe().getIngredients(),
-				stepstring);
+		Recipe r = new Recipe(namestring, app.getCurrentRecipe()
+				.getIngredients(), stepstring);
 
 		// TODO Add appropriate feedback here
 		if (r.isValidInfo() != Constants.GOOD) {
@@ -142,20 +155,14 @@ public class CreateRecipeActivity extends Activity {
 		}
 
 		// TODO Add upload, local storage code here
-		/* Commented out online upload. 50% chance of crashing due to network timeout
-		NetworkHandler nh = new NetworkHandler();
-		try {
-			nh.postToES(r);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
+		/*
+		 * Commented out online upload. 50% chance of crashing due to network
+		 * timeout NetworkHandler nh = new NetworkHandler(); try {
+		 * nh.postToES(r); } catch (IllegalStateException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); } catch (IOException
+		 * e) { // TODO Auto-generated catch block e.printStackTrace(); }
+		 */
 
-		
 		// Remove the old recipe before adding the new one, if editing
 		if (position != -1) {
 			app.getCurrentUser().getUserRecipes().remove(position);
@@ -169,8 +176,8 @@ public class CreateRecipeActivity extends Activity {
 	}
 
 	/**
-	 * Function that is called when the user clicks on the delete
-	 * button of the recipe.
+	 * Function that is called when the user clicks on the delete button of the
+	 * recipe.
 	 */
 	public void onDelete() {
 		// If the user is not editing, just delete
@@ -204,9 +211,9 @@ public class CreateRecipeActivity extends Activity {
 				if (position != -1) {
 					app.getCurrentUser().getUserRecipes().remove(position);
 				}
-				
-				//TODO Add upload, local storage code here
-				
+
+				// TODO Add upload, local storage code here
+
 				// Set null so future recipes start fresh
 				app.setCurrentRecipe(null);
 				finish();
@@ -217,18 +224,16 @@ public class CreateRecipeActivity extends Activity {
 	}
 
 	/**
-	 * Function that is called when the user clicks on the add
-	 * photo button.
+	 * Function that is called when the user clicks on the add photo button.
 	 */
 	public void onAddPhoto() {
 		return;
 	}
 
 	/**
-	 * Function that is called when the user clicks on the remove 
-	 * photo button.
+	 * Function that is called when the user clicks on the remove photo button.
 	 */
 	public void onRemovePhoto() {
 		return;
-	}   
+	}
 }

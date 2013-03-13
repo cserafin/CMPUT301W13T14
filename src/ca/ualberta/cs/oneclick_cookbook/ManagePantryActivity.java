@@ -16,9 +16,11 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 /**
- * Class that allows for the addition of ingredients to the pantry.
+ * Class that allows for the addition of ingredients to the pantry. Similar in
+ * functionality to the add ingredients screen.
+ * 
  * @author Kenneth Armstrong
- *
+ * 
  */
 public class ManagePantryActivity extends Activity {
 
@@ -41,8 +43,8 @@ public class ManagePantryActivity extends Activity {
 	}
 
 	/**
-	 * Function that is called whenever the screen should be updated.
-	 * Updates the spinners and the list view.
+	 * Function that is called whenever the screen should be updated. Updates
+	 * the spinners and the list view to provide immediate feedback
 	 */
 	public void refresh() {
 		setUpSpinner();
@@ -69,7 +71,8 @@ public class ManagePantryActivity extends Activity {
 	}
 
 	/**
-	 * Function that sets up the list view that contains the ingredients.
+	 * Function that sets up the list view that contains the ingredients. Allows
+	 * for immediate feedback to the user.
 	 */
 	public void setUpListView() {
 		// Set up the list view of items
@@ -80,43 +83,51 @@ public class ManagePantryActivity extends Activity {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, content);
 		listView.setAdapter(adapter);
-		
+
 		// Set what happens when a user clicks on an item
 		listView.setOnItemLongClickListener(new OnItemLongClickListener() {
-			
+
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View v,
 					final int position, long arg3) {
 				// Builds the alert dialog box
-				AlertDialog.Builder prompt = new AlertDialog.Builder(v.getContext());
+				AlertDialog.Builder prompt = new AlertDialog.Builder(v
+						.getContext());
 				prompt.setTitle("Delete Ingredient");
 				prompt.setMessage("Are you sure you want to delete this ingredient? It "
 						+ "will be gone... forever.");
 
-				prompt.setNegativeButton("No", new DialogInterface.OnClickListener() {
+				prompt.setNegativeButton("No",
+						new DialogInterface.OnClickListener() {
 
-					// User has changed their mind
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						return;
-					}
-				});
-				prompt.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+							// User has changed their mind
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								return;
+							}
+						});
+				prompt.setPositiveButton("Yes",
+						new DialogInterface.OnClickListener() {
 
-					// User does want to delete the ingredient they are long pressing
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						//TODO Add network and local storage deletion here
-						GlobalApplication app = (GlobalApplication) getApplication();
-						Pantry pantry = app.getCurrentUser().getUserPantry();
-						pantry.removeIngredient(position);
-						refresh();
-					}
-				});
-				prompt.show();			
+							// User does want to delete the ingredient they are
+							// long pressing
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Add network and local storage deletion
+								// here
+								GlobalApplication app = (GlobalApplication) getApplication();
+								Pantry pantry = app.getCurrentUser()
+										.getUserPantry();
+								pantry.removeIngredient(position);
+								refresh();
+							}
+						});
+				prompt.show();
 				return false;
 			}
-			
+
 		});
 	}
 
@@ -159,10 +170,10 @@ public class ManagePantryActivity extends Activity {
 
 		return;
 	}
-	
+
 	/**
 	 * Function that is called when the user clicks on the delete all button.
-	 * Deletes all of the ingredients.
+	 * Deletes all of the ingredients in he pantry and updates the list view.
 	 */
 	public void onDeleteAll() {
 		// Builds the alert dialog box
@@ -195,8 +206,7 @@ public class ManagePantryActivity extends Activity {
 	}
 
 	/**
-	 * Function that is called when the user clicks done.
-	 * Ends the activity.
+	 * Function that is called when the user clicks done. Ends the activity.
 	 */
 	public void onDone() {
 		finish();
@@ -205,7 +215,9 @@ public class ManagePantryActivity extends Activity {
 
 	/**
 	 * Function that handles the clicks from a user
-	 * @param v: The view of the button that was clicked
+	 * 
+	 * @param v
+	 *            The view of the button that was clicked
 	 */
 	public void clickHandler(View v) {
 		switch (v.getId()) {

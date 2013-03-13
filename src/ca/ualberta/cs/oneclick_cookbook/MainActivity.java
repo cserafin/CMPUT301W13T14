@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.TextView;
 
 /**
- * Class that represents the main screen of the app.
- * Acts as the controller for the main screen.
+ * Class that represents the main screen of the app. Acts as the controller for
+ * the main screen. Allows the user to access the various functionality in the
+ * app.
+ * 
  * @author Kenneth Armstrong
- *
+ * 
  */
 public class MainActivity extends Activity {
 
@@ -23,12 +25,12 @@ public class MainActivity extends Activity {
 	}
 
 	/**
-	 * Function that is called when the user resumes on the
-	 * main screen. Sets up the welcome text.
+	 * Function that is called when the user resumes on the main screen. Sets up
+	 * the welcome text with the current user's name.
 	 */
 	public void onResume() {
 		super.onResume();
-		// Set the welcome message (default account is John Doe)
+		// Set the welcome message (default account is blank)
 		TextView t = (TextView) findViewById(R.id.tWelcomeMessage);
 		GlobalApplication app = (GlobalApplication) getApplication();
 		String username = app.getCurrentUser().getUserName();
@@ -50,8 +52,11 @@ public class MainActivity extends Activity {
 	}
 
 	/**
-	 * Function that handles the button clicks from the main activity.
-	 * @param v: the view of the button that was clicked.
+	 * Function that handles the button clicks from the main activity. Directs
+	 * the clicks to start the associated functions.
+	 * 
+	 * @param v
+	 *            The view of the button that was clicked.
 	 */
 	public void clickHandler(View v) {
 		Intent intent;

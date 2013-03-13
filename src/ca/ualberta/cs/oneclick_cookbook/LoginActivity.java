@@ -7,6 +7,13 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
+/**
+ * Class that handles the logging in of a user. Talks with the remote server and
+ * authenticates the user.
+ * 
+ * @author Kenneth Armstrong
+ * 
+ */
 public class LoginActivity extends Activity {
 
 	@Override
@@ -22,7 +29,10 @@ public class LoginActivity extends Activity {
 		return true;
 	}
 
-	// Called when the user clicks login
+	/**
+	 * Function that is called when the user logs in. Does the authentication of
+	 * the user and sets the current user if the login was successful.
+	 */
 	public void onLogin() {
 		EditText u = (EditText) findViewById(R.id.UserName);
 		EditText p = (EditText) findViewById(R.id.Password);
@@ -33,16 +43,21 @@ public class LoginActivity extends Activity {
 
 		// TODO Add the network stuff here
 
-		
 		GlobalApplication app = (GlobalApplication) getApplication();
-		app.setCurrentuser(new User(username, password, "abc123", "abc123@gmail.com"));
+		app.setCurrentuser(new User(username, password, "abc123",
+				"abc123@gmail.com"));
 		finish();
 
 		return;
 
 	}
 
-	// Handles the clicks from this activity
+	/**
+	 * Directs the clicks from this activity to the appropriate function.
+	 * 
+	 * @param v
+	 *            The view of the button that was clicked.
+	 */
 	public void clickHandler(View v) {
 		Intent intent;
 		switch (v.getId()) {
