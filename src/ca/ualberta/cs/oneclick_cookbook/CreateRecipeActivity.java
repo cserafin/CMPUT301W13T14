@@ -145,9 +145,17 @@ public class CreateRecipeActivity extends Activity {
 		String namestring = name.getText().toString();
 		String stepstring = steps.getText().toString();
 		GlobalApplication app = (GlobalApplication) getApplication();
-
-		Recipe r = new Recipe(namestring, app.getCurrentRecipe()
-				.getIngredients(), stepstring);
+		
+		Recipe r = null;
+		
+		// Check whether or not we are editing
+		if (position == -1) {
+			r = new Recipe(namestring, app.getCurrentRecipe()
+					.getIngredients(), stepstring);
+		}
+		else {
+			r = app.getCurrentRecipe();
+		}
 
 		// TODO Add appropriate feedback here
 		if (r.isValidInfo() != Constants.GOOD) {
