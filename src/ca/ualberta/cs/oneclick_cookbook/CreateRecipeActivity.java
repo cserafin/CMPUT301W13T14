@@ -68,7 +68,7 @@ public class CreateRecipeActivity extends Activity {
 
 	/**
 	 * Function that takes the info of the recipe being edited and puts in into
-	 * the text fields. This is used to restore any info the use may have had 
+	 * the text fields. This is used to restore any info the use may have had
 	 * prior to leaving the activity.
 	 * 
 	 * @param recipe
@@ -90,8 +90,8 @@ public class CreateRecipeActivity extends Activity {
 	}
 
 	/**
-	 * Function that handles the clicks from a user. Calls the appropriate function
-	 * depending on the buton the user clicked.
+	 * Function that handles the clicks from a user. Calls the appropriate
+	 * function depending on the buton the user clicked.
 	 * 
 	 * @param v
 	 *            The view of the button that was clicked
@@ -155,13 +155,18 @@ public class CreateRecipeActivity extends Activity {
 		}
 
 		// TODO Add upload, local storage code here
-		/*
-		 * Commented out online upload. 50% chance of crashing due to network
-		 * timeout NetworkHandler nh = new NetworkHandler(); try {
-		 * nh.postToES(r); } catch (IllegalStateException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); } catch (IOException
-		 * e) { // TODO Auto-generated catch block e.printStackTrace(); }
-		 */
+		 //Commented out online upload. 50% chance of crashing due to network
+		 //timeout 
+		 NetworkHandler nh = new NetworkHandler(); 
+		 try {
+			 nh.postToES(r); 
+		 } catch (IllegalStateException e) { 
+			 // TODO Auto-generated block
+			 e.printStackTrace(); 
+		 } catch (IOException e) { 
+			 // TODO Auto-generated catch block 
+			 e.printStackTrace();
+		 }
 
 		// Remove the old recipe before adding the new one, if editing
 		if (position != -1) {

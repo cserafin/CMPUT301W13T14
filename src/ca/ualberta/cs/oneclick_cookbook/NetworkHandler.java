@@ -15,6 +15,8 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.os.StrictMode;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -45,6 +47,11 @@ public class NetworkHandler {
 	 * @throws IllegalStateException 
 	 */
 	public void postToES(Recipe recipe) throws IllegalStateException, IOException{
+		
+		// SHOULD put the stuff in a seperate thread and remove below two lines
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy); 
+		
 		HttpPut httpPut = new HttpPut("http://cmput301.softwareprocess.es:8080/testing/lab01/"+recipe.getID());
 		StringEntity recipeString = null;
 		
