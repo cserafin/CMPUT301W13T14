@@ -59,7 +59,7 @@ public class NetworkHandler {
 		StrictMode.setThreadPolicy(policy);
 
 		HttpPut httpPut = new HttpPut(
-				"http://cmput301.softwareprocess.es:8080/testing/lab01/"
+				"http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/"
 						+ recipe.getID());
 		StringEntity recipeString = null;
 
@@ -111,7 +111,7 @@ public class NetworkHandler {
 		StrictMode.setThreadPolicy(policy);
 		try {
 			HttpGet httpGet = new HttpGet(
-					"http://cmput301.softwareprocess.es:8080/testing/lab01/"
+					"http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/"
 							+ id);
 
 			httpGet.addHeader("accept", "application/json");
@@ -163,7 +163,7 @@ public class NetworkHandler {
 		StrictMode.setThreadPolicy(policy);
 
 		HttpDelete httpDelete = new HttpDelete(
-				"http://cmput301.softwareprocess.es:8080/testing/lab01/" + id);
+				"http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/" + id);
 		httpDelete.addHeader("Accept", "application/json");
 
 		HttpResponse response = httpClient.execute(httpDelete);
