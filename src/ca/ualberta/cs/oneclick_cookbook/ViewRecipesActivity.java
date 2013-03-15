@@ -121,6 +121,9 @@ public class ViewRecipesActivity extends Activity {
 							e.printStackTrace();
 						}
 						
+						// Delete from the user
+						app.getCurrentUser().deleteRecipe(position);
+						
 						refresh();
 					}
 				});

@@ -93,6 +93,10 @@ public class User {
 		userRecipes.add(id);
 	}
 	
+	public void deleteRecipe(int position) {
+		userRecipes.remove(position);
+	}
+	
 	/**
 	 * Function that removes all of a users recipes from there account
 	 * and from ES.
