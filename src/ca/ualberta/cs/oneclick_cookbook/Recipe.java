@@ -17,7 +17,7 @@ public class Recipe {
 	private String name = "";
 	private Pantry ingredients = null;
 	private String steps = "";
-	private ArrayList<File> pictures = null;
+	private ArrayList<String> pictures = null;
 	private int promotions = 0;
 	private int demotions = 0;
 
@@ -46,7 +46,7 @@ public class Recipe {
 		this.steps = steps;
 		this.promotions = 0;
 		this.demotions = 0;
-		this.pictures = new ArrayList<File>();
+		this.pictures = new ArrayList<String>();
 
 		// Generate the ID tag (should be unique enough)
 		Random random = new Random();
@@ -99,8 +99,8 @@ public class Recipe {
 		return rating;
 	}
 
-	public void addImage(File file) {
-		pictures.add(file);
+	public void addImageID(String id) {
+		pictures.add(id);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class Recipe {
 	 *            The position of the image to get
 	 * @return The image requested, null if invalid.
 	 */
-	public File getImage(int position) {
+	public String getImageID(int position) {
 		if (position >= pictures.size() || position < 0) {
 			return null;
 		} else {
