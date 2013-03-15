@@ -105,6 +105,10 @@ public class NetworkHandler {
 	 * @return: recipe that was found
 	 */
 	public Recipe getFromES(String id) {
+		// SHOULD put the stuff in a seperate thread and remove below two lines
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+				.permitAll().build();
+		StrictMode.setThreadPolicy(policy);
 		try {
 			HttpGet httpGet = new HttpGet(
 					"http://cmput301.softwareprocess.es:8080/testing/lab01/"
@@ -157,7 +161,7 @@ public class NetworkHandler {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 				.permitAll().build();
 		StrictMode.setThreadPolicy(policy);
-		
+
 		HttpDelete httpDelete = new HttpDelete(
 				"http://cmput301.softwareprocess.es:8080/testing/lab01/" + id);
 		httpDelete.addHeader("Accept", "application/json");

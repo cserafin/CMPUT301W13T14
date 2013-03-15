@@ -154,25 +154,25 @@ public class CreateRecipeActivity extends Activity {
 					.getIngredients(), stepstring);
 		}
 		else {
+			// If we are editing, do this
 			r = app.getCurrentRecipe();
+			r.changeName(namestring);
+			r.changeSteps(stepstring);
 		}
 
 		// TODO Add appropriate feedback here
 		if (r.isValidInfo() != Constants.GOOD) {
 			return;
 		}
-
-		// TODO Add upload, local storage code here
-		 //Commented out online upload. 50% chance of crashing due to network
-		 //timeout 
+		
 		 NetworkHandler nh = new NetworkHandler(); 
+		 
+		 // Attempt posting to ES
 		 try {
 			 nh.postToES(r); 
 		 } catch (IllegalStateException e) { 
-			 // TODO Auto-generated block
 			 e.printStackTrace(); 
 		 } catch (IOException e) { 
-			 // TODO Auto-generated catch block 
 			 e.printStackTrace();
 		 }
 
@@ -180,7 +180,7 @@ public class CreateRecipeActivity extends Activity {
 		if (position != -1) {
 			app.getCurrentUser().getUserRecipes().remove(position);
 		}
-		app.getCurrentUser().addRecipe(r);
+		app.getCurrentUser().addRecipe(r.getID());
 
 		// Set null so future recipes start fresh
 		app.setCurrentRecipe(null);
@@ -220,13 +220,16 @@ public class CreateRecipeActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				GlobalApplication app = (GlobalApplication) getApplication();
-				// If the user is editing a recipe
-				if (position != -1) {
-					app.getCurrentUser().getUserRecipes().remove(position);
+				NetworkHandler nh = new NetworkHandler();
+				
+				try {
+					nh.deleteRecipe(app.getCurrentRecipe().getID());
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-
-				// TODO Add upload, local storage code here
-
+				
+				app.getCurrentUser().getUserRecipes().remove(position);
+				
 				// Set null so future recipes start fresh
 				app.setCurrentRecipe(null);
 				finish();

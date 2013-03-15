@@ -1,5 +1,6 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -22,7 +23,11 @@ import android.widget.ListView;
  *
  */
 public class ViewRecipesActivity extends Activity {
+	
+	// Object that holds the user recipes
+	private ArrayList<Recipe> userRecipes = null;
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,12 +51,20 @@ public class ViewRecipesActivity extends Activity {
 	 * Function that refreshes the list of recipes.
 	 */
 	public void refresh() {
+		// Get list view and global state
 		ListView listView = (ListView) findViewById(R.id.lViewRecipes);
 		GlobalApplication app = (GlobalApplication) getApplication();
-		ArrayList<String> content = app.getCurrentUser().getRecipesToString();
+		
+		// Get the user recipes from the server
+		userRecipes = app.getCurrentUser().getRecipesFromES();
+		
+		// Convert them to a string list
+		ArrayList<String> content = userRecipesToString();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, content);
 		listView.setAdapter(adapter);
+		
+		// Set the onclick action
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -59,7 +72,6 @@ public class ViewRecipesActivity extends Activity {
 					int position, long id) {
 				// Get and set the current recipes based on position
 				GlobalApplication app = (GlobalApplication) getApplication();
-				ArrayList<Recipe> userRecipes = app.getCurrentUser().getUserRecipes();
 				Recipe currentRecipe = userRecipes.get(position);
 				app.setCurrentRecipe(currentRecipe);
 				
@@ -96,10 +108,19 @@ public class ViewRecipesActivity extends Activity {
 					// User does want to delete the recipe they are long pressing
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						//TODO Add upload, local storage deletion here
+						// Get the global state
 						GlobalApplication app = (GlobalApplication) getApplication();
-						ArrayList<Recipe> recipe = app.getCurrentUser().getUserRecipes();
-						recipe.remove(position);
+						
+						// Remove from ES
+						NetworkHandler nh = new NetworkHandler();
+						String id = userRecipes.get(position).getID();
+						
+						try {
+							nh.deleteRecipe(id);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						
 						refresh();
 					}
 				});
@@ -108,6 +129,15 @@ public class ViewRecipesActivity extends Activity {
 			}
 			
 		});
+	}
+	
+	public ArrayList<String> userRecipesToString() {
+		ArrayList<String> s = new ArrayList<String>();
+		for (int i=0; i<userRecipes.size(); i++) {
+			s.add(userRecipes.get(i).toString());
+		}
+		
+		return s;
 	}
 
 	/**
@@ -134,9 +164,8 @@ public class ViewRecipesActivity extends Activity {
 			// User does want to delete all recipes
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				//TODO Add upload deletion, local storage deletion code here
 				GlobalApplication app = (GlobalApplication) getApplication();
-				app.getCurrentUser().clearRecipes();
+				app.getCurrentUser().clearRecipes();	
 				refresh();
 			}
 		});

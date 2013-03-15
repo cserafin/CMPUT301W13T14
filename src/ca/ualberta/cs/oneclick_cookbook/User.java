@@ -6,6 +6,7 @@
 
 package ca.ualberta.cs.oneclick_cookbook;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class User {
@@ -15,7 +16,7 @@ public class User {
 	private String screenName;
 	private String emailAddress;
 	private int phoneNumber;
-	private ArrayList<Recipe> userRecipes = null;
+	private ArrayList<String> userRecipes = null;
 	private Pantry userPantry = null;
 	
 	/**
@@ -30,7 +31,7 @@ public class User {
 		this.setPassword(password);
 		this.setScreenName(screenName);
 		this.setEmailAddress(emailAddress);
-		userRecipes = new ArrayList<Recipe>();
+		userRecipes = new ArrayList<String>();
 		userPantry = new Pantry();
 	}
 	
@@ -88,15 +89,31 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public void addRecipe(Recipe r) {
-		userRecipes.add(r);
+	public void addRecipe(String id) {
+		userRecipes.add(id);
 	}
 	
+	/**
+	 * Function that removes all of a users recipes from there account
+	 * and from ES.
+	 */
 	public void clearRecipes() {
+		NetworkHandler nh = new NetworkHandler();
+		
+		// Delete all from ES
+		for (int i = 0; i<userRecipes.size(); i++) {
+			String id = userRecipes.get(i);
+		
+			try {
+				nh.deleteRecipe(id);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		userRecipes.clear();
 	}
 	
-	public ArrayList<Recipe> getUserRecipes() {
+	public ArrayList<String> getUserRecipes() {
 		return userRecipes;
 	}
 	
@@ -114,6 +131,22 @@ public class User {
 			s.add(userRecipes.get(i).toString());
 		}
 		return s;
+	}
+	
+	/**
+	 * Function that gets the users recipes from ES, based on ID
+	 * @return
+	 */
+	public ArrayList<Recipe> getRecipesFromES() {
+		// Create the network handler
+		NetworkHandler nh = new NetworkHandler();
+		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+		
+		for (int i = 0; i<userRecipes.size(); i++) {
+			recipes.add(nh.getFromES(userRecipes.get(i)));
+		}
+		
+		return recipes;
 	}
 	
 	public int isValidInfo() {
