@@ -124,10 +124,11 @@ public class CreateRecipeActivity extends Activity {
 		EditText name = (EditText) findViewById(R.id.createEnterName);
 		EditText steps = (EditText) findViewById(R.id.createEnterSteps);
 		GlobalApplication app = (GlobalApplication) getApplication();
+		
 		// Do this to save any user text they may have
-		app.setCurrentRecipe(new Recipe(name.getText().toString(), app
-				.getCurrentRecipe().getIngredients(), steps.getText()
-				.toString()));
+		app.getCurrentRecipe().changeName(name.getText().toString());
+		app.getCurrentRecipe().changeSteps(steps.getText().toString());
+		
 		Intent intent = new Intent(app, AddIngredientsActivity.class);
 		startActivity(intent);
 	}
@@ -176,11 +177,11 @@ public class CreateRecipeActivity extends Activity {
 			 e.printStackTrace();
 		 }
 
-		// Remove the old recipe before adding the new one, if editing
-		if (position != -1) {
-			app.getCurrentUser().getUserRecipes().remove(position);
+		// If it's a new recipe, add it to the user recipe list
+		if (position == -1) {
+			app.getCurrentUser().addRecipe(r.getID());
 		}
-		app.getCurrentUser().addRecipe(r.getID());
+		
 
 		// Set null so future recipes start fresh
 		app.setCurrentRecipe(null);
