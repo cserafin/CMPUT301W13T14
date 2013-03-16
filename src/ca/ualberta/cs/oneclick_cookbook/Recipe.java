@@ -11,6 +11,7 @@ package ca.ualberta.cs.oneclick_cookbook;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.UUID;
 
 public class Recipe {
 
@@ -48,9 +49,10 @@ public class Recipe {
 		this.demotions = 0;
 		this.pictures = new ArrayList<String>();
 
-		// Generate the ID tag (should be unique enough)
+		// Generate the ID tag (should be unique enough :) )
 		Random random = new Random();
-		this.id = System.nanoTime() + "" + random.nextInt(100000);
+		UUID id = UUID.randomUUID();
+		this.id = id.toString() + "-" + System.nanoTime() + "-" + random.nextInt(100000);
 	}
 
 	public String getID() {
