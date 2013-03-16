@@ -38,5 +38,8 @@
     <string name="title_activity_enter_friend">Enter Friend Info</string>
     <string name="title_activity_edit_friend_info">Edit Friend Info</string>
     <string name="title_activity_search_users">Search Users</string>
+    <string name="title_activity_keyword_search">Search Results</string>
+    <string name="title_activity_choose_send_method">Send Via</string>
+    <string name="title_activity_send_email">Send Email</string>
 
 </resources>

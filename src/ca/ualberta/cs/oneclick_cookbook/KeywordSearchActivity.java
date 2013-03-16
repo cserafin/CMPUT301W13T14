@@ -1,45 +1,44 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-/**
- * Class that allows the user to search for other recipes.
- * @author Kenneth Armstrong
- *
- */
-public class SearchActivity extends Activity {
+public class KeywordSearchActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_search);
+		setContentView(R.layout.activity_keyword_search);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.search, menu);
+		getMenuInflater().inflate(R.menu.keyword_search, menu);
 		return true;
 	}
-	
-	// Handles the clicks from this activity
+
+	/**
+	 * Function that handles and directs the clicks from the user.
+	 * 
+	 * @param v
+	 *            The view of the button that was clicked.
+	 */
 	public void clickHandler(View v) {
 		Intent intent;
-		switch(v.getId()) {
-		case R.id.bHomeSReturn:
-			finish();
+		switch (v.getId()) {
+		case R.id.bSSearch:
 			break;
-		case R.id.bHomeSPantry:
-			//TODO Add pantry search code here
-			break;
-		case R.id.bHomeSSearch:
+		case R.id.bSHome:
 			intent = new Intent(this.getApplicationContext(),
-					KeywordSearchActivity.class);
+					MainActivity.class);
 			startActivity(intent);
+			break;
+		case R.id.bSReturn:
+			finish();
 			break;
 		}
 	}

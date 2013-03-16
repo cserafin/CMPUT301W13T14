@@ -3,10 +3,10 @@
     package="ca.ualberta.cs.oneclick_cookbook"
     android:versionCode="1"
     android:versionName="1.0" >
-    
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -81,6 +81,18 @@
         <activity
             android:name="ca.ualberta.cs.oneclick_cookbook.SearchUsersActivity"
             android:label="@string/title_activity_search_users" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.KeywordSearchActivity"
+            android:label="@string/title_activity_keyword_search" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.ChooseSendMethodActivity"
+            android:label="@string/title_activity_choose_send_method" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.SendEmailActivity"
+            android:label="@string/title_activity_send_email" >
         </activity>
     </application>
 

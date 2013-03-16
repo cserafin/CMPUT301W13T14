@@ -6,40 +6,36 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-/**
- * Class that allows the user to search for other recipes.
- * @author Kenneth Armstrong
- *
- */
-public class SearchActivity extends Activity {
+public class ChooseSendMethodActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_search);
+		setContentView(R.layout.activity_choose_send_method);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.search, menu);
+		getMenuInflater().inflate(R.menu.choose_send_method, menu);
 		return true;
 	}
-	
-	// Handles the clicks from this activity
+
+	/**
+	 * Function that handles and directs clicks from the user
+	 * 
+	 * @param v
+	 *            The view of the button that was clicked
+	 */
 	public void clickHandler(View v) {
 		Intent intent;
-		switch(v.getId()) {
-		case R.id.bHomeSReturn:
+		switch (v.getId()) {
+		case R.id.bChooseSendReturn:
 			finish();
 			break;
-		case R.id.bHomeSPantry:
-			//TODO Add pantry search code here
+		case R.id.bChooseSendManual:
 			break;
-		case R.id.bHomeSSearch:
-			intent = new Intent(this.getApplicationContext(),
-					KeywordSearchActivity.class);
-			startActivity(intent);
+		case R.id.bChooseSendSearch:
 			break;
 		}
 	}
