@@ -10,6 +10,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
+        android:onClick="clickHandler"
         android:text="Send" />
 
     <Button
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:onClick="clickHandler"
         android:text="Return" />
 
     <LinearLayout
@@ -34,7 +36,6 @@
             android:layout_width="260dp"
             android:layout_height="333dp" >
         </ListView>
-
     </LinearLayout>
 
 </RelativeLayout>

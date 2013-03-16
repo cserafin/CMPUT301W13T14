@@ -94,6 +94,14 @@
             android:name="ca.ualberta.cs.oneclick_cookbook.SendEmailActivity"
             android:label="@string/title_activity_send_email" >
         </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.SendToFriendActivity"
+            android:label="@string/title_activity_send_to_friend" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.oneclick_cookbook.ViewFavoriteRecipeActivity"
+            android:label="@string/title_activity_view_favorite_recipe" >
+        </activity>
     </application>
 
 </manifest>

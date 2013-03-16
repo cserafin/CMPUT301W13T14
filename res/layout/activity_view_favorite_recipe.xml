@@ -89,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/bFavRecipeReturn"
+        android:onClick="clickHandler"
         android:text="Delete" />
 
     <ImageButton
@@ -97,8 +98,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft= "20dp"
-        android:layout_toLeftOf="@+id/bFavRecipeEdit" />
+        android:layout_marginLeft="20dp"
+        android:layout_toLeftOf="@+id/bFavRecipeEdit"
+        android:onClick="clickHandler" />
 
     <ImageButton
         android:id="@+id/bFavRecipePromote"
@@ -106,6 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_toLeftOf="@+id/bFavRecipeDemote" />
+        android:layout_toLeftOf="@+id/bFavRecipeDemote"
+        android:onClick="clickHandler" />
 
 </RelativeLayout>
