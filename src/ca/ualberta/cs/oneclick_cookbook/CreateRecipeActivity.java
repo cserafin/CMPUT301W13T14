@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Class that acts as the controller for the create recipe screen If the current
@@ -30,12 +31,14 @@ import android.widget.ImageView;
 public class CreateRecipeActivity extends Activity {
 
 	private int position = -1;
+	private Toast toast = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_recipe);
 		Bundle extras = getIntent().getExtras();
+		// Set the position if we are editing
 		if (extras != null) {
 			position = extras.getInt("position");
 		}
@@ -124,11 +127,11 @@ public class CreateRecipeActivity extends Activity {
 		EditText name = (EditText) findViewById(R.id.createEnterName);
 		EditText steps = (EditText) findViewById(R.id.createEnterSteps);
 		GlobalApplication app = (GlobalApplication) getApplication();
-		
+
 		// Do this to save any user text they may have
 		app.getCurrentRecipe().changeName(name.getText().toString());
 		app.getCurrentRecipe().changeSteps(steps.getText().toString());
-		
+
 		Intent intent = new Intent(app, AddIngredientsActivity.class);
 		startActivity(intent);
 	}
@@ -146,42 +149,40 @@ public class CreateRecipeActivity extends Activity {
 		String namestring = name.getText().toString();
 		String stepstring = steps.getText().toString();
 		GlobalApplication app = (GlobalApplication) getApplication();
-		
+
 		Recipe r = null;
-		
+
 		// Check whether or not we are editing
 		if (position == -1) {
-			r = new Recipe(namestring, app.getCurrentRecipe()
-					.getIngredients(), stepstring);
-		}
-		else {
+			r = new Recipe(namestring, app.getCurrentRecipe().getIngredients(),
+					stepstring);
+		} else {
 			// If we are editing, do this
 			r = app.getCurrentRecipe();
 			r.changeName(namestring);
 			r.changeSteps(stepstring);
 		}
-
-		// TODO Add appropriate feedback here
+		
 		if (r.isValidInfo() != Constants.GOOD) {
+			showMessage("Invalid info entered");
 			return;
 		}
-		
-		 NetworkHandler nh = new NetworkHandler(); 
-		 
-		 // Attempt posting to ES
-		 try {
-			 nh.postToES(r); 
-		 } catch (IllegalStateException e) { 
-			 e.printStackTrace(); 
-		 } catch (IOException e) { 
-			 e.printStackTrace();
-		 }
+
+		NetworkHandler nh = new NetworkHandler();
+
+		// Attempt posting to ES
+		try {
+			nh.postToES(r);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		// If it's a new recipe, add it to the user recipe list
 		if (position == -1) {
 			app.getCurrentUser().addRecipe(r.getID());
 		}
-		
 
 		// Set null so future recipes start fresh
 		app.setCurrentRecipe(null);
@@ -222,15 +223,15 @@ public class CreateRecipeActivity extends Activity {
 			public void onClick(DialogInterface dialog, int which) {
 				GlobalApplication app = (GlobalApplication) getApplication();
 				NetworkHandler nh = new NetworkHandler();
-				
+
 				try {
 					nh.deleteRecipe(app.getCurrentRecipe().getID());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				
+
 				app.getCurrentUser().getUserRecipes().remove(position);
-				
+
 				// Set null so future recipes start fresh
 				app.setCurrentRecipe(null);
 				finish();
@@ -238,6 +239,22 @@ public class CreateRecipeActivity extends Activity {
 		});
 		prompt.show();
 		return;
+	}
+
+	/**
+	 * Function that displays a message to the user in the current activity
+	 * 
+	 * @param message
+	 *            The message to display
+	 */
+	public void showMessage(String message) {
+		// If there is a toast already, get rid of it
+		if (toast != null) {
+			toast.cancel();
+		}
+		toast = Toast.makeText(getApplicationContext(), message,
+				Toast.LENGTH_SHORT);
+		toast.show();
 	}
 
 	/**

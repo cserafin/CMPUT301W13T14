@@ -9,11 +9,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Toast;
 
 /**
  * Class that allows for the addition of ingredients to recipes. Associates the
@@ -23,6 +24,8 @@ import android.widget.AdapterView.OnItemLongClickListener;
  * 
  */
 public class AddIngredientsActivity extends Activity {
+
+	private Toast toast = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -117,8 +120,7 @@ public class AddIngredientsActivity extends Activity {
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
-								// TODO Add network and local storage deletion
-								// here
+								// Get the global app state
 								GlobalApplication app = (GlobalApplication) getApplication();
 								Pantry pantry = app.getCurrentRecipe()
 										.getIngredients();
@@ -133,6 +135,7 @@ public class AddIngredientsActivity extends Activity {
 		});
 	}
 
+	
 	/**
 	 * Function that is called when the user clicks the add ingredient button.
 	 * Adds the ingredient to the recipe. Also refreshes the view to show the
@@ -146,7 +149,7 @@ public class AddIngredientsActivity extends Activity {
 		// Get the units the user inputed
 		int position = units.getSelectedItemPosition();
 		String unitsString = Constants.getUnitFromPosition(position);
-
+		String nameString = name.getText().toString();
 		String quantityString = quantity.getText().toString();
 
 		// Do the integer conversion like this just in case no number is entered
@@ -154,34 +157,46 @@ public class AddIngredientsActivity extends Activity {
 		try {
 			amount = new Integer(quantityString);
 		} catch (NumberFormatException e) {
-			 // Number conversion failed
-			//TODO Add feedback on wrong info
+			showMessage("Invalid number");
 			return;
 		}
 
-		String nameString = name.getText().toString();
 		Ingredient ingredient = new Ingredient(nameString, amount, unitsString);
 
 		// Check for ingredient validity
 		if (ingredient.isValidInfo() != Constants.GOOD) {
-			// They entered wrong info
-			//TODO Give user feedback on wrong number
-			return; 
+			showMessage("Invalid info entered");
+			return;
 		}
 
 		GlobalApplication app = (GlobalApplication) getApplication();
 		Pantry pantry = app.getCurrentRecipe().getIngredients();
 		pantry.addIngredient(ingredient);
+
+		// Clear the edit text boxes for future ingredients
+		name.setText("");
+		quantity.setText("");
+
 		refresh();
 
 		return;
 	}
 
+	
 	/**
 	 * Function that is called when the user clicks on the delete all button.
 	 * Deletes all of the ingredients, and updates the pantry accordingly.
 	 */
 	public void onDeleteAll() {
+		GlobalApplication app = (GlobalApplication) getApplication();
+		Pantry pantry = app.getCurrentRecipe().getIngredients();
+		
+		// If the ingredients is empty, we don't need to delete anything
+		if (pantry.isEmpty()) {
+			showMessage("Nothing to delete");
+			return;
+		}
+		
 		// Builds the alert dialog box
 		AlertDialog.Builder prompt = new AlertDialog.Builder(this);
 		prompt.setTitle("Delete All");
@@ -212,6 +227,23 @@ public class AddIngredientsActivity extends Activity {
 	}
 
 	/**
+	 * Shows a message to the user in the current activity
+	 * 
+	 * @param message
+	 *            The message to display
+	 */
+	public void showMessage(String message) {
+		// If there is a toast already, get rid of it
+		if (toast != null) {
+			toast.cancel();
+		}
+		toast = Toast.makeText(getApplicationContext(), message,
+				Toast.LENGTH_SHORT);
+		toast.show();
+	}
+
+	
+	/**
 	 * Function that is called when the user clicks done. Ends the activity.
 	 */
 	public void onDone() {
@@ -219,11 +251,13 @@ public class AddIngredientsActivity extends Activity {
 		return;
 	}
 
+	
 	/**
-	 * Function that handles the clicks from a user. Calls appropriate
-	 * function for the button.
+	 * Function that handles the clicks from a user. Calls appropriate function
+	 * for the button.
 	 * 
-	 * @param v The view of the button that was clicked.
+	 * @param v
+	 *            The view of the button that was clicked.
 	 */
 	public void clickHandler(View v) {
 		switch (v.getId()) {

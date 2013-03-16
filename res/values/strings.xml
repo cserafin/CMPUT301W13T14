@@ -23,20 +23,20 @@
     <string name="createStepsHint">Enter steps</string>
     <string name="title_activity_view_recipes">Your Recipes</string>
     <string name="title_activity_add_ingredients">Add Ingredients</string>
-    <string name="quantityHint">Enter quantity</string>
-    <string name="ingredientNameHint">Enter name</string>
+    <string name="quantityHint">Quantity</string>
+    <string name="ingredientNameHint">Name</string>
     <string name="addIngredient">Add Ingredient</string>
     <string name="deleteAllIngredients">Delete All</string>
     <string name="title_activity_manage_pantry">Manage Pantry</string>
     <string name="title_activity_search">Search</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_sign_up">Sign Up</string>
-    <string name="title_activity_notifications">NotificationsActivity</string>
-    <string name="title_activity_view_recieved_recipe">ViewRecievedRecipeActivity</string>
-    <string name="title_activity_manage_friends">ManageFriendsActivity</string>
-    <string name="title_activity_choose_add_friend">ChooseAddFriendActivity</string>
-    <string name="title_activity_enter_friend">EnterFriendActivity</string>
-    <string name="title_activity_edit_friend_info">EditFriendInfoActivity</string>
-    <string name="title_activity_search_users">SearchUsersActivity</string>
+    <string name="title_activity_notifications">Notifications</string>
+    <string name="title_activity_view_recieved_recipe">Received Recipe</string>
+    <string name="title_activity_manage_friends">Manage Friends</string>
+    <string name="title_activity_choose_add_friend">From?</string>
+    <string name="title_activity_enter_friend">Enter Friend Info</string>
+    <string name="title_activity_edit_friend_info">Edit Friend Info</string>
+    <string name="title_activity_search_users">Search Users</string>
 
 </resources>
