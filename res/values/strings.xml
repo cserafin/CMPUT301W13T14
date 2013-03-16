@@ -41,7 +41,7 @@
     <string name="title_activity_keyword_search">Search Results</string>
     <string name="title_activity_choose_send_method">Send Via</string>
     <string name="title_activity_send_email">Send Email</string>
-    <string name="title_activity_send_to_friend">SendToFriendActivity</string>
-    <string name="title_activity_view_favorite_recipe">ViewFavoriteRecipeActivity</string>
+    <string name="title_activity_send_to_friend">Send To Friend</string>
+    <string name="title_activity_view_favorite_recipe">View Recipe</string>
 
 </resources>
