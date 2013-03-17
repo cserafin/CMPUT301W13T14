@@ -5,11 +5,12 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="110dp"
         android:orientation="vertical" >
 
         <ListView
@@ -17,6 +18,7 @@
             android:layout_width="257dp"
             android:layout_height="310dp" >
         </ListView>
+
     </LinearLayout>
 
     <Button
@@ -28,18 +30,6 @@
         android:layout_toRightOf="@+id/tFriSSearchQuery"
         android:onClick="clickHandler"
         android:text="Search" />
-
-    <EditText
-        android:id="@+id/tFriSSearchQuery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="76dp"
-        android:layout_marginLeft="20dp"
-        android:ems="10"
-        android:hint="Enter user name..."
-        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/bFriSHome"
@@ -60,5 +50,18 @@
         android:layout_toRightOf="@+id/tFriSSearchQuery"
         android:onClick="clickHandler"
         android:text="Return" />
+
+    <EditText
+        android:id="@+id/tFriSSearchQuery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="Enter user name..."
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

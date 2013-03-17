@@ -51,17 +51,6 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/bHomeRecipes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="30dp"
-        android:onClick="clickHandler"
-        android:text="View Recipes" />
-
-    <Button
         android:id="@+id/bHomeFav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,26 +72,6 @@
         android:text="Friends" />
 
     <Button
-        android:id="@+id/bHomePantry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/bHomeHistory"
-        android:layout_below="@+id/bHomeHistory"
-        android:layout_marginTop="30dp"
-        android:onClick="clickHandler"
-        android:text="Manage Pantry" />
-
-    <Button
-        android:id="@+id/bHomeHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bHomeRecipes"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:onClick="clickHandler"
-        android:text="Recipe History" />
-
-    <Button
         android:id="@+id/bHomeSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,5 +81,25 @@
         android:layout_marginLeft="15dp"
         android:onClick="clickHandler"
         android:text="Search" />
+
+    <Button
+        android:id="@+id/bHomePantry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bHomeFriends"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38dp"
+        android:onClick="clickHandler"
+        android:text="Manage Pantry" />
+
+    <Button
+        android:id="@+id/bHomeRecipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bHomeSearch"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="41dp"
+        android:onClick="clickHandler"
+        android:text="View Recipes" />
 
 </RelativeLayout>

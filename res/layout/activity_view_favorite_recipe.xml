@@ -20,12 +20,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/bFavRecipeReturn"
         android:layout_marginTop="65dp" >
-
-        <ListView
-            android:id="@+id/listView1"
-            android:layout_width="match_parent"
-            android:layout_height="90dp" >
-        </ListView>
     </LinearLayout>
 
     <LinearLayout
@@ -35,23 +29,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/scrollView1"
         android:layout_marginTop="20dp" >
-
-        <ListView
-            android:id="@+id/listView2"
-            android:layout_width="match_parent"
-            android:layout_height="149dp" >
-        </ListView>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/bFavRecipeSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="11dp"
-        android:layout_marginLeft="11dp"
-        android:onClick="clickHandler"
-        android:text="Send" />
 
     <Button
         android:id="@+id/bFavRecipeEdit"
@@ -92,23 +70,46 @@
         android:onClick="clickHandler"
         android:text="Delete" />
 
-    <ImageButton
-        android:id="@+id/bFavRecipeDemote"
+    <Button
+        android:id="@+id/bFavRecipeSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_toLeftOf="@+id/bFavRecipeEdit"
-        android:onClick="clickHandler" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tFavRecipeTitle"
+        android:onClick="clickHandler"
+        android:text="Send" />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/bFavRecipeEdit" >
+    </ListView>
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="match_parent"
+        android:layout_height="149dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/listView1" >
+    </ListView>
 
     <ImageButton
         android:id="@+id/bFavRecipePromote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_toLeftOf="@+id/bFavRecipeDemote"
+        android:layout_below="@+id/listView2"
+        android:layout_marginRight="26dp"
+        android:layout_toLeftOf="@+id/bFavRecipeDelete"
+        android:onClick="clickHandler" />
+
+    <ImageButton
+        android:id="@+id/bFavRecipeDemote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bFavRecipePromote"
+        android:layout_toLeftOf="@+id/tFavRecipeTitle"
         android:onClick="clickHandler" />
 
 </RelativeLayout>

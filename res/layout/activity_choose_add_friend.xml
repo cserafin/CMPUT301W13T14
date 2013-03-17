@@ -18,8 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/bChooseSSearch"
-        android:layout_marginTop="76dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
         android:onClick="clickHandler"
         android:text="Enter Manually" />
 

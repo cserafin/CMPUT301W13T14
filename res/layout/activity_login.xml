@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="102dp"
+        android:layout_marginTop="85dp"
         android:text="User Name:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -44,21 +44,12 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/bLoginLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:onClick="clickHandler"
-        android:layout_centerVertical="true"
-        android:text="Login" />
-
-    <Button
         android:id="@+id/bLoginGetStarted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
+        android:layout_marginBottom="34dp"
         android:onClick="clickHandler"
         android:text="Get Started" />
 
@@ -67,9 +58,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/bLoginLogin"
-        android:layout_marginTop="79dp"
+        android:layout_above="@+id/bLoginGetStarted"
+        android:layout_marginBottom="32dp"
         android:text="Not a member?"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/bLoginLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:onClick="clickHandler"
+        android:text="Login" />
 
 </RelativeLayout>

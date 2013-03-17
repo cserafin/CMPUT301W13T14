@@ -1,12 +1,43 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/createEnterName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:hint="@string/createNameHint"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/bCreateAddIngredient"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_weight="10"
+        android:onClick="clickHandler"
+        android:text="@string/createIngredientHint"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/createEnterSteps"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="55dp" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/createEnterName" >
 
         <Button
             android:id="@+id/bCreateDone"
@@ -27,22 +58,20 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <ImageView
-            android:id="@+id/iCreateImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:src="@android:drawable/alert_light_frame" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/iCreateImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout3"
+        android:src="@android:drawable/alert_light_frame" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/iCreateImage" >
 
         <Button
             android:id="@+id/bCreateAddPhoto"
@@ -64,31 +93,16 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/createEnterName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="10"
-        android:hint="@string/createNameHint"
-        android:inputType="text" />
-
-    <Button
-        android:id="@+id/bCreateAddIngredient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="10"
-        android:onClick="clickHandler"
-        android:text="@string/createIngredientHint"
-        android:textSize="12sp" />
-
-    <EditText
         android:id="@+id/createEnterSteps"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="30"
+        android:layout_height="214dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:ems="10"
         android:gravity="top"
         android:hint="@string/createStepsHint"
         android:inputType="textMultiLine"
         android:lines="12"
         android:scrollHorizontally="false" />
 
-</LinearLayout>
+</RelativeLayout>

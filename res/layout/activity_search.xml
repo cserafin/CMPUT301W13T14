@@ -19,7 +19,7 @@
         android:layout_height="68dp"
         android:layout_below="@+id/bHomeSReturn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="85dp"
         android:onClick="clickHandler"
         android:text="Search Using Pantry Ingredients" />
 
