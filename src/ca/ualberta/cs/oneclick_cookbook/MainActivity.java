@@ -76,8 +76,6 @@ public class MainActivity extends Activity {
 					ViewRecipesActivity.class);
 			startActivity(intent);
 			break;
-		case R.id.bHomeHistory:
-			break;
 		case R.id.bHomePantry:
 			intent = new Intent(this.getApplicationContext(),
 					ManagePantryActivity.class);
