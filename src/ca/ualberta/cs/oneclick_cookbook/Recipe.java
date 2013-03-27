@@ -8,17 +8,18 @@
 
 package ca.ualberta.cs.oneclick_cookbook;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
+
+import android.graphics.Bitmap;
 
 public class Recipe {
 
 	private String name = "";
 	private Pantry ingredients = null;
 	private String steps = "";
-	private ArrayList<String> pictures = null;
+	private ArrayList<Bitmap> pictures = null;
 	private int promotions = 0;
 	private int demotions = 0;
 
@@ -47,7 +48,7 @@ public class Recipe {
 		this.steps = steps;
 		this.promotions = 0;
 		this.demotions = 0;
-		this.pictures = new ArrayList<String>();
+		this.pictures = new ArrayList<Bitmap>();
 
 		// Generate the ID tag (should be unique enough :) )
 		Random random = new Random();
@@ -100,43 +101,13 @@ public class Recipe {
 		int rating = this.promotions - this.demotions;
 		return rating;
 	}
-
-	public void addImageID(String id) {
-		pictures.add(id);
+	
+	public void addImage(Bitmap image) {
+		pictures.add(image);
+		System.out.println(pictures.isEmpty());
 	}
+	
 
-	/**
-	 * Gets the image in the given poistion
-	 * 
-	 * @param position
-	 *            The position of the image to get
-	 * @return The image requested, null if invalid.
-	 */
-	public String getImageID(int position) {
-		if (position >= pictures.size() || position < 0) {
-			return null;
-		} else {
-			return pictures.get(position);
-		}
-	}
-
-	/**
-	 * Function that deletes an image in the given position
-	 * 
-	 * @param position
-	 *            The position of the image to delete
-	 * @return True if image was deleted, false otherwise.
-	 */
-	public boolean deleteImage(int position) {
-		if (position >= pictures.size() || position < 0) {
-			return false;
-		}
-
-		else {
-			pictures.remove(position);
-			return true;
-		}
-	}
 
 	/**
 	 * Turns the recipe into a String.

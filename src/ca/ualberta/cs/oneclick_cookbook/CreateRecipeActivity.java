@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
@@ -32,6 +33,8 @@ public class CreateRecipeActivity extends Activity {
 
 	private int position = -1;
 	private Toast toast = null;
+	private Uri imageFileUri;
+	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -162,7 +165,7 @@ public class CreateRecipeActivity extends Activity {
 			r.changeName(namestring);
 			r.changeSteps(stepstring);
 		}
-		
+
 		if (r.isValidInfo() != Constants.GOOD) {
 			showMessage("Invalid info entered");
 			return;
@@ -259,9 +262,43 @@ public class CreateRecipeActivity extends Activity {
 
 	/**
 	 * Function that is called when the user clicks on the add photo button.
+	 * Derived from the CameraDemo on eClass.
 	 */
 	public void onAddPhoto() {
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+		String folder = Environment.getExternalStorageDirectory()
+				.getAbsolutePath() + "/oneclick_cookbook";
+
+		File folderF = new File(folder);
+		if (!folderF.exists()) {
+			folderF.mkdir();
+		}
+
+		String imageFilePath = folder + "/"
+				+ String.valueOf(System.currentTimeMillis()) + "jpg";
+		File imageFile = new File(imageFilePath);
+		imageFileUri = Uri.fromFile(imageFile);
+
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);
+		startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
 		return;
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+			if (resultCode == RESULT_OK) {
+				GlobalApplication app = (GlobalApplication) getApplication();
+				Recipe r = app.getCurrentRecipe();
+				ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
+				button.setImageDrawable(Drawable.createFromPath(imageFileUri
+						.getPath()));
+				r.addImage(BitmapFactory.decodeFile(imageFileUri.getPath()));
+			} else if (resultCode == RESULT_CANCELED) {
+			} else {
+			}
+		}
 	}
 
 	/**

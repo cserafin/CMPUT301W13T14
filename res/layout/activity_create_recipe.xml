@@ -58,11 +58,12 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/iCreateImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:onClick="clickHandler"
         android:layout_below="@+id/linearLayout3"
         android:src="@android:drawable/alert_light_frame" />
 
