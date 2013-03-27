@@ -102,4 +102,13 @@
         android:onClick="clickHandler"
         android:text="View Recipes" />
 
+    <Button
+        android:id="@+id/bHomeDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bHomeFriends"
+        android:layout_alignBottom="@+id/bHomeFriends"
+        android:layout_centerHorizontal="true"
+        android:text="Clear Cache" />
+
 </RelativeLayout>

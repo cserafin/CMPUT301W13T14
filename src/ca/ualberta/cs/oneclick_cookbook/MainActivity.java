@@ -91,6 +91,11 @@ public class MainActivity extends Activity {
 					NotificationsActivity.class);
 			startActivity(intent);
 			break;
+		case R.id.bHomeDelete:
+			intent = new Intent(this.getApplicationContext(),
+					DeleteCache.class);
+			startActivity(intent);
+			break;
 		case R.id.bHomeFav:
 			break;
 		}
