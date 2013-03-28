@@ -311,6 +311,8 @@ public class CreateRecipeActivity extends Activity {
 						Bitmap.createScaledBitmap(r.getImage(imagePos), 300,
 								250, true));
 				button.setImageDrawable(d);
+				File f = new File(imageFileUri.getPath());
+				f.delete();
 			} else if (resultCode == RESULT_CANCELED) {
 			} else {
 			}
