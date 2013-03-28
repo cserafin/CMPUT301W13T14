@@ -8,18 +8,21 @@
 
 package ca.ualberta.cs.oneclick_cookbook;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 
 public class Recipe {
 
 	private String name = "";
 	private Pantry ingredients = null;
 	private String steps = "";
-	private ArrayList<Bitmap> pictures = null;
+	private ArrayList<String> pictures = null;
 	private int promotions = 0;
 	private int demotions = 0;
 
@@ -39,7 +42,7 @@ public class Recipe {
 	 *            Actually a Pantry Class Object that is used as the list of
 	 *            ingredients
 	 * @param steps
-	 *            A string that outlines the steps requried in cooking the
+	 *            A string that outlines the steps required in cooking the
 	 *            recipe
 	 */
 	public Recipe(String name, Pantry ingredients, String steps) {
@@ -48,7 +51,8 @@ public class Recipe {
 		this.steps = steps;
 		this.promotions = 0;
 		this.demotions = 0;
-		this.pictures = new ArrayList<Bitmap>();
+		this.pictures = new ArrayList<String>();
+
 
 		// Generate the ID tag (should be unique enough :) )
 		Random random = new Random();
@@ -103,8 +107,31 @@ public class Recipe {
 	}
 	
 	public void addImage(Bitmap image) {
-		pictures.add(image);
-		System.out.println(pictures.isEmpty());
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+	    image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+	    byte[] b = baos.toByteArray();
+	    String imageEncoded = Base64.encodeToString(b,Base64.DEFAULT);
+		pictures.add(imageEncoded);
+	}
+	
+	public void deleteImage(int position) {
+		if (position < pictures.size() && position > -1) { 
+			pictures.remove(position);
+		}
+	}
+	
+	public int getNumImages() {
+		return pictures.size();
+	}
+	
+	public Bitmap getImage(int position) {
+		if (position < pictures.size() && position > -1) {
+			byte[] decodedByte = Base64.decode(pictures.get(position), 0);
+			return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
+		}
+		else {
+			return null;
+		}
 	}
 	
 

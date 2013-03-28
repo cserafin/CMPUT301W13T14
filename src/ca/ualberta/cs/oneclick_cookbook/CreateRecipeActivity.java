@@ -7,8 +7,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -32,6 +35,7 @@ import android.widget.Toast;
 public class CreateRecipeActivity extends Activity {
 
 	private int position = -1;
+	private int imagePos = 0;
 	private Toast toast = null;
 	private Uri imageFileUri;
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -53,6 +57,7 @@ public class CreateRecipeActivity extends Activity {
 		GlobalApplication app = (GlobalApplication) getApplication();
 		Recipe recipe = app.getCurrentRecipe();
 		setInfo(recipe); // Set the info they entered before leaving
+		setImage(recipe);
 	}
 
 	/**
@@ -88,6 +93,20 @@ public class CreateRecipeActivity extends Activity {
 		steps.setText(recipe.getSteps());
 	}
 
+	public void setImage(Recipe recipe) {
+		if (recipe.getNumImages() > imagePos) {
+			ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
+			Drawable d = new BitmapDrawable(getResources(),
+					Bitmap.createScaledBitmap(recipe.getImage(imagePos), 300,
+							250, true));
+			button.setImageDrawable(d);
+		} else {
+			ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
+			button.setImageDrawable(getResources().getDrawable(
+					android.R.drawable.alert_light_frame));
+		}
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -119,6 +138,9 @@ public class CreateRecipeActivity extends Activity {
 		case R.id.bCreateRemovePhoto:
 			onRemovePhoto();
 			break;
+		case R.id.iCreateImage:
+			onNextPhoto();
+			break;
 		}
 	}
 
@@ -127,14 +149,8 @@ public class CreateRecipeActivity extends Activity {
 	 * button.
 	 */
 	public void onAddIngredients() {
-		EditText name = (EditText) findViewById(R.id.createEnterName);
-		EditText steps = (EditText) findViewById(R.id.createEnterSteps);
 		GlobalApplication app = (GlobalApplication) getApplication();
-
-		// Do this to save any user text they may have
-		app.getCurrentRecipe().changeName(name.getText().toString());
-		app.getCurrentRecipe().changeSteps(steps.getText().toString());
-
+		saveInfo();
 		Intent intent = new Intent(app, AddIngredientsActivity.class);
 		startActivity(intent);
 	}
@@ -153,18 +169,9 @@ public class CreateRecipeActivity extends Activity {
 		String stepstring = steps.getText().toString();
 		GlobalApplication app = (GlobalApplication) getApplication();
 
-		Recipe r = null;
-
-		// Check whether or not we are editing
-		if (position == -1) {
-			r = new Recipe(namestring, app.getCurrentRecipe().getIngredients(),
-					stepstring);
-		} else {
-			// If we are editing, do this
-			r = app.getCurrentRecipe();
-			r.changeName(namestring);
-			r.changeSteps(stepstring);
-		}
+		Recipe r = app.getCurrentRecipe();
+		r.changeName(namestring);
+		r.changeSteps(stepstring);
 
 		if (r.isValidInfo() != Constants.GOOD) {
 			showMessage("Invalid info entered");
@@ -265,6 +272,7 @@ public class CreateRecipeActivity extends Activity {
 	 * Derived from the CameraDemo on eClass.
 	 */
 	public void onAddPhoto() {
+		saveInfo();
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
 		String folder = Environment.getExternalStorageDirectory()
@@ -286,15 +294,23 @@ public class CreateRecipeActivity extends Activity {
 		return;
 	}
 
+	/**
+	 * Function that captures the return value from the camera. Also handles
+	 * image conversion, etc.
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
 				GlobalApplication app = (GlobalApplication) getApplication();
 				Recipe r = app.getCurrentRecipe();
 				ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
-				button.setImageDrawable(Drawable.createFromPath(imageFileUri
-						.getPath()));
+
 				r.addImage(BitmapFactory.decodeFile(imageFileUri.getPath()));
+				imagePos = r.getNumImages() - 1;
+				Drawable d = new BitmapDrawable(getResources(),
+						Bitmap.createScaledBitmap(r.getImage(imagePos), 300,
+								250, true));
+				button.setImageDrawable(d);
 			} else if (resultCode == RESULT_CANCELED) {
 			} else {
 			}
@@ -305,6 +321,58 @@ public class CreateRecipeActivity extends Activity {
 	 * Function that is called when the user clicks on the remove photo button.
 	 */
 	public void onRemovePhoto() {
+		GlobalApplication app = (GlobalApplication) getApplication();
+		Recipe r = app.getCurrentRecipe();
+		r.deleteImage(imagePos);
+
+		// make sure we don't go off the end when deleting
+		if (imagePos >= r.getNumImages()) {
+			if (imagePos > 0) {
+				imagePos--;
+			}
+		}
+
+		if (!(r.getNumImages() == 0)) {
+			ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
+			Drawable d = new BitmapDrawable(getResources(),
+					Bitmap.createScaledBitmap(r.getImage(imagePos), 300, 250,
+							true));
+			button.setImageDrawable(d);
+		} else {
+			ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
+			button.setImageDrawable(getResources().getDrawable(
+					android.R.drawable.alert_light_frame));
+		}
 		return;
+	}
+
+	/**
+	 * Function that is called when the user clicks on the image button.
+	 */
+	public void onNextPhoto() {
+		GlobalApplication app = (GlobalApplication) getApplication();
+		Recipe r = app.getCurrentRecipe();
+		imagePos++;
+		if (imagePos >= r.getNumImages()) {
+			imagePos = 0;
+		}
+		if (!(imagePos == r.getNumImages())) {
+			ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
+			Drawable d = new BitmapDrawable(getResources(),
+					Bitmap.createScaledBitmap(r.getImage(imagePos), 300, 250,
+							true));
+			button.setImageDrawable(d);
+		}
+
+	}
+
+	public void saveInfo() {
+		EditText name = (EditText) findViewById(R.id.createEnterName);
+		EditText steps = (EditText) findViewById(R.id.createEnterSteps);
+		GlobalApplication app = (GlobalApplication) getApplication();
+
+		// Do this to save any user text they may have
+		app.getCurrentRecipe().changeName(name.getText().toString());
+		app.getCurrentRecipe().changeSteps(steps.getText().toString());
 	}
 }
