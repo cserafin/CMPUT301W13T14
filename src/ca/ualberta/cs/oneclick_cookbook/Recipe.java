@@ -25,6 +25,7 @@ public class Recipe {
 	private ArrayList<String> pictures = null;
 	private int promotions = 0;
 	private int demotions = 0;
+	private String owner = "";
 
 	// for online IDing
 	private String id;
@@ -52,6 +53,7 @@ public class Recipe {
 		this.promotions = 0;
 		this.demotions = 0;
 		this.pictures = new ArrayList<String>();
+		this.owner = "";
 
 
 		// Generate the ID tag (should be unique enough :) )
@@ -71,6 +73,10 @@ public class Recipe {
 
 	public String getName() {
 		return this.name;
+	}
+	
+	public String getOwner() {
+		return this.owner;
 	}
 
 	public void changeSteps(String newSteps) {
