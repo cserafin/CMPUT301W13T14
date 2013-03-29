@@ -76,12 +76,31 @@ public class ViewRecipesActivity extends Activity {
 				GlobalApplication app = (GlobalApplication) getApplication();
 				Recipe currentRecipe = userRecipes.get(position);
 				app.setCurrentRecipe(currentRecipe);
-
-				Intent intent = new Intent(
-						app,
-						ca.ualberta.cs.oneclick_cookbook.CreateRecipeActivity.class);
-				intent.putExtra("position", position);
-				startActivity(intent);
+				//set up test to check user for the recipe
+				if (currentRecipe.getOwner() != null) {
+					if (currentRecipe.getOwner() == app.getCurrentUser().getUserName()){
+						Intent intent = new Intent(
+								app,
+								ca.ualberta.cs.oneclick_cookbook.ViewFullRecipeActivity.class);
+						intent.putExtra("position", position);
+						startActivity(intent);
+					}
+					else {
+						Intent intent = new Intent(
+								app,
+								ca.ualberta.cs.oneclick_cookbook.CreateRecipeActivity.class);
+						intent.putExtra("position", position);
+						startActivity(intent);
+					}
+				}
+				//no current user allow for edit in the recipe
+				else {
+					Intent intent = new Intent(
+							app,
+							ca.ualberta.cs.oneclick_cookbook.CreateRecipeActivity.class);
+					intent.putExtra("position", position);
+					startActivity(intent);
+				}
 			}
 
 		});
