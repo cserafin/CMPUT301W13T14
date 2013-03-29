@@ -1,5 +1,12 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+/**
+ * Class that first asks the user if they do want to delete the entire cache before 
+ * proceeding to delete the entire cache associated with this app.
+ * 
+ * @author Kim Kramer
+ * 
+ */
 import java.io.File;
 
 import android.app.Activity;

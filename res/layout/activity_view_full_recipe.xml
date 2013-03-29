@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/fullEnterName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:hint="Recipe Name"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/createEnterSteps"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="55dp" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/createEnterName" >
+
+        <Button
+            android:id="@+id/bFullDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:onClick="clickHandler"
+            android:text="@string/createDone"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/bFullDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:onClick="clickHandler"
+            android:text="@string/createDelete"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/iCreateImage" >
+
+        <Button
+            android:id="@+id/bFullAddPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:onClick="clickHandler"
+            android:text="@string/createAddPhoto"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/bFullRemovePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:onClick="clickHandler"
+            android:text="@string/createDeletePhoto"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fullEnterSteps"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="Steps"
+        android:lines="6"
+        android:scrollHorizontally="false" />
+
+    <ImageButton
+        android:id="@+id/iFullImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_centerHorizontal="true"
+        android:onClick="clickHandler"
+        android:src="@android:drawable/alert_light_frame" />
+
+</RelativeLayout>
