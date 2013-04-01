@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ IngredientTest.class, PantryTest.class, RecipeTest.class,
-            ConstantsTest.class, FriendTest.class })
+            ConstantsTest.class, FriendTest.class, UserTest.class })
 public class AllTests {
 
 } 
