@@ -15,8 +15,6 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.os.StrictMode;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -52,11 +50,6 @@ public class NetworkHandler {
 	 */
 	public void postToES(Recipe recipe) throws IllegalStateException,
 			IOException {
-
-		// SHOULD put the stuff in a seperate thread and remove below two lines
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
 
 		HttpPut httpPut = new HttpPut(
 				"http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/"
@@ -105,10 +98,7 @@ public class NetworkHandler {
 	 * @return: recipe that was found
 	 */
 	public Recipe getFromES(String id) {
-		// SHOULD put the stuff in a seperate thread and remove below two lines
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
+
 		try {
 			HttpGet httpGet = new HttpGet(
 					"http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/"
@@ -156,11 +146,6 @@ public class NetworkHandler {
 	 */
 	public void deleteRecipe(String id) throws ClientProtocolException,
 			IOException {
-
-		// SHOULD put the stuff in a seperate thread and remove below two lines
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
 
 		HttpDelete httpDelete = new HttpDelete(
 				"http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/" + id);

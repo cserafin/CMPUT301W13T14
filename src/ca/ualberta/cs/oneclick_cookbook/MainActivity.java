@@ -3,7 +3,7 @@ package ca.ualberta.cs.oneclick_cookbook;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -20,6 +20,11 @@ public class MainActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+
+		// SHOULD put the stuff in a seperate thread and remove below two lines
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+				.permitAll().build();
+		StrictMode.setThreadPolicy(policy);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
@@ -92,8 +97,7 @@ public class MainActivity extends Activity {
 			startActivity(intent);
 			break;
 		case R.id.bHomeDelete:
-			intent = new Intent(this.getApplicationContext(),
-					DeleteCache.class);
+			intent = new Intent(this.getApplicationContext(), DeleteCache.class);
 			startActivity(intent);
 			break;
 		case R.id.bHomeFav:
