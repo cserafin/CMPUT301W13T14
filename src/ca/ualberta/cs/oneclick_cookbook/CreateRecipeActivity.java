@@ -79,7 +79,7 @@ public class CreateRecipeActivity extends Activity {
 
 	/**
 	 * Function that takes the info of the recipe being edited and puts in into
-	 * the text fields. This is used to restore any info the use may have had
+	 * the text fields. This is used to restore any info the user may have had
 	 * prior to leaving the activity.
 	 * 
 	 * @param recipe
@@ -93,7 +93,15 @@ public class CreateRecipeActivity extends Activity {
 		steps.setText(recipe.getSteps());
 	}
 
+	/**
+	 * Function that sets the image for the recipe.
+	 * 
+	 * @param recipe
+	 *            The recipe that it currently being viewed
+	 */
+	
 	public void setImage(Recipe recipe) {
+		// If the recipe has images, show the first one
 		if (recipe.getNumImages() > imagePos) {
 			ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
 			Drawable d = new BitmapDrawable(getResources(),
@@ -101,6 +109,7 @@ public class CreateRecipeActivity extends Activity {
 							250, true));
 			button.setImageDrawable(d);
 		} else {
+			// If the recipe doesn't have images, show the alert_frame
 			ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
 			button.setImageDrawable(getResources().getDrawable(
 					android.R.drawable.alert_light_frame));
@@ -150,7 +159,7 @@ public class CreateRecipeActivity extends Activity {
 	 */
 	public void onAddIngredients() {
 		GlobalApplication app = (GlobalApplication) getApplication();
-		saveInfo();
+		saveInfo(); // Do this to save any text they may have entered
 		Intent intent = new Intent(app, AddIngredientsActivity.class);
 		startActivity(intent);
 	}
@@ -163,6 +172,7 @@ public class CreateRecipeActivity extends Activity {
 		EditText name;
 		EditText steps;
 
+		// Get the info the user entered
 		name = (EditText) findViewById(R.id.createEnterName);
 		steps = (EditText) findViewById(R.id.createEnterSteps);
 		String namestring = name.getText().toString();
@@ -173,6 +183,7 @@ public class CreateRecipeActivity extends Activity {
 		r.changeName(namestring);
 		r.changeSteps(stepstring);
 
+		// If they entered invalid info
 		if (r.isValidInfo() != Constants.GOOD) {
 			showMessage("Invalid info entered");
 			return;
@@ -272,22 +283,26 @@ public class CreateRecipeActivity extends Activity {
 	 * Derived from the CameraDemo on eClass.
 	 */
 	public void onAddPhoto() {
-		saveInfo();
+		saveInfo(); // Do this to save and info the user may have entered
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
+		// Get the path to the folder
 		String folder = Environment.getExternalStorageDirectory()
 				.getAbsolutePath() + "/oneclick_cookbook";
 
+		// Make the folder if it doesn;t already exist
 		File folderF = new File(folder);
 		if (!folderF.exists()) {
 			folderF.mkdir();
 		}
 
+		// Get the path to the image
 		String imageFilePath = folder + "/"
 				+ String.valueOf(System.currentTimeMillis()) + "jpg";
 		File imageFile = new File(imageFilePath);
 		imageFileUri = Uri.fromFile(imageFile);
 
+		// Start the camera activity
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);
 		startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 
@@ -299,18 +314,25 @@ public class CreateRecipeActivity extends Activity {
 	 * image conversion, etc.
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// If it's the camera returning
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
 				GlobalApplication app = (GlobalApplication) getApplication();
 				Recipe r = app.getCurrentRecipe();
 				ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
 
+				// Convert the JPEG to bitmap
 				r.addImage(BitmapFactory.decodeFile(imageFileUri.getPath()));
+				// Go to the last photo
 				imagePos = r.getNumImages() - 1;
+				
+				// Set the image
 				Drawable d = new BitmapDrawable(getResources(),
 						Bitmap.createScaledBitmap(r.getImage(imagePos), 300,
 								250, true));
 				button.setImageDrawable(d);
+				
+				// Delete the old JPEG
 				File f = new File(imageFileUri.getPath());
 				f.delete();
 			} else if (resultCode == RESULT_CANCELED) {
@@ -334,6 +356,7 @@ public class CreateRecipeActivity extends Activity {
 			}
 		}
 
+		// If there are images to show, show one
 		if (!(r.getNumImages() == 0)) {
 			ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
 			Drawable d = new BitmapDrawable(getResources(),
@@ -341,6 +364,7 @@ public class CreateRecipeActivity extends Activity {
 							true));
 			button.setImageDrawable(d);
 		} else {
+			// If no images, display alert frame
 			ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
 			button.setImageDrawable(getResources().getDrawable(
 					android.R.drawable.alert_light_frame));
@@ -350,14 +374,20 @@ public class CreateRecipeActivity extends Activity {
 
 	/**
 	 * Function that is called when the user clicks on the image button.
+	 * Cycles through the photo's in the recipe.
 	 */
 	public void onNextPhoto() {
 		GlobalApplication app = (GlobalApplication) getApplication();
 		Recipe r = app.getCurrentRecipe();
+		
+		// Go to the next image position
 		imagePos++;
+		
+		// If we are at the end, go back to start
 		if (imagePos >= r.getNumImages()) {
 			imagePos = 0;
 		}
+		// Otherwise, display image
 		if (!(imagePos == r.getNumImages())) {
 			ImageButton button = (ImageButton) findViewById(R.id.iCreateImage);
 			Drawable d = new BitmapDrawable(getResources(),
@@ -368,6 +398,9 @@ public class CreateRecipeActivity extends Activity {
 
 	}
 
+	/**
+	 * Function that saves the users text that they have entered.
+	 */
 	public void saveInfo() {
 		EditText name = (EditText) findViewById(R.id.createEnterName);
 		EditText steps = (EditText) findViewById(R.id.createEnterSteps);
