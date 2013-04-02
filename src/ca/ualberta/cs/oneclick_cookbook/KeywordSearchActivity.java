@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.http.client.ClientProtocolException;
+/**
+ * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
+ * 
+ * Allows the user to search the database. It handles the clicks from the user.
+ */
 
 /**
  * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
