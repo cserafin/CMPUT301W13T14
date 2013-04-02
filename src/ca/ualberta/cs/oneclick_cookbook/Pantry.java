@@ -151,4 +151,21 @@ public class Pantry {
     	s += ingredientList.get(ingredientList.size() - 1).toString();
     	return s;
     }
+    
+    /**
+     * Converts the pantry to a string usable in an elasticsearch query
+     * @return returns the string representation
+     */
+    public String toSearchString() {
+    	String s = "";
+    	
+    	for(int i=0; i<(ingredientList.size() - 1); i++) {
+    		s += ingredientList.get(i).toString();
+    		if(i < ingredientList.size() - 1) {
+    			s += " AND ";
+    		}
+    	}
+    	
+    	return s;
+    }
 }

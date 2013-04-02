@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -11,6 +13,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -26,10 +29,7 @@ import com.google.gson.reflect.TypeToken;
 
 /**
  * Handles connections to the network and updates/modifies/retrieves and deletes
- * entries from elastic search
- * 
- * @author Chris
- * 
+ * entries from elasticsearch. Also handles the connection for a keyword search
  */
 public class NetworkHandler {
 	// Opens and handles the HTTP connection
@@ -207,6 +207,99 @@ public class NetworkHandler {
 			json += output;
 		}
 		System.err.println("JSON:" + json);
+		return json;
+	}
+	
+	/**
+	 * Searches for a recipe based on keywords.
+	 * 
+	 * @param string
+	 * 				: String object with keyword(s) to be searched for
+	 * @return Array of recipes that match the keyword(s)
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
+	public ArrayList<Recipe> searchRecipes(String string) throws ClientProtocolException, IOException {
+		// SHOULD put the stuff in a seperate thread and remove below two lines
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+				.permitAll().build();
+		StrictMode.setThreadPolicy(policy);
+		
+		HttpGet searchURL = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/_search?pretty=1&q=" +
+		java.net.URLEncoder.encode(string,"UTF-8"));
+		searchURL.setHeader("Accept","application/json");
+		HttpResponse response = httpClient.execute(searchURL);
+		
+		String json = getEntityContent(response);
+		
+		Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<Recipe>>(){}.getType();
+		ElasticSearchSearchResponse<Recipe> esResponse = gson.fromJson(json, elasticSearchSearchResponseType);
+		
+		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+		for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
+			recipes.add(r.getSource());
+		}
+		
+		searchURL.abort();
+		
+		return recipes;
+	}	
+	
+	/**
+	 * Allows for a search of recipes based on ingredients on hand
+	 * @param ingredients
+	 * 					: A string representation of a list of ingredients in the users
+	 * 					pantry
+	 * @return Array of recipes that match the ingredients in the users pantry
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
+	public ArrayList<Recipe> searchIngredients(String ingredients) throws ClientProtocolException, IOException {
+		// SHOULD put the stuff in a seperate thread and remove below two lines
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+				.permitAll().build();
+		StrictMode.setThreadPolicy(policy);
+		
+		HttpPost searchURL = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/_search?pretty=1");
+		String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"ingredients\",\"query\" : \"" + ingredients + "\"}}}";
+		StringEntity stringentity = new StringEntity(query);
+
+		searchURL.setHeader("Accept","application/json");
+		searchURL.setEntity(stringentity);
+
+		HttpResponse response = httpClient.execute(searchURL);
+		
+		String json = getEntityContent(response);
+
+		Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<Recipe>>(){}.getType();
+		ElasticSearchSearchResponse<Recipe> esResponse = gson.fromJson(json, elasticSearchSearchResponseType);
+		
+		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+		for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
+			recipes.add(r.getSource());
+		}
+		
+		searchURL.abort();
+		
+		return recipes;
+	}
+	
+	/**
+	 * Converts the search results to usable json objects
+	 * @param response
+	 * 					: The response from a search of elasticsearch
+	 * @return A Json representation of the search results
+	 * @throws IOException
+	 */
+	private String getEntityContent(HttpResponse response) throws IOException {
+		BufferedReader br = new BufferedReader(
+		new InputStreamReader((response.getEntity().getContent())));
+		String output;
+		String json = "";
+		while ((output = br.readLine()) != null) {
+			json += output;
+		}
+		
 		return json;
 	}
 
