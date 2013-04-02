@@ -1,7 +1,14 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
-// Empty for now until Friend gets more stuff
+/* ****************************************************
+ * Class to test the Friend class. Empty, due to 
+ * Friends no longer being included in project.
+ *
+ * Author: Kenneth Armstrong
+ *
+ * **************************************************/
+
 public class FriendTest {
 	
 	// Method to make JUnit happy
