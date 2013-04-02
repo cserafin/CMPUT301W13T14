@@ -18,6 +18,8 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.os.StrictMode;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
