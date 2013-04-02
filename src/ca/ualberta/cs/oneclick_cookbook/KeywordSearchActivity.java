@@ -1,5 +1,11 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+/**
+ * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
+ * 
+ * Allows the user to search the database. It handles the clicks from the user.
+ */
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

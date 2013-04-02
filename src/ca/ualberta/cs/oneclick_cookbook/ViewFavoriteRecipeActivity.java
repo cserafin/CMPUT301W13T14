@@ -1,5 +1,11 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+/**
+ * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
+ * 
+ * Allows the user to view the recipies they have saved on their device.
+ */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

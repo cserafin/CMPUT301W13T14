@@ -1,5 +1,9 @@
 package ca.ualberta.cs.oneclick_cookbook;
 
+/**
+ * NOT YET IMPLIMENTED! Will be with release 2.0.
+ */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +25,12 @@ public class SendToFriendActivity extends Activity {
 		return true;
 	}
 	
+	/**
+	 * Function that handles and directs the clicks from the user.
+	 * 
+	 * @param v
+	 *            The view of the button that was clicked.
+	 */
 	public void clickHandler(View v) {
 		Intent intent;
 		switch (v.getId()) {

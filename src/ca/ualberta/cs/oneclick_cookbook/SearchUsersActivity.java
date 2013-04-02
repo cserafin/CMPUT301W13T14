@@ -26,7 +26,12 @@ public class SearchUsersActivity extends Activity {
 		return true;
 	}
 	
-	// Handles clicks from users (but you should know that already)
+	/**
+	 * Function that handles and directs the clicks from the user.
+	 * 
+	 * @param v
+	 *            The view of the button that was clicked.
+	 */
 	public void clickHandler(View v) {
 		Intent intent;
 		switch(v.getId()) {
