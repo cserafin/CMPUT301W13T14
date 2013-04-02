@@ -92,6 +92,19 @@ public class CreateRecipeActivity extends Activity {
 		name.setText(recipe.getName());
 		steps.setText(recipe.getSteps());
 	}
+	
+	/**
+	 * Function that saves the users text that they have entered.
+	 */
+	public void saveInfo() {
+		EditText name = (EditText) findViewById(R.id.createEnterName);
+		EditText steps = (EditText) findViewById(R.id.createEnterSteps);
+		GlobalApplication app = (GlobalApplication) getApplication();
+
+		// Do this to save any user text they may have
+		app.getCurrentRecipe().changeName(name.getText().toString());
+		app.getCurrentRecipe().changeSteps(steps.getText().toString());
+	}
 
 	/**
 	 * Function that sets the image for the recipe.
@@ -398,16 +411,5 @@ public class CreateRecipeActivity extends Activity {
 
 	}
 
-	/**
-	 * Function that saves the users text that they have entered.
-	 */
-	public void saveInfo() {
-		EditText name = (EditText) findViewById(R.id.createEnterName);
-		EditText steps = (EditText) findViewById(R.id.createEnterSteps);
-		GlobalApplication app = (GlobalApplication) getApplication();
 
-		// Do this to save any user text they may have
-		app.getCurrentRecipe().changeName(name.getText().toString());
-		app.getCurrentRecipe().changeSteps(steps.getText().toString());
-	}
 }
