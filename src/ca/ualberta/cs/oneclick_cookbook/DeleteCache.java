@@ -32,7 +32,12 @@ public class DeleteCache extends Activity {
 	        adb.show();
     }
     
-    //method called on to actually delete the cache returned by getCacheDir()
+    /**
+     * method called on to actually delete the cache returned by getCacheDir()
+     * This method will get the cache and then delete it. If it fails to delete
+     * the cache, it will display an error message. If it is successful, it will
+     * display an affirmative message.
+     */
     public void deleteCache(){
     	boolean test;
     	File file =	DeleteCache.this.getCacheDir();

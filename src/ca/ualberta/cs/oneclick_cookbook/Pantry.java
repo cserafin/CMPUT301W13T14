@@ -159,8 +159,8 @@ public class Pantry {
     public String toSearchString() {
     	String s = "";
     	
-    	for(int i=0; i<(ingredientList.size() - 1); i++) {
-    		s += ingredientList.get(i).toString();
+    	for(int i=0; i < ingredientList.size(); i++) {
+    		s += ingredientList.get(i).getName();
     		if(i < ingredientList.size() - 1) {
     			s += " AND ";
     		}

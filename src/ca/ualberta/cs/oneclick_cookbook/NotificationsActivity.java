@@ -8,7 +8,7 @@ import android.view.View;
 
 /**
  * Class that displays to the user any notifications 
- * taht they may have.
+ * that they may have.
  * @author Kenneth Armstrong
  *
  */
@@ -27,7 +27,12 @@ public class NotificationsActivity extends Activity {
 		return true;
 	}
 	
-	// Handles and directs the clicks from the user
+	/**
+	 * Function that handles and directs the clicks from the user.
+	 * 
+	 * @param v
+	 *            The view of the button that was clicked.
+	 */
 	public void clickHandler(View v) {
 		Intent intent;
 		switch (v.getId()) {

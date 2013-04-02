@@ -5,6 +5,13 @@ import java.util.ArrayList;
 
 import org.apache.http.client.ClientProtocolException;
 
+/**
+ * @author	Chris Serafin, Peter Maidens, Ken "Mike" Armstrong, Kimberly Kramer
+ * 
+ * Allows the user to search the database. It handles the clicks from the user.
+ */
+
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -49,9 +56,10 @@ public class KeywordSearchActivity extends Activity {
 			NetworkHandler nh = new NetworkHandler();
 			
 			TextView textView = (TextView) findViewById(R.id.tSSearchQuery);
+			System.out.println(textView.getText().toString());
 			
 			try {
-				recipes = nh.searchRecipes(textView.toString());
+				recipes = nh.searchRecipes(textView.getText().toString());
 			} catch (ClientProtocolException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

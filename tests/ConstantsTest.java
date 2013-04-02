@@ -2,11 +2,18 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import ca.ualberta.cs.oneclick_cookbook.Constants;
 
-// Class to test ingredient
+/* ****************************************
+ * Class to test Constants. 
+ * 
+ * Author: Kenneth Armstrong
+ *
+ * ***************************************/
+
 public class ConstantsTest {
 
     @Test
     public void testGetUnitFromPosition() {
+        // Check to make sure that conversions are happening properly
         assertEquals("Constants:getUnit:Test 1", "mL", 
                      Constants.getUnitFromPosition(0));
         assertEquals("Constants:getUnit:Test 2", "cups", 
@@ -19,6 +26,7 @@ public class ConstantsTest {
 
     @Test
     public void testGetPositionFromUnit() {
+        // Check to make sure that conversions are happening properly
         assertEquals("Constants:getPosition:Test 1", 2,
                      Constants.getPositionFromUnit("g"));
         assertEquals("Constants:getPosition:Test 2", 1,

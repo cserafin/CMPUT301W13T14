@@ -7,7 +7,7 @@
 # Does not do error checking, so don't do anything stupid
 
 
-CLASSPATH=src:libs/libs/junit-4.11.jar:libs/libs/hamcrest-core-1.3.jar:bin/classes:tests
+CLASSPATH=src:libs/libs/junit-4.11.jar:libs/libs/hamcrest-core-1.3.jar:bin/classes:tests:libs/libs/android.jar
 
 echo 
 

@@ -31,7 +31,11 @@ public class Recipe {
 	private String id;
 
 	public Recipe() {
-
+		// Generate the ID tag (should be unique enough :) )
+		Random random = new Random();
+		UUID id = UUID.randomUUID();
+		this.id = id.toString() + "-" + System.nanoTime() + "-"
+				+ random.nextInt(100000);
 	}
 
 	/**
@@ -55,11 +59,11 @@ public class Recipe {
 		this.pictures = new ArrayList<String>();
 		this.owner = "";
 
-
 		// Generate the ID tag (should be unique enough :) )
 		Random random = new Random();
 		UUID id = UUID.randomUUID();
-		this.id = id.toString() + "-" + System.nanoTime() + "-" + random.nextInt(100000);
+		this.id = id.toString() + "-" + System.nanoTime() + "-"
+				+ random.nextInt(100000);
 	}
 
 	public String getID() {
@@ -74,7 +78,7 @@ public class Recipe {
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public String getOwner() {
 		return this.owner;
 	}
@@ -111,36 +115,34 @@ public class Recipe {
 		int rating = this.promotions - this.demotions;
 		return rating;
 	}
-	
+
 	public void addImage(Bitmap image) {
-	    ByteArrayOutputStream baos = new ByteArrayOutputStream();  
-	    image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-	    byte[] b = baos.toByteArray();
-	    String imageEncoded = Base64.encodeToString(b,Base64.DEFAULT);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+		byte[] b = baos.toByteArray();
+		String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
 		pictures.add(imageEncoded);
 	}
-	
+
 	public void deleteImage(int position) {
-		if (position < pictures.size() && position > -1) { 
+		if (position < pictures.size() && position > -1) {
 			pictures.remove(position);
 		}
 	}
-	
+
 	public int getNumImages() {
 		return pictures.size();
 	}
-	
+
 	public Bitmap getImage(int position) {
 		if (position < pictures.size() && position > -1) {
 			byte[] decodedByte = Base64.decode(pictures.get(position), 0);
-			return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
-		}
-		else {
+			return BitmapFactory.decodeByteArray(decodedByte, 0,
+					decodedByte.length);
+		} else {
 			return null;
 		}
 	}
-	
-
 
 	/**
 	 * Turns the recipe into a String.

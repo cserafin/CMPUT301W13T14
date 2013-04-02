@@ -53,11 +53,6 @@ public class NetworkHandler {
 	public void postToES(Recipe recipe) throws IllegalStateException,
 			IOException {
 
-		// SHOULD put the stuff in a seperate thread and remove below two lines
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
-
 		HttpPut httpPut = new HttpPut(
 				"http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/"
 						+ recipe.getID());
@@ -105,10 +100,7 @@ public class NetworkHandler {
 	 * @return: recipe that was found
 	 */
 	public Recipe getFromES(String id) {
-		// SHOULD put the stuff in a seperate thread and remove below two lines
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
+
 		try {
 			HttpGet httpGet = new HttpGet(
 					"http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/"
@@ -156,11 +148,6 @@ public class NetworkHandler {
 	 */
 	public void deleteRecipe(String id) throws ClientProtocolException,
 			IOException {
-
-		// SHOULD put the stuff in a seperate thread and remove below two lines
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
 
 		HttpDelete httpDelete = new HttpDelete(
 				"http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/" + id);
@@ -220,24 +207,25 @@ public class NetworkHandler {
 	 * @throws IOException
 	 */
 	public ArrayList<Recipe> searchRecipes(String string) throws ClientProtocolException, IOException {
-		// SHOULD put the stuff in a seperate thread and remove below two lines
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
-		
 		HttpGet searchURL = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/_search?pretty=1&q=" +
-		java.net.URLEncoder.encode(string,"UTF-8"));
+		string);
 		searchURL.setHeader("Accept","application/json");
 		HttpResponse response = httpClient.execute(searchURL);
+		
+		String status = response.getStatusLine().toString();
+		System.out.println(status);
 		
 		String json = getEntityContent(response);
 		
 		Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<Recipe>>(){}.getType();
 		ElasticSearchSearchResponse<Recipe> esResponse = gson.fromJson(json, elasticSearchSearchResponseType);
 		
+		System.err.println(esResponse);
+		
 		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 		for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
 			recipes.add(r.getSource());
+			System.err.println(r.getSource().toString());
 		}
 		
 		searchURL.abort();
@@ -255,13 +243,10 @@ public class NetworkHandler {
 	 * @throws IOException
 	 */
 	public ArrayList<Recipe> searchIngredients(String ingredients) throws ClientProtocolException, IOException {
-		// SHOULD put the stuff in a seperate thread and remove below two lines
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-		StrictMode.setThreadPolicy(policy);
+		System.out.println(ingredients);
 		
 		HttpPost searchURL = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t14/recipes/_search?pretty=1");
-		String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"ingredients\",\"query\" : \"" + ingredients + "\"}}}";
+		String query = "{\"nested\" : {\"path\" : \"ingredients\" : { \"must\" :[{\"match\" :{\"ingredients.name\"" + ingredients + "\"}}]}}";
 		StringEntity stringentity = new StringEntity(query);
 
 		searchURL.setHeader("Accept","application/json");
@@ -269,14 +254,20 @@ public class NetworkHandler {
 
 		HttpResponse response = httpClient.execute(searchURL);
 		
+		String status = response.getStatusLine().toString();
+		System.out.println(status);
+		
 		String json = getEntityContent(response);
 
 		Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<Recipe>>(){}.getType();
 		ElasticSearchSearchResponse<Recipe> esResponse = gson.fromJson(json, elasticSearchSearchResponseType);
 		
+		System.err.println(esResponse);
+		
 		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 		for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
 			recipes.add(r.getSource());
+			System.err.println(r.getSource().toString());
 		}
 		
 		searchURL.abort();

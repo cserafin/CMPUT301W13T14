@@ -26,6 +26,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 public class SearchActivity extends Activity {
 	
 	ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+	private Pantry userRecipes = new Pantry();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,12 @@ public class SearchActivity extends Activity {
 		return true;
 	}
 	
-	// Handles the clicks from this activity
+	/**
+	 * Function that handles and directs the clicks from the user.
+	 * 
+	 * @param v
+	 *            The view of the button that was clicked.
+	 */
 	public void clickHandler(View v) {
 		Intent intent;
 		switch(v.getId()) {
@@ -48,17 +54,20 @@ public class SearchActivity extends Activity {
 			finish();
 			break;
 		case R.id.bHomeSPantry:
-			NetworkHandler nh = new NetworkHandler();
+			GlobalApplication app = (GlobalApplication) getApplication();
+			userRecipes = app.getCurrentUser().getUserPantry();
 			
+			System.err.println("Ingreds: " + userRecipes.toSearchString());
+			
+			NetworkHandler nh = new NetworkHandler();
 			try {
-				recipes = nh.searchIngredients("test");
+				recipes = nh.searchRecipes(userRecipes.toSearchString());
 			} catch (ClientProtocolException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			ListView listView = (ListView) findViewById(R.id.searchResults);
-			GlobalApplication app = (GlobalApplication) getApplication();
 
 			// Convert them to a string list
 			ArrayList<String> content = new ArrayList<String>();
