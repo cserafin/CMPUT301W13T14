@@ -11,7 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ScaleDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,6 +18,7 @@ import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -48,6 +48,11 @@ public class CreateRecipeActivity extends Activity {
 		// Set the position if we are editing
 		if (extras != null) {
 			position = extras.getInt("position");
+		}
+		
+		if (position == -1) {
+			Button email = (Button) findViewById(R.id.bEmailRecipe);
+			email.setVisibility(View.GONE);
 		}
 	}
 
@@ -162,6 +167,10 @@ public class CreateRecipeActivity extends Activity {
 			break;
 		case R.id.iCreateImage:
 			onNextPhoto();
+			break;
+		case R.id.bEmailRecipe:
+			Intent intent = new Intent(this, SendEmailActivity.class);
+			startActivity(intent);
 			break;
 		}
 	}

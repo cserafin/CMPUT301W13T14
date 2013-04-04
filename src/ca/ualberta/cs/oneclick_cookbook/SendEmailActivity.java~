@@ -85,8 +85,8 @@ public class SendEmailActivity extends Activity {
 		EditText emailTo = (EditText) findViewById(R.id.tEmailSend);
 		String emailString = emailTo.getText().toString();
 		email.putExtra(Intent.EXTRA_EMAIL, new String[]{emailString});
-		email.putExtra(Intent.EXTRA_SUBJECT, subject);
-		email.putExtra(Intent.EXTRA_TEXT, r);
+		email.putExtra(Intent.EXTRA_SUBJECT, new String[]{subject});
+		email.putExtra(Intent.EXTRA_TEXT, new String[]{r});
 		email.setType("message/rfc822");
 		try{
 			startActivity(Intent.createChooser(email, "Choose an Email App"));
