@@ -35,13 +35,14 @@ public class SendEmailActivity extends Activity {
 		
 		Intent intent = getIntent();
 		Bundle b = intent.getExtras();
-		if(b!=null){
-			this.recipeString= (String) b.getString("recipe", "There seems to be an error... " +
+		if(b==null){
+			this.recipeString="There seems to be an error... " +
 					"Your friend wanted to send you a delicious recipe, but something along " +
 					"the way has gone wrong. OneClick Cookbook is sorry for the inconvenience. " +
 					"Please feel free to contact OneClick Cookbook Support at: " +
-					"cookbooksupport@oneclick.com");
-		}
+					"cookbooksupport@oneclick.com";
+		}else{
+			this.recipeString = (String) b.getString("recipe")
 	}
 
 	@Override
@@ -79,11 +80,12 @@ public class SendEmailActivity extends Activity {
 	 * @param r A passed String of the recipe that will be sent via email.
 	 */
 	private void sendEmail(String r){
+		String subject = "Your Friend has Sent You a Recipe!";
 		Intent email = new Intent(Intent.ACTION_SEND);
 		EditText emailTo = (EditText) findViewById(R.id.tEmailSend);
 		String emailString = emailTo.getText().toString();
 		email.putExtra(Intent.EXTRA_EMAIL, new String[]{emailString});
-		email.putExtra(Intent.EXTRA_SUBJECT, new String[]{"Your Friend has Sent You a Recipe!"});
+		email.putExtra(Intent.EXTRA_SUBJECT, new String[]{subject});
 		email.putExtra(Intent.EXTRA_TEXT, new String[]{r});
 		email.setType("message/rfc822");
 		try{
