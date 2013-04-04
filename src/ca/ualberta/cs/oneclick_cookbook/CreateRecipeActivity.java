@@ -149,6 +149,8 @@ public class CreateRecipeActivity extends Activity {
 	 *            The view of the button that was clicked
 	 */
 	public void clickHandler(View v) {
+		GlobalApplication app = (GlobalApplication) getApplication();
+		Recipe recipe = app.getCurrentRecipe();
 		switch (v.getId()) {
 		case R.id.bCreateDone:
 			onDone();
@@ -170,6 +172,7 @@ public class CreateRecipeActivity extends Activity {
 			break;
 		case R.id.bEmailRecipe:
 			Intent intent = new Intent(this, SendEmailActivity.class);
+			intent.putExtra("recipe", recipe.toString());
 			startActivity(intent);
 			break;
 		}

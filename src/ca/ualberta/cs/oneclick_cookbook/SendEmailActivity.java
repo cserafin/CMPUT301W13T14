@@ -42,7 +42,8 @@ public class SendEmailActivity extends Activity {
 					"Please feel free to contact OneClick Cookbook Support at: " +
 					"cookbooksupport@oneclick.com";
 		}else{
-			this.recipeString = (String) b.getString("recipe")
+			this.recipeString = (String) b.getString("recipe");
+		}
 	}
 
 	@Override
